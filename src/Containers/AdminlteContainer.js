@@ -43,30 +43,27 @@ class AdminlteContainer extends React.PureComponent {
               <li className='header'>MAIN NAVIGATION</li>
               <li className='active treeview menu-open'>
                 <a href='#'>
-                  <i className='fa fa-dashboard' /> <span>Merchant</span>
+                  <i className='fa fa-dashboard' /><span>Merchant</span>
                   <span className='pull-right-container'>
                     <i className='fa fa-angle-left pull-right' />
                   </span>
                 </a>
                 <ul className='treeview-menu'>
                   <li><a href='/merchant/create'><i className='fa fa-circle-o' /> Create New</a></li>
-                  <li className='active'><a href='#'><i className='fa fa-circle-o' /> All Merchant</a></li>
+                  <li><a href='/merchant/list'><i className='fa fa-circle-o' /> All Merchant</a></li>
                 </ul>
               </li>
 
               <li className='treeview'>
                 <a href='#'>
                   <i className='fa fa-pie-chart' />
-                  <span>Transaksi</span>
+                  <span>Transaction</span>
                   <span className='pull-right-container'>
                     <i className='fa fa-angle-left pull-right' />
                   </span>
                 </a>
                 <ul className='treeview-menu'>
-                  <li><a href='#'><i className='fa fa-circle-o' /> ChartJS</a></li>
-                  <li><a href='#'><i className='fa fa-circle-o' /> Morris</a></li>
-                  <li><a href='#'><i className='fa fa-circle-o' /> Flot</a></li>
-                  <li><a href='#'><i className='fa fa-circle-o' /> Inline charts</a></li>
+                  <li><a href='/report'><i className='fa fa-circle-o' /> Report</a></li>
                 </ul>
               </li>
 
