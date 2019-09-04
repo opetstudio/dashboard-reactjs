@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class HomePageComponent extends Component {
   componentDidMount () {
-    window._loadhomescript()
+    window.HomePageComponent()
   }
   render () {
     console.log('props===>', this.props)

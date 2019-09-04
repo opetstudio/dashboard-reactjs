@@ -15,7 +15,7 @@ import CryptoJS from 'crypto-js'
 // var bcrypt = require('bcryptjs')
 // var salt = bcrypt.genSaltSync(1)
 
-class LayoutFormLogin extends React.Component {
+class LoginPageComponent extends React.Component {
   state = {
     password: '',
     email: '',
@@ -32,7 +32,7 @@ class LayoutFormLogin extends React.Component {
     })
   }
   componentDidMount () {
-    window._loadloginscript()
+    window.LoginPageComponent()
   }
   componentWillReceiveProps (nextProps) {
     this.setState({
@@ -124,4 +124,4 @@ class LayoutFormLogin extends React.Component {
   }
 }
 
-export default LayoutFormLogin
+export default LoginPageComponent

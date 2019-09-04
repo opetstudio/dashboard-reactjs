@@ -4,12 +4,12 @@ import { path } from 'ramda'
 import { Redirect } from 'react-router-dom'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import LoginActions, { LoginSelectors } from './redux'
-import LayoutFormLogin from '../../Components/Login'
+import LoginPageComponent from '../../Components/Login/LoginPageComponent'
 import { columns } from './columns'
 
 const TheComponent = props =>
   window.localStorage.getItem('isLoggedIn') !== 'true' ? (
-    <LayoutFormLogin {...props} />
+    <LoginPageComponent {...props} />
   ) : (
     <Redirect to='/' />
   )

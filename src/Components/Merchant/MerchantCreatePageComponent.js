@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 
 class MerchantCreatePageComponent extends Component {
+  componentWillMount () {
+    window.MerchantCreatePageComponentComponentWillMount()
+  }
   componentDidMount () {
-    window._loadhostscript()
+    window.MerchantCreatePageComponentComponentDidMount()
   }
   render () {
     return (
@@ -21,10 +24,10 @@ class MerchantCreatePageComponent extends Component {
             <div className='box-header with-border'>
               <h3 className='box-title'>Select2</h3>
 
-              <div className='box-tools pull-right'>
+              {/* <div className='box-tools pull-right'>
                 <button type='button' className='btn btn-box-tool' data-widget='collapse'><i className='fa fa-minus' /></button>
                 <button type='button' className='btn btn-box-tool' data-widget='remove'><i className='fa fa-remove' /></button>
-              </div>
+              </div> */}
             </div>
             <div className='box-body'>
               <div className='row'>
