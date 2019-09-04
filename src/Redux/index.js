@@ -9,7 +9,8 @@ export default () => {
   const rootReducer = combineReducers({
     app: require('./AppRedux').reducer,
     // begin Ignite-Entity-Login
-    login: require('../Containers/Login/redux').reducer
+    login: require('../Containers/Login/redux').reducer,
+    merchant: require('../Containers/Merchant/redux').reducer
     // end Ignite-Entity-Login
     // begin Ignite-Entity-Paymentpage
     // paymentpage: require('../Containers/Paymentpage/redux').reducer,
