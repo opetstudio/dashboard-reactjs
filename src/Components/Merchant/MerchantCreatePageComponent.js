@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 
 class MerchantCreatePageComponent extends Component {
+  componentWillMount () {
+    window.MerchantCreatePageComponentComponentWillMount()
+  }
   componentDidMount () {
-    window._loadhostscript()
+    window.MerchantCreatePageComponentComponentDidMount()
   }
   render () {
     return (
@@ -20,53 +23,54 @@ class MerchantCreatePageComponent extends Component {
           <div className='box box-primary'>
             <div className='box-header with-border'>
               <h3 className='box-title'>Merchant Information</h3>
-              <div className='box-tools pull-right'>
+
+              {/* <div className='box-tools pull-right'>
                 <button type='button' className='btn btn-box-tool' data-widget='collapse'><i className='fa fa-minus' /></button>
                 <button type='button' className='btn btn-box-tool' data-widget='remove'><i className='fa fa-remove' /></button>
-              </div>
+              </div> */}
             </div>
             <div className='box-body'>
               <div className='row'>
                 <div className='col-md-6'>
-                  <form role="form">
-                    <div class="box-body">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Merchant Code</label>
-                        <input type="mcode" class="form-control" id="mcode" placeholder="Enter Merchant Code"></input>
+                  <form role='form'>
+                    <div class='box-body'>
+                      <div class='form-group'>
+                        <label for='exampleInputEmail1'>Merchant Code</label>
+                        <input type='mcode' class='form-control' id='mcode' placeholder='Enter Merchant Code' />
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Merchant Name</label>
-                        <input type="mname" class="form-control" id="mname" placeholder="Enter Merchant Name"></input>
+                      <div class='form-group'>
+                        <label for='exampleInputPassword1'>Merchant Name</label>
+                        <input type='mname' class='form-control' id='mname' placeholder='Enter Merchant Name' />
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email"></input>
+                      <div class='form-group'>
+                        <label for='exampleInputEmail1'>Email address</label>
+                        <input type='email' class='form-control' id='email' placeholder='Enter email' />
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Phone No.</label>
-                        <input type="phone" class="form-control" id="phone" placeholder="Enter Phone Number"></input>
+                      <div class='form-group'>
+                        <label for='exampleInputPassword1'>Phone No.</label>
+                        <input type='phone' class='form-control' id='phone' placeholder='Enter Phone Number' />
                       </div>
-                      <div class="form-group">
+                      <div class='form-group'>
                         <label>Address</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter Address"></textarea>
+                        <textarea class='form-control' rows='3' placeholder='Enter Address' />
                       </div>
                     </div>
                   </form>
                 </div>
                 <div className='col-md-6'>
-                    <form role="form">
-                    <div class="box-body">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Front End Callback URL</label>
-                        <input type="frontend" class="form-control" id="frontend" placeholder="Enter Front End Callback URL"></input>
+                  <form role='form'>
+                    <div class='box-body'>
+                      <div class='form-group'>
+                        <label for='exampleInputEmail1'>Front End Callback URL</label>
+                        <input type='frontend' class='form-control' id='frontend' placeholder='Enter Front End Callback URL' />
                       </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Back End Callback URL</label>
-                        <input type="backend" class="form-control" id="backend" placeholder="Enter Back End Callback URL"></input>
+                      <div class='form-group'>
+                        <label for='exampleInputPassword1'>Back End Callback URL</label>
+                        <input type='backend' class='form-control' id='backend' placeholder='Enter Back End Callback URL' />
                       </div>
-                      <div class="form-group">
+                      <div class='form-group'>
                         <label>Status</label>
-                        <select class="form-control">
+                        <select class='form-control'>
                           <option>Active</option>
                           <option>Inactive</option>
                         </select>
@@ -76,13 +80,13 @@ class MerchantCreatePageComponent extends Component {
                 </div>
               </div>
             </div>
-            <div className="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                {/* <button type="submit" class="btn btn-info pull-right">Sign in</button> */}
-              </div>
+            <div className='box-footer'>
+              <button type='submit' class='btn btn-primary'>Submit</button>
+              {/* <button type="submit" class="btn btn-info pull-right">Sign in</button> */}
+            </div>
           </div>
         </section>
-        
+
       </div>
     )
   }
