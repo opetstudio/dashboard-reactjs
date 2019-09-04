@@ -5,13 +5,9 @@ import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 // Import Screens for the Router
 // prettier-ignore
 import ResponsiveContainer from '../Containers/ResponsiveContainer'
-// --- import list page entyty ---
-
-import PaymentpageHome from '../Containers/Paymentpage/HomeContainer'
-import PaymentpageCallback from '../Containers/Paymentpage/CallbackContainer'
-import QrcodePage from '../Containers/Qrcode/QrcodePageContainer'
-import LoginPageContainer from '../Containers/Login/LoginPageContainer'
+// --- import list page entity ---
 import HomePageContainer from '../Containers/Home/HomePageContainer'
+import MerchantCreatePageContainer from '../Components/Merchant/MerchantCreatePageComponent'
 
 class App extends Component {
   componentWillMount () {
@@ -45,12 +41,9 @@ class NavigationRouter extends Component {
       <Router>
         <AppContainer checkLogedStatus={this.props.checkLogedStatus}>
           <ResponsiveContainer appname='adminlte'>
-            <Route exact path={`${basePath}/creditcard/paymentPage`} component={PaymentpageHome} />
-            <Route exact path={`${basePath}/creditcard/callback`} component={PaymentpageCallback} />
-            <Route exact path={`${basePath}/qrcodepage/form-generate`} component={QrcodePage} />
-            <Route exact path={`${basePath}/qrscanner`} component={QrcodePage} />
-            <Route exact path={`${basePath}/login`} component={LoginPageContainer} />
+            <Route exact path={`${basePath}/`} component={HomePageContainer} />
             <Route exact path={`${basePath}/home`} component={HomePageContainer} />
+            <Route exact path={`${basePath}/merchant/create`} component={MerchantCreatePageContainer} />
           </ResponsiveContainer>
         </AppContainer>
       </Router>

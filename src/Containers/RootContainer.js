@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import Navigation from '../Navigation/SwaggerNavigation'
-import Navigation from '../Navigation/PaymentpageNavigation'
+import Navigation from '../Navigation/Navigation'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
 import {AppSelectors} from '../Redux/AppRedux'

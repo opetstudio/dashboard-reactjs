@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Container, Segment, Grid} from 'semantic-ui-react'
 
 class HomePageComponent extends Component {
   render () {

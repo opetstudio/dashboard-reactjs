@@ -23,6 +23,8 @@
   <!-- jvectormap -->
   <link rel="stylesheet" href="%PUBLIC_URL%/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Theme style -->
+  <!-- Select2 -->
+  <link rel="stylesheet" href="%PUBLIC_URL%/bower_components/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="%PUBLIC_URL%/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
@@ -139,6 +141,8 @@
 <script src="%PUBLIC_URL%/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="%PUBLIC_URL%/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="%PUBLIC_URL%/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- FastClick -->
 <script src="%PUBLIC_URL%/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -153,5 +157,10 @@
 <!-- ChartJS -->
 <script src="%PUBLIC_URL%/bower_components/chart.js/Chart.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script>
+  window._loadhostscript = function () {
+    $('.select2').select2()
+  }
+</script>
   </body>
 </html>

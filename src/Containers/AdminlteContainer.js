@@ -5,57 +5,57 @@ class AdminlteContainer extends React.PureComponent {
   render () {
     const { children } = this.props
     return (
-      <div class='wrapper'>
-        <header class='main-header'>
-          <a href='index2.html' class='logo'>
-            <span class='logo-mini'><b>PL</b></span>
-            <span class='logo-lg'><b>PLink Direct Debet</b></span>
+      <div className='wrapper'>
+        <header className='main-header'>
+          <a href='/' className='logo'>
+            <span className='logo-mini'><b>PL</b></span>
+            <span className='logo-lg'><b>PLink Direct Debet</b></span>
           </a>
-          <nav class='navbar navbar-static-top'>
-            <a href='#' class='sidebar-toggle' data-toggle='push-menu' role='button'>
-              <span class='sr-only'>Toggle navigation</span>
+          <nav className='navbar navbar-static-top'>
+            <a href='#' className='sidebar-toggle' data-toggle='push-menu' role='button'>
+              <span className='sr-only'>Toggle navigation</span>
             </a>
           </nav>
         </header>
-        <aside class='main-sidebar'>
-          <section class='sidebar'>
-            <div class='user-panel'>
-              <div class='pull-left image'>
-                <img src='dist/img/user2-160x160.jpg' class='img-circle' alt='User Image' />
+        <aside className='main-sidebar'>
+          <section className='sidebar'>
+            <div className='user-panel'>
+              <div className='pull-left image'>
+                <img src='/dist/img/user2-160x160.jpg' className='img-circle' alt='User Image' />
               </div>
-              <div class='pull-left info'>
-                <p>Alexander Pierce</p>
-                <a href='#'><i class='fa fa-circle text-success' /> Online</a>
+              <div className='pull-left info'>
+                <p>Admin MBDD</p>
+                <a href='#'><i className='fa fa-circle text-success' /> Online</a>
               </div>
             </div>
-            <ul class='sidebar-menu' data-widget='tree'>
-              <li class='header'>MAIN NAVIGATION</li>
-              <li class='active treeview menu-open'>
+            <ul className='sidebar-menu' data-widget='tree'>
+              <li className='header'>MAIN NAVIGATION</li>
+              <li className='active treeview menu-open'>
                 <a href='#'>
-                  <i class='fa fa-dashboard' /> <span>Merchan</span>
-                  <span class='pull-right-container'>
-                    <i class='fa fa-angle-left pull-right' />
+                  <i className='fa fa-dashboard' /> <span>Merchant</span>
+                  <span className='pull-right-container'>
+                    <i className='fa fa-angle-left pull-right' />
                   </span>
                 </a>
-                <ul class='treeview-menu'>
-                  <li><a href='index.html'><i class='fa fa-circle-o' /> Buat Baru</a></li>
-                  <li class='active'><a href='index2.html'><i class='fa fa-circle-o' /> Daftar Merchan</a></li>
+                <ul className='treeview-menu'>
+                  <li><a href='/merchant/create'><i className='fa fa-circle-o' /> Create New</a></li>
+                  <li className='active'><a href='#'><i className='fa fa-circle-o' /> All Merchant</a></li>
                 </ul>
               </li>
               
-              <li class='treeview'>
+              <li className='treeview'>
                 <a href='#'>
-                  <i class='fa fa-pie-chart' />
+                  <i className='fa fa-pie-chart' />
                   <span>Transaksi</span>
-                  <span class='pull-right-container'>
-                    <i class='fa fa-angle-left pull-right' />
+                  <span className='pull-right-container'>
+                    <i className='fa fa-angle-left pull-right' />
                   </span>
                 </a>
-                <ul class='treeview-menu'>
-                  <li><a href='pages/charts/chartjs.html'><i class='fa fa-circle-o' /> ChartJS</a></li>
-                  <li><a href='pages/charts/morris.html'><i class='fa fa-circle-o' /> Morris</a></li>
-                  <li><a href='pages/charts/flot.html'><i class='fa fa-circle-o' /> Flot</a></li>
-                  <li><a href='pages/charts/inline.html'><i class='fa fa-circle-o' /> Inline charts</a></li>
+                <ul className='treeview-menu'>
+                  <li><a href='#'><i className='fa fa-circle-o' /> ChartJS</a></li>
+                  <li><a href='#'><i className='fa fa-circle-o' /> Morris</a></li>
+                  <li><a href='#'><i className='fa fa-circle-o' /> Flot</a></li>
+                  <li><a href='#'><i className='fa fa-circle-o' /> Inline charts</a></li>
                 </ul>
               </li>
               
@@ -63,11 +63,11 @@ class AdminlteContainer extends React.PureComponent {
           </section>
         </aside>
         {children}
-        <footer class='main-footer'>
-          <div class='pull-right hidden-xs'>
+        <footer className='main-footer'>
+          <div className='pull-right hidden-xs'>
             <b>Version</b> 2.4.18
           </div>
-          <strong>Copyright &copy; 2014-2019 <a href='https://adminlte.io'>AdminLTE</a>.</strong> All rights
+          <strong>Copyright &copy; 2019 <a href='https://adminlte.io'>PT. Prismalink International</a>.</strong> All rights
             reserved.
         </footer>
       </div>

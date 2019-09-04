@@ -2,17 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
 
-import HomePageComponent from '../../Components/Home/HomePageComponent'
+import MerchantCreatePageComponent from '../../Components/Merchant/MerchantCreatePageComponent'
 
 const TheComponent = props => (
-  <HomePageComponent
+  <MerchantCreatePageComponent
     history={props.history}
     {...props}
   />
 )
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    // isRequesting: false
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {}
