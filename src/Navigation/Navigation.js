@@ -8,6 +8,8 @@ import ResponsiveContainer from '../Containers/ResponsiveContainer'
 // --- import list page entity ---
 import HomePageContainer from '../Containers/Home/HomePageContainer'
 import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePageContainer'
+import MerchantListPageContainer from '../Components/Merchant/MerchantListPageComponent'
+import ReportListPageContainer from '../Components/Report/ReportListPageComponent'
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 
 class App extends Component {
@@ -45,6 +47,8 @@ class NavigationRouter extends Component {
             <Route exact path={`${basePath}/`} component={HomePageContainer} />
             <Route exact path={`${basePath}/home`} component={HomePageContainer} />
             <Route exact path={`${basePath}/merchant/create`} component={MerchantCreatePageContainer} />
+            <Route exact path={`${basePath}/merchant/list`} component={MerchantListPageContainer} />
+            <Route exact path={`${basePath}/report`} component={ReportListPageContainer} />
             <Route exact path={`${basePath}/login`} component={LoginPageContainer} />
           </ResponsiveContainer>
         </AppContainer>

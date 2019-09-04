@@ -64,23 +64,20 @@ class AdminlteContainer extends React.PureComponent {
                 </Link>
                 <ul className='treeview-menu'>
                   <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Create New</Link></li>
-                  <li className='active'><Link to='#'><i className='fa fa-circle-o' /> All Merchant</Link></li>
+                  <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> All Merchant</Link></li>
                 </ul>
               </li>
 
               <li className='treeview'>
                 <Link to='#'>
                   <i className='fa fa-pie-chart' />
-                  <span>Transaksi</span>
+                  <span>Transaction</span>
                   <span className='pull-right-container'>
                     <i className='fa fa-angle-left pull-right' />
                   </span>
                 </Link>
                 <ul className='treeview-menu'>
-                  <li><Link to='#'><i className='fa fa-circle-o' /> ChartJS</Link></li>
-                  <li><Link to='#'><i className='fa fa-circle-o' /> Morris</Link></li>
-                  <li><Link to='#'><i className='fa fa-circle-o' /> Flot</Link></li>
-                  <li><Link to='#'><i className='fa fa-circle-o' /> Inline charts</Link></li>
+                  <li><Link to='/report'><i className='fa fa-circle-o' /> Report</Link></li>
                 </ul>
               </li>
 
