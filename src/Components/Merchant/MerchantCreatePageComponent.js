@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 class MerchantCreatePageComponent extends Component {
   componentWillMount () {
@@ -6,6 +7,15 @@ class MerchantCreatePageComponent extends Component {
   }
   componentDidMount () {
     window.MerchantCreatePageComponentComponentDidMount()
+  }
+  _onSubmitForm (e) {
+    if (e) e.preventDefault()
+    let bodyJson = {}
+    _.forIn(this.refs, (v, k) => {
+      bodyJson[k] = v.value
+    })
+    console.log('bodyJson', bodyJson)
+    this.props.merchantCreateRequest(bodyJson)
   }
   render () {
     return (
@@ -20,71 +30,68 @@ class MerchantCreatePageComponent extends Component {
           </ol>
         </section>
         <section className='content'>
-          <div className='box box-primary'>
-            <div className='box-header with-border'>
-              <h3 className='box-title'>Merchant Information</h3>
+          <form onSubmit={(e) => this._onSubmitForm(e)}>
+            <div className='box box-primary'>
+              <div className='box-header with-border'>
+                <h3 className='box-title'>Merchant Information</h3>
+              </div>
+              <div className='box-body'>
+                <div className='row'>
+                  
+                  <div className='col-md-6'>
 
-              {/* <div className='box-tools pull-right'>
-                <button type='button' className='btn btn-box-tool' data-widget='collapse'><i className='fa fa-minus' /></button>
-                <button type='button' className='btn btn-box-tool' data-widget='remove'><i className='fa fa-remove' /></button>
-              </div> */}
-            </div>
-            <div className='box-body'>
-              <div className='row'>
-                <div className='col-md-6'>
-                  <form role='form'>
-                    <div class='box-body'>
-                      <div class='form-group'>
+                    <div className='box-body'>
+                      <div className='form-group'>
                         <label for='exampleInputEmail1'>Merchant Code</label>
-                        <input type='mcode' class='form-control' id='mcode' placeholder='Enter Merchant Code' />
+                        <input type='mcode' className='form-control' id='mcode' placeholder='Enter Merchant Code' ref='mcode' />
                       </div>
-                      <div class='form-group'>
+                      <div className='form-group'>
                         <label for='exampleInputPassword1'>Merchant Name</label>
-                        <input type='mname' class='form-control' id='mname' placeholder='Enter Merchant Name' />
+                        <input type='mname' className='form-control' id='mname' placeholder='Enter Merchant Name' ref='mname' />
                       </div>
-                      <div class='form-group'>
+                      <div className='form-group'>
                         <label for='exampleInputEmail1'>Email address</label>
-                        <input type='email' class='form-control' id='email' placeholder='Enter email' />
+                        <input type='email' className='form-control' id='email' placeholder='Enter email' ref='email' />
                       </div>
-                      <div class='form-group'>
+                      <div className='form-group'>
                         <label for='exampleInputPassword1'>Phone No.</label>
-                        <input type='phone' class='form-control' id='phone' placeholder='Enter Phone Number' />
+                        <input type='phone' className='form-control' id='phone' placeholder='Enter Phone Number' ref='phone' />
                       </div>
-                      <div class='form-group'>
+                      <div className='form-group'>
                         <label>Address</label>
-                        <textarea class='form-control' rows='3' placeholder='Enter Address' />
+                        <textarea className='form-control' rows='3' placeholder='Enter Address' ref='address' />
                       </div>
                     </div>
-                  </form>
-                </div>
-                <div className='col-md-6'>
-                  <form role='form'>
-                    <div class='box-body'>
-                      <div class='form-group'>
+
+                  </div>
+                  <div className='col-md-6'>
+                    <div className='box-body'>
+                      <div className='form-group'>
                         <label for='exampleInputEmail1'>Front End Callback URL</label>
-                        <input type='frontend' class='form-control' id='frontend' placeholder='Enter Front End Callback URL' />
+                        <input type='frontend' className='form-control' id='frontend' placeholder='Enter Front End Callback URL' ref='frontend' />
                       </div>
-                      <div class='form-group'>
+                      <div className='form-group'>
                         <label for='exampleInputPassword1'>Back End Callback URL</label>
-                        <input type='backend' class='form-control' id='backend' placeholder='Enter Back End Callback URL' />
+                        <input type='backend' className='form-control' id='backend' placeholder='Enter Back End Callback URL' ref='backend' />
                       </div>
-                      <div class='form-group'>
+                      <div className='form-group'>
                         <label>Status</label>
-                        <select class='form-control'>
-                          <option>Active</option>
-                          <option>Inactive</option>
+                        <select className='form-control' ref='status'>
+                          <option value='active'>Active</option>
+                          <option value='inactive'>Inactive</option>
                         </select>
                       </div>
                     </div>
-                  </form>
+                  </div>
+                
                 </div>
               </div>
+              <div className='box-footer'>
+                <button type='submit' className='btn btn-primary'>Submit</button>
+                {/* <button type="submit" className="btn btn-info pull-right">Sign in</button> */}
+              </div>
             </div>
-            <div className='box-footer'>
-              <button type='submit' class='btn btn-primary'>Submit</button>
-              {/* <button type="submit" class="btn btn-info pull-right">Sign in</button> */}
-            </div>
-          </div>
+          </form>
         </section>
 
       </div>
