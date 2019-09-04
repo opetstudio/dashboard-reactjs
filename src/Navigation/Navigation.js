@@ -7,16 +7,17 @@ import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 import ResponsiveContainer from '../Containers/ResponsiveContainer'
 // --- import list page entity ---
 import HomePageContainer from '../Containers/Home/HomePageContainer'
-import MerchantCreatePageContainer from '../Components/Merchant/MerchantCreatePageComponent'
+import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePageContainer'
 import MerchantListPageContainer from '../Components/Merchant/MerchantListPageComponent'
 import ReportListPageContainer from '../Components/Report/ReportListPageComponent'
+import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 
 class App extends Component {
   componentWillMount () {
     this.unlisten = this.props.history.listen((location, action) => {
       // this.props.onRouteChange(location)
       const loginRestriction = [
-        '/login'
+        '/home'
       ]
       if (loginRestriction.indexOf(location.pathname) !== -1) {
         this.props.checkLogedStatus()
@@ -48,6 +49,7 @@ class NavigationRouter extends Component {
             <Route exact path={`${basePath}/merchant/create`} component={MerchantCreatePageContainer} />
             <Route exact path={`${basePath}/merchant/list`} component={MerchantListPageContainer} />
             <Route exact path={`${basePath}/report`} component={ReportListPageContainer} />
+            <Route exact path={`${basePath}/login`} component={LoginPageContainer} />
           </ResponsiveContainer>
         </AppContainer>
       </Router>
