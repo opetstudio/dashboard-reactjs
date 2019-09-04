@@ -15,6 +15,17 @@ class AdminlteContainer extends React.PureComponent {
             <a href='#' className='sidebar-toggle' data-toggle='push-menu' role='button'>
               <span className='sr-only'>Toggle navigation</span>
             </a>
+            {/* <!-- Navbar Right Menu --> */}
+            <div class='navbar-custom-menu'>
+              <ul class='nav navbar-nav'>
+                <li class='dropdown user user-menu'>
+                  <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+                    <img src='/dist/img/user2-160x160.jpg' class='user-image' alt='User Image' />
+                    <span class='hidden-xs'>Admin mbdd</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </nav>
         </header>
         <aside className='main-sidebar'>
@@ -42,7 +53,7 @@ class AdminlteContainer extends React.PureComponent {
                   <li className='active'><a href='#'><i className='fa fa-circle-o' /> All Merchant</a></li>
                 </ul>
               </li>
-              
+
               <li className='treeview'>
                 <a href='#'>
                   <i className='fa fa-pie-chart' />
@@ -58,7 +69,7 @@ class AdminlteContainer extends React.PureComponent {
                   <li><a href='#'><i className='fa fa-circle-o' /> Inline charts</a></li>
                 </ul>
               </li>
-              
+
             </ul>
           </section>
         </aside>
