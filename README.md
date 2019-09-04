@@ -1,15 +1,13 @@
-# Payment Page Frontend
+# Dashboard Application
 
 ## To Use
 
 ```bash
 # Clone this repository
-git clone https://opetstudio@bitbucket.org/prismalink/plink-payment-page-frontend.git
+git clone https://github.com/opetstudio/dashboard-reactjs.git
 # Go into the repository
-cd plink-payment-page-frontend
+cd dashboard-reactjs
 # Install dependencies
 npm install
 # Run
 npm run start:dev
-# build
-./buildpaymentpage.sh
