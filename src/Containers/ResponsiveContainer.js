@@ -7,8 +7,8 @@ const ResponsiveContainer = ({ children, appname }) => {
   return (<AdminlteContainer>{children}</AdminlteContainer>)
 }
 
-ResponsiveContainer.propTypes = {
-  children: PropTypes.node
-}
+// ResponsiveContainer.propTypes = {
+//   children: PropTypes.node
+// }
 
 export default ResponsiveContainer
