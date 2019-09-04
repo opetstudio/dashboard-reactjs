@@ -10,19 +10,19 @@ import AppConfig from '../Config/AppConfig'
 // Types /* ------------- Types ------------- */
 
 // begin Ignite-Entity-Paymentpage
-import { PaymentpageTypes } from '../Containers/Paymentpage/redux'
+// import { PaymentpageTypes } from '../Containers/Paymentpage/redux'
 // end Ignite-Entity-Paymentpage
 // begin Ignite-Entity-Qrcode
-import { QrcodeTypes } from '../Containers/Qrcode/redux'
+// import { QrcodeTypes } from '../Containers/Qrcode/redux'
 // end Ignite-Entity-Qrcode
 
 import { StartupTypes } from '../Redux/StartupRedux'
 // Sagas /* ------------- Sagas ------------- */
 // begin Ignite-Entity-Paymentpage
-import { paymentpageRequest } from '../Containers/Paymentpage/sagas'
+// import { paymentpageRequest } from '../Containers/Paymentpage/sagas'
 // end Ignite-Entity-Paymentpage
 // begin Ignite-Entity-Qrcode
-import { qrcodeRequest } from '../Containers/Qrcode/sagas'
+// import { qrcodeRequest } from '../Containers/Qrcode/sagas'
 // end Ignite-Entity-Qrcode
 
 
@@ -59,10 +59,10 @@ const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost
 export default function * root () {
   yield all([
     // begin Ignite-Entity-Paymentpage
-    takeLatest(PaymentpageTypes.PAYMENTPAGE_REQUEST, paymentpageRequest, apiPaymentpage),
+    // takeLatest(PaymentpageTypes.PAYMENTPAGE_REQUEST, paymentpageRequest, apiPaymentpage),
     // end Ignite-Entity-Paymentpage
     // begin Ignite-Entity-Qrcode
-    takeLatest(QrcodeTypes.QRCODE_REQUEST, qrcodeRequest, apiQrcode),
+    // takeLatest(QrcodeTypes.QRCODE_REQUEST, qrcodeRequest, apiQrcode),
     // end Ignite-Entity-Qrcode
     takeLatest(StartupTypes.STARTUP, startup, api)
     // some sagas receive extra parameters in addition to an action
