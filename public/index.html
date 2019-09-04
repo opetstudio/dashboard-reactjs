@@ -25,6 +25,8 @@
   <!-- Theme style -->
   <!-- Select2 -->
   <link rel="stylesheet" href="%PUBLIC_URL%/bower_components/select2/dist/css/select2.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="%PUBLIC_URL%/plugins/iCheck/square/blue.css">
   <link rel="stylesheet" href="%PUBLIC_URL%/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
@@ -156,10 +158,23 @@
 <script src="%PUBLIC_URL%/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS -->
 <script src="%PUBLIC_URL%/bower_components/chart.js/Chart.js"></script>
+<!-- iCheck -->
+<script src="%PUBLIC_URL%/plugins/iCheck/icheck.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script>
   window._loadhostscript = function () {
     $('.select2').select2()
+  }
+  window._loadhomescript = function () {
+    $('body').attr('class', 'hold-transition skin-blue sidebar-mini');
+  }
+  window._loadloginscript = function () {
+    $('body').attr('class', 'hold-transition login-page');
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
   }
 </script>
   </body>

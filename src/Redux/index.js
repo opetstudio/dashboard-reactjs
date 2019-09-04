@@ -7,7 +7,10 @@ import ReduxPersist from '../Config/ReduxPersist'
 export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
-    app: require('./AppRedux').reducer
+    app: require('./AppRedux').reducer,
+    // begin Ignite-Entity-Login
+    login: require('../Containers/Login/redux').reducer
+    // end Ignite-Entity-Login
     // begin Ignite-Entity-Paymentpage
     // paymentpage: require('../Containers/Paymentpage/redux').reducer,
     // end Ignite-Entity-Paymentpage
