@@ -9,6 +9,10 @@ import AppConfig from '../Config/AppConfig'
 
 // Types /* ------------- Types ------------- */
 
+// begin Ignite-Entity-Login
+import { LoginTypes } from '../Containers/Login/redux'
+// end Ignite-Entity-Login
+
 // begin Ignite-Entity-Paymentpage
 // import { PaymentpageTypes } from '../Containers/Paymentpage/redux'
 // end Ignite-Entity-Paymentpage
@@ -18,6 +22,18 @@ import AppConfig from '../Config/AppConfig'
 
 import { StartupTypes } from '../Redux/StartupRedux'
 // Sagas /* ------------- Sagas ------------- */
+
+// begin Ignite-Entity-Login
+import {
+  postLogin,
+  getLogins,
+  getLogin,
+  updateLogin,
+  removeLogin,
+  getLoginStatus
+} from '../Containers/Login/sagas'
+// end Ignite-Entity-Login
+
 // begin Ignite-Entity-Paymentpage
 // import { paymentpageRequest } from '../Containers/Paymentpage/sagas'
 // end Ignite-Entity-Paymentpage
@@ -51,6 +67,7 @@ const apiPaymentpage = API.create(AppConfig.env === 'development' ? 'https://sec
 // const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'http://localhost:8762/')
 // const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'http://localhost:8762/')
 const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
+const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/simulator/' : 'https://api.erevnaraya.com/')
 // const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
 // const apiPaymentpage = API.create(AppConfig.env === 'development' ? 'http://202.158.24.186:8380/' : '/')
 // const baseApi = DebugConfig.useFixtures ? FixtureAPI : API.create(baseUrl)
@@ -64,6 +81,14 @@ export default function * root () {
     // begin Ignite-Entity-Qrcode
     // takeLatest(QrcodeTypes.QRCODE_REQUEST, qrcodeRequest, apiQrcode),
     // end Ignite-Entity-Qrcode
+    // begin Ignite-Entity-Login
+    takeLatest(LoginTypes.LOGIN_CHECK_STATUS, getLoginStatus, apiDashboard),
+    takeLatest(LoginTypes.LOGIN_REQUEST, getLogin, api),
+    takeLatest(LoginTypes.LOGIN_ALL, getLogins, api),
+    takeLatest(LoginTypes.LOGIN_CREATE, postLogin, apiDashboard),
+    takeLatest(LoginTypes.LOGIN_UPDATE, updateLogin, api),
+    takeLatest(LoginTypes.LOGIN_REMOVE, removeLogin, api),
+    // end Ignite-Entity-Login
     takeLatest(StartupTypes.STARTUP, startup, api)
     // some sagas receive extra parameters in addition to an action
     // takeLatest(UserTypes.USER_REQUEST, getUserAvatar, api)
