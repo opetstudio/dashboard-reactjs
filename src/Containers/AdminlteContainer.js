@@ -51,6 +51,7 @@ class AdminlteContainer extends React.PureComponent {
                 <ul className='treeview-menu'>
                   <li><a href='/merchant/create'><i className='fa fa-circle-o' /> Create New</a></li>
                   <li><a href='/merchant/list'><i className='fa fa-circle-o' /> All Merchant</a></li>
+                  <li><a href='/merchant/detail'><i className='fa fa-circle-o' /> Detail Merchant</a></li>
                 </ul>
               </li>
 
