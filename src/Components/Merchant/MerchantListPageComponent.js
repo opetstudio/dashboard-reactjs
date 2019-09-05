@@ -23,7 +23,7 @@ class MerchantListPageComponent extends Component {
                     <div className="box">
                         <div className="box-header">
                         <div className="box-tools">
-                            <div className="input-group input-group-sm hidden-xs" style={{width: "150px"}}>
+                            <div className="input-group input-group-sm hidden-xs" style={{width: "200px"}}>
                             <input type="text" name="table_search" className="form-control pull-right" placeholder="Search"></input>
                             <div className="input-group-btn">
                                 <button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>

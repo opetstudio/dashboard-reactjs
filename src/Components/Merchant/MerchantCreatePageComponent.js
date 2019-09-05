@@ -57,6 +57,10 @@ class MerchantCreatePageComponent extends Component {
                     <form role="form">
                     <div class="box-body">
                       <div class="form-group">
+                        <label for="exampleInputEmail1">Website</label>
+                        <input type="web" class="form-control" id="web" placeholder="Enter Website"></input>
+                      </div>
+                      <div class="form-group">
                         <label for="exampleInputEmail1">Front End Callback URL</label>
                         <input type="frontend" class="form-control" id="frontend" placeholder="Enter Front End Callback URL"></input>
                       </div>
