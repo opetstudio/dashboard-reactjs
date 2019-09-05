@@ -109,6 +109,8 @@ export function * postLogin (api, action) {
         formSubmitMessage: 'success login'
       })
     )
+    // window.location.href = '/home'
+    // window.open('/home', '_self')
     // yield put(LoginActions.loginData(transformedData(response)))
     // const multi = yield select(theMulti)
     // yield put(

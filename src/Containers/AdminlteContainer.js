@@ -2,7 +2,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Helmet from 'react-helmet'
 import LoginActions, { LoginSelectors } from './Login/redux'
+import Header from '../Containers/Header/HeaderContainer'
+import Sidebar from '../Containers/Sidebar/SidebarContainer'
 
 class AdminlteContainer extends React.PureComponent {
   static propTypes = {
@@ -13,77 +16,55 @@ class AdminlteContainer extends React.PureComponent {
   }
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {isLoggedIn: this.props.isLoggedIn}
     // this.logoutDialog = this.logoutDialog.bind(this)
     // this.ModalBasic = this.ModalBasic.bind(this)
+    this.renderLoggedIn = this.renderLoggedIn.bind(this)
+  }
+  componentDidMount () {
+    console.log('AdminlteContainer.componentDidMount')
+    // let listJs = [
+    //   // '/bower_components/jquery/dist/jquery.min.js',
+    //   // '/bower_components/bootstrap/dist/js/bootstrap.min.js',
+    //   // '/bower_components/select2/dist/js/select2.full.min.js',
+    //   // '/bower_components/fastclick/lib/fastclick.js',
+    //   '/dist/js/adminlte.min.js'
+    //   // '/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js',
+    //   // '/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
+    //   // '/plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
+    //   // '/bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
+    //   // '/bower_components/chart.js/Chart.js',
+    //   // '/plugins/iCheck/icheck.min.js',
+    //   // '/native-script.js'
+    // ]
+    // listJs.map(str => {
+    //   var element = document.querySelector('[src=\'' + str + '\']')
+    //   if (element) element.parentNode.removeChild(element)
+    //   let script = document.createElement('script')
+    //   script.src = str
+    //   // script.async = true
+    //   script.async = false
+    //   document.body.appendChild(script)
+    // })
+  }
+  componentDidUpdate (prevProps, prevState) {
+    // if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to='/login' /> }
+    // if (!_.isEqual(prevProps.isLoggedIn, this.props.isLoggedIn)) {
+    //   if (this.props.isLoggedIn) window.location.href = '/home'
+    //   // this.setState({
+    //   //   images: Immutable.asMutable(this.props.images, { deep: true })
+    //   // })
+    // }
   }
   renderLoggedIn (children) {
     return (
       <div className='wrapper'>
-        <header className='main-header'>
-          <Link to='/home' className='logo'>
-            <span className='logo-mini'><b>PL</b></span>
-            <span className='logo-lg'><b>PLink Direct Debet</b></span>
-          </Link>
-          <nav className='navbar navbar-static-top'>
-            <Link to='#' className='sidebar-toggle' data-toggle='push-menu' role='button'>
-              <span className='sr-only'>Toggle navigation</span>
-            </Link>
-            {/* <!-- Navbar Right Menu --> */}
-            <div className='navbar-custom-menu'>
-              <ul className='nav navbar-nav'>
-                <li className='dropdown user user-menu'>
-                  <Link to='#' className='dropdown-toggle' data-toggle='dropdown'>
-                    <img src='/dist/img/user2-160x160.jpg' className='user-image' alt='User Image' />
-                    <span className='hidden-xs'>Admin mbdd</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
-        <aside className='main-sidebar'>
-          <section className='sidebar'>
-            <div className='user-panel'>
-              <div className='pull-left image'>
-                <img src='/dist/img/user2-160x160.jpg' className='img-circle' alt='User Image' />
-              </div>
-              <div className='pull-left info'>
-                <p>Admin MBDD</p>
-                <Link to='#'><i className='fa fa-circle text-success' /> Online</Link>
-              </div>
-            </div>
-            <ul className='sidebar-menu' data-widget='tree'>
-              <li className='header'>MAIN NAVIGATION</li>
-              <li className='active treeview menu-open'>
-                <Link to='#'>
-                  <i className='fa fa-dashboard' /> <span>Merchant</span>
-                  <span className='pull-right-container'>
-                    <i className='fa fa-angle-left pull-right' />
-                  </span>
-                </Link>
-                <ul className='treeview-menu'>
-                  <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Create New</Link></li>
-                  <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> All Merchant</Link></li>
-                </ul>
-              </li>
-
-              <li className='treeview'>
-                <Link to='#'>
-                  <i className='fa fa-pie-chart' />
-                  <span>Transaction</span>
-                  <span className='pull-right-container'>
-                    <i className='fa fa-angle-left pull-right' />
-                  </span>
-                </Link>
-                <ul className='treeview-menu'>
-                  <li><Link to='/report'><i className='fa fa-circle-o' /> Report</Link></li>
-                </ul>
-              </li>
-
-            </ul>
-          </section>
-        </aside>
+        <Helmet>
+          <title>Homessss</title>
+          <body className='hold-transition skin-blue sidebar-mini' />
+        </Helmet>
+        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Header />}
+        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Sidebar />}
         {children}
         <footer className='main-footer'>
           <div className='pull-right hidden-xs'>
@@ -96,10 +77,10 @@ class AdminlteContainer extends React.PureComponent {
     )
   }
   render () {
-    console.log('this.props===>', this.props)
+    console.log('render adminltecontainer ===>', this.props)
     const { children } = this.props
-    if (this.props.isLoggedIn) return this.renderLoggedIn(children)
-    else return children
+    return this.renderLoggedIn(children)
+    // else return children
   }
 }
 

@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom'
 import CryptoJS from 'crypto-js'
+import Helmet from 'react-helmet'
 
 // var bcrypt = require('bcryptjs')
 // var salt = bcrypt.genSaltSync(1)
@@ -24,19 +25,16 @@ class LoginPageComponent extends React.Component {
     client_id: '',
     formSubmitMessage: ''
   }
-  componentWillMount () {
-    // console.log('componentWillMount')
+  constructor (props) {
+    super(props)
+    this.state = {
+      formSubmitMessage: this.props.formSubmitMessage
+    }
     this.props.resetFormLogin()
+  }
+  componentDidMount (prevProps) {
     this.setState({
       formSubmitMessage: this.props.formSubmitMessage
-    })
-  }
-  componentDidMount () {
-    window.LoginPageComponent()
-  }
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      formSubmitMessage: nextProps.formSubmitMessage
     })
   }
   handleChange = (e, { name, value }) => {
@@ -83,6 +81,10 @@ class LoginPageComponent extends React.Component {
     if (window.localStorage.getItem('isLoggedIn') === 'true') { return <Redirect to='/' /> }
     return (
       <div className='login-box'>
+        <Helmet>
+          <title>Login</title>
+          <body className='hold-transition login-page' />
+        </Helmet>
         <div className='login-logo'>
           <a href='#'><b>PLINK</b> Direct Debit</a>
         </div>

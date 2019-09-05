@@ -11,10 +11,18 @@ import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePa
 import MerchantListPageContainer from '../Components/Merchant/MerchantListPageComponent'
 import ReportListPageContainer from '../Components/Report/ReportListPageComponent'
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
+import {loadScript} from '../Utils/Utils'
 
 class App extends Component {
-  componentWillMount () {
+  constructor (props) {
+    super(props)
     this.unlisten = this.props.history.listen((location, action) => {
+      console.log('props.history.listen ', window.location.pathname)
+      // if ((window.location.pathname).includes('/login')) {
+      //   document.getElementsByTagName('body')[0].setAttribute('class', 'hold-transition login-page')
+      // } else {
+      //   document.getElementsByTagName('body')[0].setAttribute('class', 'hold-transition skin-blue sidebar-mini')
+      // }
       // this.props.onRouteChange(location)
       const loginRestriction = [
         '/home'
@@ -22,10 +30,14 @@ class App extends Component {
       if (loginRestriction.indexOf(location.pathname) !== -1) {
         this.props.checkLogedStatus()
       }
+      loadScript(location.pathname)
     })
   }
   componentWillUnmount () {
     this.unlisten()
+  }
+  componentDidMount () {
+    loadScript()
   }
   render () {
     return <div>{this.props.children}</div>

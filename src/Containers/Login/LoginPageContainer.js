@@ -7,12 +7,12 @@ import LoginActions, { LoginSelectors } from './redux'
 import LoginPageComponent from '../../Components/Login/LoginPageComponent'
 import { columns } from './columns'
 
-const TheComponent = props =>
-  window.localStorage.getItem('isLoggedIn') !== 'true' ? (
-    <LoginPageComponent {...props} />
-  ) : (
-    <Redirect to='/' />
-  )
+const TheComponent = props => {
+  if (window.localStorage.getItem('isLoggedIn') !== 'true') return (<LoginPageComponent {...props} />)
+  else window.open('/', '_self')
+  // else window.location.href = '/'
+  // else return <Redirect to='/' />
+}
 // const Login = LayoutFormLogin
 const column = columns
 const defaultPageSize = 10

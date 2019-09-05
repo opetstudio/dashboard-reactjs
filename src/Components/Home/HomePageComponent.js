@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 
 class HomePageComponent extends Component {
-  componentDidMount () {
-    window.HomePageComponent()
-  }
   render () {
     console.log('props===>', this.props)
     return (
       <div className='content-wrapper'>
+        <Helmet>
+          <title>Home</title>
+          <body className='hold-transition skin-blue sidebar-mini' />
+        </Helmet>
         <section className='content-header'>
           <h1>
             Dashboard
