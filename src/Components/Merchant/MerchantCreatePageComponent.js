@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import Helmet from 'react-helmet'
 
 class MerchantCreatePageComponent extends Component {
-  componentWillMount () {
-    window.MerchantCreatePageComponentComponentWillMount()
-  }
+
   componentDidMount () {
-    window.MerchantCreatePageComponentComponentDidMount()
+    console.log('componentDidMount')
   }
   _onSubmitForm (e) {
     if (e) e.preventDefault()
@@ -20,6 +19,10 @@ class MerchantCreatePageComponent extends Component {
   render () {
     return (
       <div className='content-wrapper'>
+        <Helmet>
+          <title>Merchant Create</title>
+          <body className='hold-transition skin-blue sidebar-mini' />
+        </Helmet>
         <section className='content-header'>
           <h1>Merchant Create</h1>
           <ol className='breadcrumb'>
@@ -62,7 +65,7 @@ class MerchantCreatePageComponent extends Component {
                   <div className='col-md-6'>
                     <div className='box-body'>
                       <div className='form-group'>
-                        <label for='exampleInputEmail1'>Merchant Code</label>
+                        <label htmlFor='exampleInputEmail1'>Merchant Code</label>
                         <input
                           type='mcode'
                           className='form-control'
@@ -72,7 +75,7 @@ class MerchantCreatePageComponent extends Component {
                         />
                       </div>
                       <div className='form-group'>
-                        <label for='exampleInputPassword1'>Merchant Name</label>
+                        <label htmlFor='exampleInputPassword1'>Merchant Name</label>
                         <input
                           type='mname'
                           className='form-control'
@@ -82,7 +85,7 @@ class MerchantCreatePageComponent extends Component {
                         />
                       </div>
                       <div className='form-group'>
-                        <label for='exampleInputEmail1'>Email address</label>
+                        <label htmlFor='exampleInputEmail1'>Email address</label>
                         <input
                           type='email'
                           className='form-control'
@@ -92,7 +95,7 @@ class MerchantCreatePageComponent extends Component {
                         />
                       </div>
                       <div className='form-group'>
-                        <label for='exampleInputPassword1'>Phone No.</label>
+                        <label htmlFor='exampleInputPassword1'>Phone No.</label>
                         <input
                           type='phone'
                           className='form-control'
@@ -115,7 +118,7 @@ class MerchantCreatePageComponent extends Component {
                   <div className='col-md-6'>
                     <div className='box-body'>
                       <div className='form-group'>
-                        <label for='exampleInputEmail1'>
+                        <label htmlFor='exampleInputEmail1'>
                           Front End Callback URL
                         </label>
                         <input
@@ -127,7 +130,7 @@ class MerchantCreatePageComponent extends Component {
                         />
                       </div>
                       <div className='form-group'>
-                        <label for='exampleInputPassword1'>
+                        <label htmlFor='exampleInputPassword1'>
                           Back End Callback URL
                         </label>
                         <input

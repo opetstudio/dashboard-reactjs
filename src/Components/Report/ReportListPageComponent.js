@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 
 class ReportListPageComponent extends Component {
-  componentDidMount () {
-    window._loadhostscript()
-  }
   render () {
     return (
       <div className='content-wrapper'>

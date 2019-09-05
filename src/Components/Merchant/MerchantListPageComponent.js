@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 
 class MerchantListPageComponent extends Component {
-  componentWillMount () {
-    window.MerchantCreatePageComponentComponentWillMount()
-  }
-  componentDidMount () {
-    window.MerchantCreatePageComponentComponentDidMount()
-  }
   render () {
     return (
       <div className='content-wrapper'>
+        <Helmet>
+          <title>Merchant List</title>
+          <body className='hold-transition skin-blue sidebar-mini' />
+        </Helmet>
         <section className='content-header'>
           <h1>Merchant List</h1>
           <ol className='breadcrumb'>
@@ -66,11 +65,11 @@ class MerchantListPageComponent extends Component {
                         </td>
                         <td>
                           <span className='btn label label-info'>
-                            <i class='fa fa-fw fa-info' />
+                            <i className='fa fa-fw fa-info' />
                           </span>
                           &nbsp;
                           <span className='btn label label-danger'>
-                            <i class='fa fa-fw fa-trash' />
+                            <i className='fa fa-fw fa-trash' />
                           </span>
                         </td>
                       </tr>
@@ -83,11 +82,11 @@ class MerchantListPageComponent extends Component {
                         </td>
                         <td>
                           <span className='btn label label-info'>
-                            <i class='fa fa-fw fa-info' />
+                            <i className='fa fa-fw fa-info' />
                           </span>
                           &nbsp;
                           <span className='btn label label-danger'>
-                            <i class='fa fa-fw fa-trash' />
+                            <i className='fa fa-fw fa-trash' />
                           </span>
                         </td>
                       </tr>
@@ -100,11 +99,11 @@ class MerchantListPageComponent extends Component {
                         </td>
                         <td>
                           <span className='btn label label-info'>
-                            <i class='fa fa-fw fa-info' />
+                            <i className='fa fa-fw fa-info' />
                           </span>
                           &nbsp;
                           <span className='btn label label-danger'>
-                            <i class='fa fa-fw fa-trash' />
+                            <i className='fa fa-fw fa-trash' />
                           </span>
                         </td>
                       </tr>
@@ -117,11 +116,11 @@ class MerchantListPageComponent extends Component {
                         </td>
                         <td>
                           <span className='btn label label-info'>
-                            <i class='fa fa-fw fa-info' />
+                            <i className='fa fa-fw fa-info' />
                           </span>
                           &nbsp;
                           <span className='btn label label-danger'>
-                            <i class='fa fa-fw fa-trash' />
+                            <i className='fa fa-fw fa-trash' />
                           </span>
                         </td>
                       </tr>

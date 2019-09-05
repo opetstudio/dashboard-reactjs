@@ -65,3 +65,28 @@ export const Tips = () => (
     <em>Tip: Hold shift when sorting to multi-sort!</em>
   </div>
 )
+
+export const loadScript = (pathname) => {
+  [
+    // '/bower_components/jquery/dist/jquery.min.js',
+    // '/bower_components/bootstrap/dist/js/bootstrap.min.js',
+    // '/bower_components/select2/dist/js/select2.full.min.js',
+    // '/bower_components/fastclick/lib/fastclick.js',
+    // '/dist/js/adminlte.min.js'
+    // '/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js',
+    // '/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
+    // '/plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
+    // '/bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
+    // '/bower_components/chart.js/Chart.js',
+    // '/plugins/iCheck/icheck.min.js',
+    // '/native-script.js'
+  ].map(str => {
+    var element = document.querySelector('[src=\'' + str + '\']')
+    if (element) element.parentNode.removeChild(element)
+    let script = document.createElement('script')
+    script.src = str
+    // script.async = true
+    script.async = false
+    document.body.appendChild(script)
+  })
+}
