@@ -45,7 +45,7 @@ class MerchantCreatePageComponent extends Component {
                   this.props.responseCode === 'MBDD00' && (
                     <div className='row'>
                       <div className='col-md-12'>
-                        <div class='alert alert-success' role='alert'>
+                        <div className='alert alert-success' role='alert'>
                           {this.props.responseMessage}
                         </div>
                       </div>
@@ -55,7 +55,7 @@ class MerchantCreatePageComponent extends Component {
                   this.props.responseCode !== 'MBDD00' && (
                     <div className='row'>
                       <div className='col-md-12'>
-                        <div class='alert alert-danger' role='alert'>
+                        <div className='alert alert-danger' role='alert'>
                           {this.props.responseMessage}
                         </div>
                       </div>
