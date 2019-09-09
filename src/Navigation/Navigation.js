@@ -11,7 +11,8 @@ import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePa
 import MerchantListPageContainer from '../Components/Merchant/MerchantListPageComponent'
 import ReportListPageContainer from '../Components/Report/ReportListPageComponent'
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
-import {loadScript} from '../Utils/Utils'
+import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
+import { loadScript } from '../Utils/Utils'
 
 class App extends Component {
   constructor (props) {
@@ -24,9 +25,7 @@ class App extends Component {
       //   document.getElementsByTagName('body')[0].setAttribute('class', 'hold-transition skin-blue sidebar-mini')
       // }
       // this.props.onRouteChange(location)
-      const loginRestriction = [
-        '/home'
-      ]
+      const loginRestriction = ['/home']
       if (loginRestriction.indexOf(location.pathname) !== -1) {
         this.props.checkLogedStatus()
       }
@@ -55,11 +54,36 @@ class NavigationRouter extends Component {
         <AppContainer checkLogedStatus={this.props.checkLogedStatus}>
           <ResponsiveContainer appname='adminlte'>
             <Route exact path={`${basePath}/`} component={HomePageContainer} />
-            <Route exact path={`${basePath}/home`} component={HomePageContainer} />
-            <Route exact path={`${basePath}/merchant/create`} component={MerchantCreatePageContainer} />
-            <Route exact path={`${basePath}/merchant/list`} component={MerchantListPageContainer} />
-            <Route exact path={`${basePath}/report`} component={ReportListPageContainer} />
-            <Route exact path={`${basePath}/login`} component={LoginPageContainer} />
+            <Route
+              exact
+              path={`${basePath}/home`}
+              component={HomePageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/merchant/create`}
+              component={MerchantCreatePageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/merchant/list`}
+              component={MerchantListPageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/report`}
+              component={ReportListPageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/login`}
+              component={LoginPageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/signup`}
+              component={SignupPageContainer}
+            />
           </ResponsiveContainer>
         </AppContainer>
       </Router>

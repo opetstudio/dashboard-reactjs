@@ -9,7 +9,7 @@ import {
   Segment,
   Container
 } from 'semantic-ui-react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import CryptoJS from 'crypto-js'
 import Helmet from 'react-helmet'
 
@@ -118,8 +118,8 @@ class LoginPageComponent extends React.Component {
             <a href='#' className='btn btn-block btn-social btn-google btn-flat'><i className='fa fa-google-plus' /> Sign in using
               Google+</a>
           </div> */}
-          {/* <a href='#'>I forgot my password</a><br /> */}
-          {/* <a href='register.html' className='text-center'>Register a new membership</a> */}
+          <a href='#'>I forgot my password</a><br />
+          <Link to='/signup' className='text-center'>Register a new membership</Link>
         </div>
       </div>
     )
