@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
+import LoginActions from '../Login/redux'
 
 import HeaderComponent from '../../Components/Header/HeaderComponent'
 
@@ -18,7 +19,9 @@ const mapStateToProps = (state, ownProps) => {
   return {}
 }
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    logout: (data) => dispatch(LoginActions.loginRemove(data))
+  }
 }
 export default connect(
   mapStateToProps,

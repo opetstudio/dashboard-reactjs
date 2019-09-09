@@ -45,7 +45,6 @@ class App extends Component {
 const AppContainer = withRouter(App)
 
 class NavigationRouter extends Component {
-  componentWillUpdate (prevProps) {}
   render () {
     // let basePath = '/PaymentPageCc' // for jboss
     // let basePath = '/paymentpage' // for jboss

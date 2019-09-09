@@ -7,6 +7,7 @@ const images = {
   pcidss: require('../Images/pcidss.png'),
   sslsecurity: require('../Images/sslsecurity.png'),
   plinkpayment: require('../Images/plinkpayment.png'),
-  logorayapay: require('../Images/logorayapay.png')
+  logorayapay: require('../Images/logorayapay.png'),
+  useravatar: require('../Images/user2-160x160.jpg')
 }
 export default images

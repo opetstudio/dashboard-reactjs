@@ -1,31 +1,104 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import {Images} from '../../Themes'
 
+const useravatar = Images.useravatar
 class HeaderComponent extends Component {
+  _logout (e) {
+    if (e) e.preventDefault()
+    this.props.logout()
+    alert('do logout')
+  }
   render () {
     return (
-      <header className='main-header'>
-        <Link to='/home' className='logo'>
-          <span className='logo-mini'><b>PL</b></span>
-          <span className='logo-lg'><b>PLink Direct Debet</b></span>
-        </Link>
-        <nav className='navbar navbar-static-top'>
-          <Link to='#' className='sidebar-toggle' data-toggle='push-menu' role='button'>
-            <span className='sr-only'>Toggle navigation</span>
+      <div>
+        <header className='main-header'>
+          {/* Logo */}
+          <Link to='/' className='logo'>
+            {/* mini logo for sidebar mini 50x50 pixels */}
+            <span className='logo-mini'><b>PL</b></span>
+            {/* logo for regular state and mobile devices */}
+            <span className='logo-lg'><b>PLINK MBDD</b></span>
           </Link>
-          {/* <!-- Navbar Right Menu --> */}
-          <div className='navbar-custom-menu'>
-            <ul className='nav navbar-nav'>
-              <li className='dropdown user user-menu'>
-                <Link to='#' className='dropdown-toggle' data-toggle='dropdown'>
-                  <img src='/dist/img/user2-160x160.jpg' className='user-image' alt='User Image' />
-                  <span className='hidden-xs'>Admin mbdd</span>
-                </Link>
-              </li>
-            </ul>
+          {/* Header Navbar: style can be found in header.less */}
+          <nav className='navbar navbar-static-top'>
+            {/* Sidebar toggle button */}
+            <a href='#' className='sidebar-toggle' data-toggle='push-menu' role='button'>
+              <span className='sr-only'>Toggle navigation</span>
+            </a>
+            {/* Navbar Right Menu */}
+            <div className='navbar-custom-menu'>
+              <ul className='nav navbar-nav'>
+                {/* User Account: style can be found in dropdown.less */}
+                <li className='dropdown user user-menu'>
+                  <a href='#' className='dropdown-toggle' data-toggle='dropdown'>
+                    <img src={useravatar} className='user-image' alt='User Image' />
+                    <span className='hidden-xs'>Admin Mbdd</span>
+                  </a>
+                  <ul className='dropdown-menu'>
+                    {/* User image */}
+                    <li className='user-header'>
+                      <img src='/dist/img/user2-160x160.jpg' className='img-circle' alt='User Image' />
+                      <p>
+                Admin Mbdd - Operator
+                        {/* <small>Member since Nov. 2012</small> */}
+                      </p>
+                    </li>
+                    {/* Menu Body */}
+                    <li className='user-body'>
+                      {/* <div className='row'>
+                        <div className='col-xs-4 text-center'>
+                          <a href='#'>Followers</a>
+                        </div>
+                        <div className='col-xs-4 text-center'>
+                          <a href='#'>Sales</a>
+                        </div>
+                        <div className='col-xs-4 text-center'>
+                          <a href='#'>Friends</a>
+                        </div>
+                      </div> */}
+                      {/* /.row */}
+                    </li>
+                    {/* Menu Footer */}
+                    <li className='user-footer'>
+                      <div className='pull-left'>
+                        {/* <a href='#' className='btn btn-default btn-flat'>Profile</a> */}
+                      </div>
+                      <div className='pull-right'>
+                        {/* <a href='#' className='btn btn-default btn-flat' onClick={(e) => this._logout(e)}>Sign out</a> */}
+                        <button type='button' className='btn btn-default' data-toggle='modal' data-target='#modal-default'>
+                          Logout
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <div className='modal fade' id='modal-default'>
+          <div className='modal-dialog'>
+            <div className='modal-content'>
+              <div className='modal-header'>
+                <button type='button' className='close' data-dismiss='modal' aria-label='Close'>
+                  <span aria-hidden='true'>×</span></button>
+                <h4 className='modal-title'>Logout Konfirmasi</h4>
+              </div>
+              <div className='modal-body'>
+                <p>Klik logout untuk keluar</p>
+              </div>
+              <div className='modal-footer'>
+                <button type='button' className='btn btn-default pull-left' data-dismiss='modal'>Close</button>
+                <button type='button' className='btn btn-primary' data-dismiss='modal' onClick={(e) => this._logout(e)}>Logout</button>
+              </div>
+            </div>
+            {/* /.modal-content */}
           </div>
-        </nav>
-      </header>
+          {/* /.modal-dialog */}
+        </div>
+        {/* /.modal */}
+      </div>
     )
   }
 }
