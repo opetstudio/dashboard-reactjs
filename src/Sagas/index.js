@@ -59,7 +59,8 @@ const baseUrl =
 const host = baseUrl + ''
 const api = DebugConfig.useFixtures ? FixtureAPI : API.create(host)
 const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
-const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/simulator/' : 'https://api.erevnaraya.com/')
+const apiDashboard = API.create(AppConfig.env === 'development' ? 'https://api.erevnaraya.com/simulator/' : 'https://api.erevnaraya.com/simulator/')
+// const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/simulator/' : 'https://api.erevnaraya.com/')
 // const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
 // const apiPaymentpage = API.create(AppConfig.env === 'development' ? 'http://202.158.24.186:8380/' : '/')
 // const baseApi = DebugConfig.useFixtures ? FixtureAPI : API.create(baseUrl)

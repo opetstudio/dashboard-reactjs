@@ -66,6 +66,7 @@ class AdminlteContainer extends React.PureComponent {
         {(window.localStorage.getItem('isLoggedIn') === 'true') && <Header />}
         {(window.localStorage.getItem('isLoggedIn') === 'true') && <Sidebar />}
         {children}
+        {(window.localStorage.getItem('isLoggedIn') === 'true') &&
         <footer className='main-footer'>
           <div className='pull-right hidden-xs'>
             <b>Version</b> 2.4.18
@@ -73,6 +74,7 @@ class AdminlteContainer extends React.PureComponent {
           <strong>Copyright &copy; 2019 <Link to='https://adminlte.io'>PT. Prismalink International</Link>.</strong> All rights
             reserved.
         </footer>
+        }
       </div>
     )
   }
