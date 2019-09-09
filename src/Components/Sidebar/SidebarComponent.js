@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import {Images} from '../../Themes'
+
+const useravatar = Images.useravatar
 
 class SidebarComponent extends Component {
   render () {
@@ -8,7 +11,7 @@ class SidebarComponent extends Component {
         <section className='sidebar'>
           <div className='user-panel'>
             <div className='pull-left image'>
-              <img src='/dist/img/user2-160x160.jpg' className='img-circle' alt='User Image' />
+              <img src={useravatar} className='img-circle' alt='User Image' />
             </div>
             <div className='pull-left info'>
               <p>Admin MBDD</p>

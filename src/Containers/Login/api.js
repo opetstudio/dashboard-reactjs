@@ -19,7 +19,7 @@ export const create = api => ({
       AppConfig.authHeader,
       opt.session.token_type + ' ' + opt.session.access_token
     )
-    return api.get('/logout')
+    return api.get('/dashboard/logout/submit')
   },
   getLoginStatus: (data, opt) => {
     // const auth = opt.session.token_type + ' ' + opt.session.access_token

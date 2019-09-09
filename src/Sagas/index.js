@@ -71,6 +71,7 @@ export default function * root () {
     takeLatest(MerchantTypes.MERCHANT_CREATE_REQUEST, merchantCreateRequest, apiDashboard),
     takeLatest(LoginTypes.LOGIN_CHECK_STATUS, getLoginStatus, apiDashboard),
     takeLatest(LoginTypes.LOGIN_CREATE, postLogin, apiDashboard),
+    takeLatest(LoginTypes.LOGIN_REMOVE, removeLogin, apiDashboard),
     // end Ignite-Entity-Login
     takeLatest(StartupTypes.STARTUP, startup, api)
     // some sagas receive extra parameters in addition to an action
