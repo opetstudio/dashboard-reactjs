@@ -14,6 +14,7 @@ import {
   insertMulti
 } from '../../Transforms/TransformAttributes'
 import { merge, path } from 'ramda'
+import {getAccessToken, decryptAt} from '../../Utils/Utils'
 // import { showSagaMessage } from '../Translations/SagaMessages'
 // import history from '../Services/BrowserHistory'
 
@@ -45,44 +46,7 @@ export function * getLogin (api, action) {
     yield put(LoginActions.loginFailure())
   }
 }
-export function * getLoginStatus (api, action) {
-  const { data } = action
-  const s = yield select(session)
-  // make the call to the api
-  const response = yield call(api.getLoginStatus, data, { session: s })
-  // console.log('getLoginStatus===>', response)
 
-  // success?
-  let loginStatus = path(['data', 'loginStatus'], response)
-  // if (!status) {
-  //   yield put(LoginActions.loginRemoveSuccess({}))
-  //   yield put(UserActions.userReset())
-  //   yield put(ParticipantActions.participantReset())
-  // } else {
-  //   yield put(LoginActions.loginSuccess({}))
-  // }
-  if (response.ok && loginStatus === 'Y') {
-    console.log('STILL LOGIN')
-    yield put(LoginActions.loginStillExist())
-    //   // You might need to change the response here - do this with a 'transform',
-    //   // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    //   let success = path(['data', 'success'], response)
-    //   if (!success) {
-    //     yield put(LoginActions.loginRemoveSuccess({}))
-    //     yield put(UserActions.userReset())
-    //     yield put(ParticipantActions.participantReset())
-    //   }
-    //   // const { contentDetail } = response.data
-    //   // yield put(LoginActions.loginSingleSuccess(contentDetail))
-    //   // yield put(LoginActions.loginSingleSuccess(transformedData(response)))
-    //   // yield put(LoginActions.loginData(transformedData(response)))
-    //   // history.push('/path/to/some/url' + data.id, { type: 'login'  })
-  } else {
-    console.log('LOGOUT')
-    //   // yield put(LoginActions.loginFailure())
-    yield call(doLogout)
-  }
-}
 
 export function * postLogin (api, action) {
   const { data } = action
@@ -90,6 +54,9 @@ export function * postLogin (api, action) {
   // make the call to the api
   const response = yield call(api.postLogin, data, { session: s })
   console.log('response login=>', response)
+
+  let responseCode = path(['data', 'responseCode'], response)
+  let responseMessage = path(['data', 'responseMessage'], response)
 
   // success?
   if (response.ok) {
@@ -128,6 +95,7 @@ export function * postLogin (api, action) {
     )
     // yield call(showSagaMessage, 'error')
   }
+  yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage}))
 }
 
 export function * updateLogin (api, action) {
@@ -171,9 +139,9 @@ export function * removeLogin (api, action) {
   console.log('response logout==>', response)
   // // success?
   if (response.ok) {
-    let status = path(['data', 'status'], response)
+    let status = path(['data', 'responseCode'], response)
     let responseMessage = path(['data', 'responseMessage'], response)
-    if (status) {
+    if (status === 'MBDD00') {
       yield call(doLogout)
       // yield put(UserActions.userReset())
       // yield put(ParticipantActions.participantReset())
@@ -183,8 +151,8 @@ export function * removeLogin (api, action) {
     // yield call(RehydrationServices, data)
   } else {
     //   yield put(LoginActions.loginFailure())
-    // alert('login failed, please try again.')
-    yield call(doLogout)
+    alert('logout failed, please try again.')
+    // yield call(doLogout)
   }
 }
 
@@ -201,4 +169,37 @@ export function * getLogins (api, action) {
   } else {
     yield put(LoginActions.loginFailure())
   }
+}
+
+export function * loginDoLogin (api, action) {
+  console.log('loginDoLogin')
+  const { data } = action
+  const response = yield call(api.loginDoLogin, data.payload, {url: data.url, method: data.method})
+  console.log('response loginDoLogin=>', response)
+  let responseCode = path(['data', 'responseCode'], response)
+  let responseMessage = path(['data', 'responseMessage'], response)
+  let sessionToken = path(['data', 'sessionToken'], response)
+  let publicToken = path(['data', 'publicToken'], response)
+  if (!response.ok) {
+    responseMessage = response.problem
+    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage}))
+  }
+  if (responseCode !== 'MBDD00') {
+    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage}))
+  }
+  yield put(LoginActions.loginDoLoginSuccess({sessionToken, publicToken}))
+}
+export function * loginCheckStatus (api, action) {
+  const { data } = action
+  const response = yield call(api.getLoginStatus, data, { session: {token_type: 'Bearer', access_token: getAccessToken()} })
+  // const response = yield call(api.getLoginStatus, data, { session: {token_type: 'Bearer', access_token: decryptAt(getAccessToken())} })
+  // success?
+  let loginStatus = path(['data', 'loginStatus'], response)
+  if (response.ok && loginStatus !== 'Y') {
+    console.log('LOGOUT')
+    // yield call(doLogout)
+    yield put(LoginActions.loginDoLogoutSuccess({}))
+    return yield put(LoginActions.loginPatch({isRequesting: false, isLoggedIn: false}))
+  }
+  yield put(LoginActions.loginPatch({isRequesting: false}))
 }

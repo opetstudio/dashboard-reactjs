@@ -13,5 +13,7 @@ export default {
   backendURL: '',
   env,
   minDesktopScreenWidth: 769,
-  authHeader: env === 'development' ? 'Authorization' : 'Auth'
+  authHeader: env === 'development' ? 'Authorization' : 'Auth',
+  publicToken: 'publicToken',
+  sessionToken: 'sessionToken'
 }

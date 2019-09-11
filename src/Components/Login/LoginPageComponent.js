@@ -30,7 +30,6 @@ class LoginPageComponent extends React.Component {
     this.state = {
       formSubmitMessage: this.props.formSubmitMessage
     }
-    this.props.resetFormLogin()
   }
   componentDidMount (prevProps) {
     this.setState({
@@ -62,13 +61,13 @@ class LoginPageComponent extends React.Component {
       client_id: this.state.client_id
     }
     this.setState(submittedData)
-    this.props.loginCreate(submittedData)
+    this.props.loginDoLogin(submittedData)
   }
   _formOnSubmit (e) {
     if (e) e.preventDefault()
     const email = this.refs.email.value
     const pass = this.refs.pass.value
-    this.props.loginCreate({
+    this.props.loginDoLogin({
       userid: email,
       password: pass
     })
@@ -78,7 +77,8 @@ class LoginPageComponent extends React.Component {
     const { isLoggedIn } = this.props
     const { password, email } = this.state
 
-    if (window.localStorage.getItem('isLoggedIn') === 'true') { return <Redirect to='/' /> }
+    // if (window.localStorage.getItem('isLoggedIn') === 'true') { return window.open('/', '_self', true) }
+    // if (window.localStorage.getItem('isLoggedIn') === 'true') { return <Redirect to='/' /> }
     return (
       <div className='login-box'>
         <Helmet>
@@ -118,7 +118,7 @@ class LoginPageComponent extends React.Component {
             <a href='#' className='btn btn-block btn-social btn-google btn-flat'><i className='fa fa-google-plus' /> Sign in using
               Google+</a>
           </div> */}
-          <a href='#'>I forgot my password</a><br />
+          {/* <a href='#'>I forgot my password</a><br /> */}
           <Link to='/signup' className='text-center'>Register a new membership</Link>
         </div>
       </div>

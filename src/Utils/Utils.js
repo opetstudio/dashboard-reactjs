@@ -1,6 +1,13 @@
 import React from 'react'
 import namor from 'namor'
+import AppConfig from '../Config/AppConfig'
+// import AES from 'crypto-js/aes'
+// import EncUtf8 from 'crypto-js/enc-utf8'
 // import Chance from 'chance'
+
+var AES = require('crypto-js/aes')
+var sha256 = require('crypto-js/sha256')
+var EncUtf8 = require('crypto-js/enc-utf8')
 
 const range = len => {
   const arr = []
@@ -89,4 +96,33 @@ export const loadScript = (pathname) => {
     script.async = false
     document.body.appendChild(script)
   })
+}
+
+export const getAccessToken = () => {
+  console.log('getAccessToken')
+  const publicToken = window.sessionStorage.getItem(AppConfig.publicToken)
+  const sessionToken = window.sessionStorage.getItem(AppConfig.sessionToken)
+  if (!publicToken || !sessionToken) return ''
+  const ciphertext = AES.encrypt(publicToken, sessionToken)
+  // const plaintext = ciphertext.toString(EncUtf8)
+  // const plaintext = ciphertext.toString(EncUtf8)
+  // const test = aesjs.utils.utf8.toBytes('asdfadsfd')
+  // const test = sha256(publicToken)
+  // console.log('getAccessToken test=', test)
+  // console.log('getAccessToken sha256=', test)
+  // console.log('getAccessToken plaintext=', plaintext)
+  // console.log('getAccessToken ciphertext=', ciphertext)
+  // console.log('getAccessToken publicToken=', publicToken)
+  // console.log('getAccessToken sessionToken=', sessionToken)
+  return ciphertext
+  // return AES.decrypt(ciphertext.toString(), sessionToken)
+}
+export const decryptAt = (msg, key) => {
+  console.log('decryptAt')
+  const publicToken = window.sessionStorage.getItem(AppConfig.publicToken)
+  const sessionToken = window.sessionStorage.getItem(AppConfig.sessionToken)
+  if (!publicToken || !sessionToken) return ''
+  const str = AES.decrypt(msg, sessionToken)
+  var plaintext = str.toString(EncUtf8)
+  return plaintext
 }
