@@ -14,11 +14,11 @@ export function * paymentgwCreateRequest (api, action) {
   console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
-  // if (!response.ok) {
-  //   message = '00'
-  // } else {
-  //   responseMessage = response.problem
-  // }
+  if (response.ok) {
+    // message = '00'
+  } else {
+    responseMessage = response.problem
+  }
   yield put(PaymentgwActions.paymentgwRequestPatch({isRequesting: false, responseCode, responseMessage}))
 }
 export function * paymentgwReadRequest (api, action) {

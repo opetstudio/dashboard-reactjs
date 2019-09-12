@@ -3,8 +3,9 @@ import _ from 'lodash'
 import Helmet from 'react-helmet'
 
 class PaymentgwCreatePageComponent extends Component {
-  componentDidMount () {
-    console.log('componentDidMount')
+  componentWillUnmount () {
+    console.log('componentWillUnmount')
+    this.props.paymentgwRequestPatch({isRequesting: false, responseCode: '', responseMessage: ''})
   }
   _onSubmitForm (e) {
     if (e) e.preventDefault()

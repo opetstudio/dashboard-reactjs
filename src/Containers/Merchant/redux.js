@@ -48,8 +48,8 @@ export const merchantReadRequest = (state, { data }) => {
 export const merchantRequestPatch = (state, { data }) => {
   let mergeData = {}
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
-  if (data.responseCode) mergeData.responseCode = data.responseCode
-  if (data.responseMessage) mergeData.responseMessage = data.responseMessage
+  if (data.hasOwnProperty('responseCode')) mergeData.responseCode = data.responseCode
+  if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
   if (data.pages) mergeData.pages = data.pages
   if (data.page) mergeData.page = data.page
   if (mergeData.dataMerchant) mergeData.dataMerchant = data.dataMerchant

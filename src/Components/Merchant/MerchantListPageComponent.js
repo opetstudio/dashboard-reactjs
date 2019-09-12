@@ -3,6 +3,9 @@ import Helmet from 'react-helmet'
 import TableMerchant from './TableMerchant'
 
 class MerchantListPageComponent extends Component {
+  componentWillUnmount () {
+    this.props.merchantRequestPatch({isRequesting: false, responseCode: '', responseMessage: ''})
+  }
   render () {
     return (
       <div className='content-wrapper'>

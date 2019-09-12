@@ -14,11 +14,11 @@ export function * merchantCreateRequest (api, action) {
   console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
-  // if (!response.ok) {
-  //   message = '00'
-  // } else {
-  //   responseMessage = response.problem
-  // }
+  if (response.ok) {
+    // message = '00'
+  } else {
+    responseMessage = response.problem
+  }
   yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage}))
 }
 export function * merchantReadRequest (api, action) {
