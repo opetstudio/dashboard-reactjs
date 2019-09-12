@@ -28,8 +28,8 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Create New</Link></li>
-                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> All PG</Link></li>
+                <li><Link to='/paymentgw/create'><i className='fa fa-circle-o' /> Create New</Link></li>
+                <li className='active'><Link to='/paymentgw/list'><i className='fa fa-circle-o' /> All PG</Link></li>
               </ul>
             </li>
             <li className='active treeview menu-open'>

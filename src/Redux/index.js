@@ -11,7 +11,8 @@ export default () => {
     // begin Ignite-Entity-Login
     login: require('../Containers/Login/redux').reducer,
     merchant: require('../Containers/Merchant/redux').reducer,
-    transaction: require('../Containers/Transaction/redux').reducer
+    transaction: require('../Containers/Transaction/redux').reducer,
+    paymentgw: require('../Containers/Paymentgw/redux').reducer
     // end Ignite-Entity-Login
     // begin Ignite-Entity-Paymentpage
     // paymentpage: require('../Containers/Paymentpage/redux').reducer,

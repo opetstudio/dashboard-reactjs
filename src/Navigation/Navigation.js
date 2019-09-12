@@ -7,8 +7,13 @@ import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom'
 import ResponsiveContainer from '../Containers/ResponsiveContainer'
 // --- import list page entity ---
 import HomePageContainer from '../Containers/Home/HomePageContainer'
+
 import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePageContainer'
 import MerchantListPageContainer from '../Containers/Merchant/MerchantListPageContainer'
+
+import PaymentgwCreatePageContainer from '../Containers/Paymentgw/PaymentgwCreatePageContainer'
+import PaymentgwListPageContainer from '../Containers/Paymentgw/PaymentgwListPageContainer'
+
 import TransactionListPageContainer from '../Containers/Transaction/TransactionListPageContainer'
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
@@ -60,6 +65,16 @@ class NavigationRouter extends Component {
               exact
               path={`${basePath}/home`}
               component={HomePageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/paymentgw/create`}
+              component={PaymentgwCreatePageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/paymentgw/list`}
+              component={PaymentgwListPageContainer}
             />
             <Route
               exact

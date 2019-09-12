@@ -13,6 +13,7 @@ import AppConfig from '../Config/AppConfig'
 import { LoginTypes } from '../Containers/Login/redux'
 // end Ignite-Entity-Login
 import { MerchantTypes } from '../Containers/Merchant/redux'
+import { PaymentgwTypes } from '../Containers/Paymentgw/redux'
 import {TransactionTypes} from '../Containers/Transaction/redux'
 
 // begin Ignite-Entity-Paymentpage
@@ -36,6 +37,7 @@ import {
 } from '../Containers/Login/sagas'
 // end Ignite-Entity-Login
 import {merchantCreateRequest, merchantReadRequest} from '../Containers/Merchant/sagas'
+import {paymentgwCreateRequest, paymentgwReadRequest} from '../Containers/Paymentgw/sagas'
 import {transactionReadRequest} from '../Containers/Transaction/sagas'
 
 // begin Ignite-Entity-Paymentpage
@@ -73,7 +75,10 @@ export default function * root () {
   yield all([
     takeLatest(MerchantTypes.MERCHANT_CREATE_REQUEST, merchantCreateRequest, apiDashboard),
     takeLatest(MerchantTypes.MERCHANT_READ_REQUEST, merchantReadRequest, apiDashboard),
-    
+
+    takeLatest(PaymentgwTypes.PAYMENTGW_CREATE_REQUEST, paymentgwCreateRequest, apiDashboard),
+    takeLatest(PaymentgwTypes.PAYMENTGW_READ_REQUEST, paymentgwReadRequest, apiDashboard),
+
     takeLatest(LoginTypes.LOGIN_CREATE, postLogin, apiDashboard),
     takeLatest(LoginTypes.LOGIN_REMOVE, removeLogin, apiDashboard),
 
