@@ -30,6 +30,7 @@ class SidebarComponent extends Component {
               <ul className='treeview-menu'>
                 <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Create New</Link></li>
                 <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> All Merchant</Link></li>
+                <li><Link to='/merchant/change-limit'><i className='fa fa-circle-o' /> Change Limit</Link></li>
               </ul>
             </li>
 
@@ -45,7 +46,6 @@ class SidebarComponent extends Component {
                 <li><Link to='/report'><i className='fa fa-circle-o' /> Report</Link></li>
               </ul>
             </li>
-
           </ul>
         </section>
       </aside>

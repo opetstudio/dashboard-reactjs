@@ -1,46 +1,39 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { path } from 'ramda'
-import { Redirect } from 'react-router-dom'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
 import LoginActions, { LoginSelectors } from './redux'
 import LoginPageComponent from '../../Components/Login/LoginPageComponent'
-import { columns } from './columns'
 
-const TheComponent = props => {
-  if (window.localStorage.getItem('isLoggedIn') !== 'true') return (<LoginPageComponent {...props} />)
-  else window.open('/', '_self')
-  // else window.location.href = '/'
-  // else return <Redirect to='/' />
+class TheComponent extends React.PureComponent {
+  render () {
+    if (window.localStorage.getItem('isLoggedIn') !== 'true') return (<LoginPageComponent {...this.props} />)
+    else return window.open('/home', '_self', true)
+  }
 }
-// const Login = LayoutFormLogin
-const column = columns
-const defaultPageSize = 10
 
+// const TheComponent = props => {
+//   if (window.localStorage.getItem('isLoggedIn') !== true) return (<LoginPageComponent {...props} />)
+//   // else window.location.assign = '/'
+//   // else window.location.reload(true)
+//   // else window.open('http://localhost:3000/', '_self', true)
+//   else {
+//     console.log('doing click')
+//     document.getElementById('gotohome').click()
+//   }
+//   // else window.location.replace('http://localhost:3000/home')
+//   //gotohome
+// }
 const mapStateToProps = (state, ownProps) => {
-  // console.log('myownprops ', ownProps)
-  const id = path(['match', 'params', 'id'], ownProps)
+  const isLoggedIn = LoginSelectors.isLoggedIn(state.login)
+  console.log('mapStateToProps isLoggedIn=', isLoggedIn)
   return {
-    // ignite boilerplate state list
-    defaultPageSize,
-    column,
-    dataDetail: LoginSelectors.getDetailById(state.login, id),
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    isError: LoginSelectors.getError(state.login),
-    formSubmitMessage: LoginSelectors.getFormSubmitMessage(state.login),
-    id,
-    // allDataArr: LoginSelectors.getAllDataArr(state.login),
-    // allDataArr: makeData(),
-    entityName: 'Login'
+    formSubmitMessage: LoginSelectors.getFormSubmitMessage(state.login)
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    // ignite boilerplate dispatch list
-    fetchOne: query => dispatch(LoginActions.loginRequest(query)),
-    loginCreate: data => dispatch(LoginActions.loginCreate(data)),
-    resetFormLogin: () => dispatch(LoginActions.loginReset())
+    loginDoLogin: data => dispatch(LoginActions.loginDoLogin(data))
   }
 }
 

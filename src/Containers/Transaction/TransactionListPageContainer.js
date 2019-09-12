@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
-import MerchantActions, {MerchantSelectors} from './redux'
 import LoginActions, { LoginSelectors } from '../Login/redux'
+import TransactionActions, {TransactionSelectors} from './redux'
 import { Redirect } from 'react-router-dom'
 
-import MerchantCreatePageComponent from '../../Components/Merchant/MerchantCreatePageComponent'
+import TransactionListPageComponent from '../../Components/Transaction/TransactionListPageComponent'
 
 class TheComponent extends React.PureComponent {
   render () {
     if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to='/login' /> }
-    return (<MerchantCreatePageComponent
+    return (<TransactionListPageComponent
       history={this.props.history}
       {...this.props}
     />
@@ -21,15 +21,15 @@ class TheComponent extends React.PureComponent {
 const mapStateToProps = (state, ownProps) => {
   return {
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    isRequesting: MerchantSelectors.isRequesting(state.merchant),
-    responseMessage: MerchantSelectors.responseMessage(state.merchant),
-    responseCode: MerchantSelectors.responseCode(state.merchant)
+    dataTransaction: TransactionSelectors.dataTransaction(state.transaction),
+    pages: TransactionSelectors.pages(state.transaction),
+    page: TransactionSelectors.page(state.transaction),
+    isRequesting: TransactionSelectors.isRequesting(state.transaction)
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    merchantCreateRequestPatch: query => dispatch(MerchantActions.merchantCreateRequestPatch(query)),
-    merchantCreateRequest: query => dispatch(MerchantActions.merchantCreateRequest(query))
+    transactionReadRequest: query => dispatch(TransactionActions.transactionReadRequest(query))
   }
 }
 export default connect(

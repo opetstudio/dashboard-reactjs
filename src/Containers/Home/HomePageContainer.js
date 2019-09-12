@@ -7,6 +7,7 @@ import HomePageComponent from '../../Components/Home/HomePageComponent'
 
 class TheComponent extends React.PureComponent {
   render () {
+    console.log('renderrrr')
     if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to='/login' /> }
     return (<HomePageComponent
       history={this.props.history}

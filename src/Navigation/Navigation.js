@@ -8,10 +8,12 @@ import ResponsiveContainer from '../Containers/ResponsiveContainer'
 // --- import list page entity ---
 import HomePageContainer from '../Containers/Home/HomePageContainer'
 import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePageContainer'
-import MerchantListPageContainer from '../Components/Merchant/MerchantListPageComponent'
-import ReportListPageContainer from '../Components/Report/ReportListPageComponent'
+import MerchantListPageContainer from '../Containers/Merchant/MerchantListPageContainer'
+import TransactionListPageContainer from '../Containers/Transaction/TransactionListPageContainer'
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
+import GenerateQrcodePageContainer from '../Containers/Qrcode/GenerateQrcodePageContainer'
+import ChangeLimitPageContainer from '../Containers/Merchant/ChangeLimitPageContainer'
 import { loadScript } from '../Utils/Utils'
 
 class App extends Component {
@@ -25,9 +27,9 @@ class App extends Component {
       //   document.getElementsByTagName('body')[0].setAttribute('class', 'hold-transition skin-blue sidebar-mini')
       // }
       // this.props.onRouteChange(location)
-      const loginRestriction = ['/home']
+      const loginRestriction = ['/home', '/', '/merchant/create']
       if (loginRestriction.indexOf(location.pathname) !== -1) {
-        this.props.checkLogedStatus()
+        this.props.checkLogedStatus({})
       }
       loadScript(location.pathname)
     })
@@ -66,13 +68,18 @@ class NavigationRouter extends Component {
             />
             <Route
               exact
+              path={`${basePath}/merchant/change-limit`}
+              component={ChangeLimitPageContainer}
+            />
+            <Route
+              exact
               path={`${basePath}/merchant/list`}
               component={MerchantListPageContainer}
             />
             <Route
               exact
               path={`${basePath}/report`}
-              component={ReportListPageContainer}
+              component={TransactionListPageContainer}
             />
             <Route
               exact
@@ -83,6 +90,11 @@ class NavigationRouter extends Component {
               exact
               path={`${basePath}/signup`}
               component={SignupPageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/qrcode/generate`}
+              component={GenerateQrcodePageContainer}
             />
           </ResponsiveContainer>
         </AppContainer>

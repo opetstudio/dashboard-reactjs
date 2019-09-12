@@ -2,6 +2,11 @@
 import AppConfig from '../../Config/AppConfig'
 
 export const create = api => ({
+  loginDoLogin: (data, opt) => {
+    // api.setHeader('authorization', opt.session.token)
+    const resp = api.post('/dashboard/login/submit', data)
+    return resp
+  },
   postLogin: (data, opt) => {
     console.log('postLogin data', data)
     // api.setHeader('authorization', opt.session.token)
@@ -26,6 +31,8 @@ export const create = api => ({
     // console.log('auth===>', auth)
     api.setHeader('Content-Type', 'application/json')
     api.setHeader('Accept', 'application/json')
+    // api.setHeader('Cookie', 'XSRF-TOKEN=asdfadsf;')
+    // api.setHeader('testing', 'asdfadf')
     api.setHeader(
       AppConfig.authHeader,
       opt.session.token_type + ' ' + opt.session.access_token

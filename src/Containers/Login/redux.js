@@ -2,11 +2,20 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 import { arrayMerge } from '../../Utils/helper/datamining'
 import { isEmpty } from 'ramda'
+import Cookies from 'universal-cookie'
+import AppConfig from '../../Config/AppConfig'
+const cookies = new Cookies()
 
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
+  loginPatch: ['data'],
+  loginDoLogin: ['data'],
+  loginDoLogout: ['data'],
   loginCheckStatus: ['data'],
+  loginDoLoginSuccess: ['data'],
+  loginDoLogoutSuccess: ['data'],
+
   loginRequest: ['data'],
   loginCreate: ['data'],
   loginUpdate: ['data'],
@@ -44,7 +53,12 @@ export const INITIAL_STATE = Immutable({
   refreshToken: '',
   scope: '',
   tokenType: '',
-  formSubmitMessage: ''
+  formSubmitMessage: '',
+
+  isRequesting: false,
+  responseMessage: '',
+  responseCode: '',
+  version: 0
 })
 
 /* ------------- Selectors ------------- */
@@ -60,7 +74,11 @@ export const LoginSelectors = {
   isLoggedIn: state => state.isLoggedIn,
   getFormSubmitMessage: state => state.formSubmitMessage,
   getError: state => state.error,
-  getToken: state => state.token
+  getToken: state => state.token,
+
+  isRequesting: st => st.isRequesting,
+  responseMessage: st => st.responseMessage,
+  responseCode: st => st.responseCode
 }
 
 /* ------------- Reducers ------------- */
@@ -157,10 +175,50 @@ export const reset = state => state.merge(INITIAL_STATE)
 // Or just merge a new object
 export const data = (state, { data }) => state.merge({ data }, { deep: true })
 
+export const loginDoLogin = (state, { data }) => {
+  data.isRequesting = true
+  return loginPatch(state, { data })
+}
+export const loginDoLogout = (state, { data }) => {
+  data.isRequesting = true
+  return loginPatch(state, { data })
+}
+export const loginCheckStatus = (state, { data }) => {
+  data.isRequesting = true
+  return loginPatch(state, { data })
+}
+export const loginDoLoginSuccess = (state, { data }) => {
+  console.log('loginDoLoginSuccess')
+  window.localStorage.setItem('isLoggedIn', true)
+  window.sessionStorage.setItem(AppConfig.sessionToken, data.sessionToken)
+  window.sessionStorage.setItem(AppConfig.publicToken, data.publicToken)
+  data.isRequesting = false
+  data.isLoggedIn = true
+  return loginPatch(state, { data })
+}
+export const loginDoLogoutSuccess = (state, { data }) => {
+  console.log('loginDoLogoutSuccess')
+  window.localStorage.setItem('isLoggedIn', false)
+  window.sessionStorage.removeItem(AppConfig.sessionToken)
+  window.sessionStorage.removeItem(AppConfig.publicToken)
+  data.isRequesting = false
+  data.isLoggedIn = true
+  return loginPatch(state, { data })
+}
+export const loginPatch = (state, { data }) => {
+  let mergeData = {}
+  if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
+  if (data.responseCode) mergeData.responseCode = data.responseCode
+  if (data.responseMessage) mergeData.responseMessage = data.responseMessage
+  if (data.isLoggedIn) mergeData.isLoggedIn = data.isLoggedIn
+  mergeData.version = state.version + 1
+  return state.merge(mergeData)
+}
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.LOGIN_CHECK_STATUS]: state => state,
+  // [Types.LOGIN_CHECK_STATUS]: state => state,
   [Types.LOGIN_STILL_EXIST]: state => state,
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGIN_CREATE]: create,
@@ -174,5 +232,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SINGLE_SUCCESS]: singleSuccess,
   [Types.LOGIN_ALL_SUCCESS]: allSuccess,
   [Types.LOGIN_FAILURE]: failure,
-  [Types.LOGIN_RESET]: reset
+  [Types.LOGIN_RESET]: reset,
+
+  [Types.LOGIN_PATCH]: loginPatch,
+  [Types.LOGIN_DO_LOGIN]: loginDoLogin,
+  [Types.LOGIN_DO_LOGIN_SUCCESS]: loginDoLoginSuccess,
+  [Types.LOGIN_DO_LOGOUT]: loginDoLogout,
+  [Types.LOGIN_DO_LOGOUT_SUCCESS]: loginDoLogoutSuccess,
+  [Types.LOGIN_CHECK_STATUS]: loginCheckStatus
 })

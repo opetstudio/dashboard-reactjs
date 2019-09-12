@@ -5,12 +5,12 @@ import MerchantActions, {MerchantSelectors} from './redux'
 import LoginActions, { LoginSelectors } from '../Login/redux'
 import { Redirect } from 'react-router-dom'
 
-import MerchantCreatePageComponent from '../../Components/Merchant/MerchantCreatePageComponent'
+import ChangeLimitPageComponent from '../../Components/Merchant/ChangeLimitPageComponent'
 
 class TheComponent extends React.PureComponent {
   render () {
     if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to='/login' /> }
-    return (<MerchantCreatePageComponent
+    return (<ChangeLimitPageComponent
       history={this.props.history}
       {...this.props}
     />
