@@ -4,12 +4,11 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  merchantCreateRequest: ['data'],
-  merchantRequestPatch: ['data'],
-  merchantReadRequest: ['data']
+  transactionReadRequest: ['data'],
+  transactionReadRequestPatch: ['data']
 })
 
-export const MerchantTypes = Types
+export const TransactionTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -19,47 +18,52 @@ export const INITIAL_STATE = Immutable({
   responseMessage: '',
   responseCode: '',
   version: 0,
-  dataMerchant: [],
+  dataTransaction: [],
   pages: 10,
   page: 0
+//   rows: ''
 })
 
 /* ------------- Selectors ------------- */
 
-export const MerchantSelectors = {
+export const TransactionSelectors = {
   isRequesting: st => st.isRequesting,
   responseMessage: st => st.responseMessage,
   responseCode: st => st.responseCode,
   page: st => st.page,
   pages: st => st.pages,
-  dataMerchant: st => st.dataMerchant
+  dataTransaction: st => st.dataTransaction
+//   rows: st => st.rows
 }
 
 /* ------------- Reducers ------------- */
 
-export const merchantCreateRequest = (state, { data }) => {
+export const transactionReadRequest = (state, { data }) => {
   data.isRequesting = true
-  return merchantRequestPatch(state, { data })
+  return transactionReadRequestPatch(state, { data })
 }
-export const merchantReadRequest = (state, { data }) => {
-  data.isRequesting = true
-  return merchantRequestPatch(state, { data })
-}
-export const merchantRequestPatch = (state, { data }) => {
+export const transactionReadRequestPatch = (state, { data }) => {
   let mergeData = {}
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
   if (data.responseCode) mergeData.responseCode = data.responseCode
   if (data.responseMessage) mergeData.responseMessage = data.responseMessage
   if (data.pages) mergeData.pages = data.pages
   if (data.page) mergeData.page = data.page
-  if (mergeData.dataMerchant) mergeData.dataMerchant = data.dataMerchant
+  if (data.dataTransaction) {
+    // let rows = ''
+    // data.listall.forEach((v, k) => {
+    //   rows += '<tr key="' + v.id + '"><td>Trident</td><td>Internet Explorer 4.0</td><td>Win 95+</td><td> 4</td><td>X</td></tr>'
+    // })
+    mergeData.dataTransaction = data.dataTransaction
+    // mergeData.rows = rows
+  }
+  mergeData.version = state.version + 1
   return state.merge(mergeData)
 }
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.MERCHANT_READ_REQUEST]: merchantReadRequest,
-  [Types.MERCHANT_CREATE_REQUEST]: merchantCreateRequest,
-  [Types.MERCHANT_REQUEST_PATCH]: merchantRequestPatch
+  [Types.TRANSACTION_READ_REQUEST]: transactionReadRequest,
+  [Types.TRANSACTION_READ_REQUEST_PATCH]: transactionReadRequestPatch
 })

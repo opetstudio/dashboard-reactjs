@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="%PUBLIC_URL%/bower_components/Ionicons/css/ionicons.min.css">
   <!-- jvectormap -->
   <link rel="stylesheet" href="%PUBLIC_URL%/bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="%PUBLIC_URL%/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <!-- Select2 -->
   <link rel="stylesheet" href="%PUBLIC_URL%/bower_components/select2/dist/css/select2.min.css">
@@ -154,6 +156,9 @@
     <!-- jvectormap  -->
     <script src="%PUBLIC_URL%/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="%PUBLIC_URL%/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- DataTables -->
+    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <!-- SlimScroll -->
     <script src="%PUBLIC_URL%/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- ChartJS -->
@@ -188,6 +193,31 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' /* optional */
             });
+      }
+      window.TransactionListPageComponent = function (dataSet) {
+        console.log('TransactionListPageComponent execute')
+        $(function () {
+          $('#example1').DataTable()
+          // $('#example1').DataTable({
+          //   data: dataSet,
+          //   columns: [
+          //       { title: "Name" },
+          //       { title: "Position" },
+          //       { title: "Office" },
+          //       { title: "Extn." },
+          //       { title: "Start date" },
+          //       { title: "Salary" }
+          //   ]
+          // })
+          $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+          })
+        })
       }
     </script>
   </body>

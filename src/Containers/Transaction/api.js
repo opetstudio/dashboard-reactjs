@@ -2,12 +2,7 @@
 import AppConfig from '../../Config/AppConfig'
 
 export const create = api => ({
-  merchantCreateRequest: (data, opt) => {
-    // api.setHeader('authorization', opt.session.token)
-    const resp = api.post('/dashboard/merchantCreate', data)
-    return resp
-  },
-  merchantReadRequest: (data, opt) => {
+  transactionReadRequest: (data, opt) => {
     let filtered = encodeURIComponent(JSON.stringify(data.filtered))
     let sorted = encodeURIComponent(JSON.stringify(data.sorted))
     // api.setHeader('authorization', opt.session.token)

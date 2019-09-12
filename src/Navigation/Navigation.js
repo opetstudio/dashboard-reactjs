@@ -9,7 +9,7 @@ import ResponsiveContainer from '../Containers/ResponsiveContainer'
 import HomePageContainer from '../Containers/Home/HomePageContainer'
 import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePageContainer'
 import MerchantListPageContainer from '../Containers/Merchant/MerchantListPageContainer'
-import ReportListPageContainer from '../Containers/Report/ReportListPageContainer'
+import TransactionListPageContainer from '../Containers/Transaction/TransactionListPageContainer'
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
 import GenerateQrcodePageContainer from '../Containers/Qrcode/GenerateQrcodePageContainer'
@@ -79,7 +79,7 @@ class NavigationRouter extends Component {
             <Route
               exact
               path={`${basePath}/report`}
-              component={ReportListPageContainer}
+              component={TransactionListPageContainer}
             />
             <Route
               exact

@@ -2,14 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
 import LoginActions, { LoginSelectors } from '../Login/redux'
+import TransactionActions, {TransactionSelectors} from './redux'
 import { Redirect } from 'react-router-dom'
 
-import ReportListPageComponent from '../../Components/Report/ReportListPageComponent'
+import TransactionListPageComponent from '../../Components/Transaction/TransactionListPageComponent'
 
 class TheComponent extends React.PureComponent {
   render () {
     if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to='/login' /> }
-    return (<ReportListPageComponent
+    return (<TransactionListPageComponent
       history={this.props.history}
       {...this.props}
     />
@@ -19,11 +20,16 @@ class TheComponent extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: LoginSelectors.isLoggedIn(state.login)
+    isLoggedIn: LoginSelectors.isLoggedIn(state.login),
+    dataTransaction: TransactionSelectors.dataTransaction(state.transaction),
+    pages: TransactionSelectors.pages(state.transaction),
+    page: TransactionSelectors.page(state.transaction),
+    isRequesting: TransactionSelectors.isRequesting(state.transaction)
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
+    transactionReadRequest: query => dispatch(TransactionActions.transactionReadRequest(query))
   }
 }
 export default connect(
