@@ -29,13 +29,17 @@ const mapStateToProps = (state, ownProps) => {
   console.log('mapStateToProps isLoggedIn=', isLoggedIn)
   return {
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    formSubmitMessage: LoginSelectors.getFormSubmitMessage(state.login)
+    formSubmitMessage: LoginSelectors.getFormSubmitMessage(state.login),
+    responseMessage: LoginSelectors.responseMessage(state.login),
+    responseDescription: LoginSelectors.responseDescription(state.login),
+    responseCode: LoginSelectors.responseCode(state.login)
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginDoLogin: data => dispatch(LoginActions.loginDoLogin(data))
+    loginDoLogin: data => dispatch(LoginActions.loginDoLogin(data)),
+    loginPatch: data => dispatch(LoginActions.loginPatch(data))
   }
 }
 

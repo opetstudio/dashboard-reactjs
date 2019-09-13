@@ -12,6 +12,8 @@ import {
 import { Redirect, Link } from 'react-router-dom'
 import CryptoJS from 'crypto-js'
 import Helmet from 'react-helmet'
+import AppConfig from '../../Config/AppConfig'
+const basePath = AppConfig.basePath
 
 // var bcrypt = require('bcryptjs')
 // var salt = bcrypt.genSaltSync(1)
@@ -30,6 +32,9 @@ class LoginPageComponent extends React.Component {
     this.state = {
       formSubmitMessage: this.props.formSubmitMessage
     }
+  }
+  componentWillUnmount () {
+    this.props.loginPatch({responseMessage: '', responseCode: '', responseDescription: ''})
   }
   componentDidMount (prevProps) {
     this.setState({
@@ -90,6 +95,27 @@ class LoginPageComponent extends React.Component {
         </div>
         <div className='login-box-body'>
           <p className='login-box-msg'>Sign in to start your session</p>
+          {this.props.responseCode !== '' && this.props.responseCode === 'MBDD00' &&
+            (
+              <div className='row'>
+                <div className='col-md-12'>
+                  <div className='alert alert-success' role='alert'>
+                    {this.props.responseDescription}
+                  </div>
+                </div>
+              </div>
+            )
+          }
+          {this.props.responseCode !== '' && this.props.responseCode !== 'MBDD00' &&
+          (
+            <div className='row'>
+              <div className='col-md-12'>
+                <div className='alert alert-danger' role='alert'>
+                  {this.props.responseDescription}
+                </div>
+              </div>
+            </div>
+          )}
           <form onSubmit={(e) => this._formOnSubmit(e)}>
             <div className='form-group has-feedback'>
               <input type='email' className='form-control' placeholder='Email' ref='email' required />
@@ -119,7 +145,7 @@ class LoginPageComponent extends React.Component {
               Google+</a>
           </div> */}
           {/* <a href='#'>I forgot my password</a><br /> */}
-          <Link to='/signup' className='text-center'>Register a new membership</Link>
+          <Link to={`${basePath}/signup`} className='text-center'>Register a new membership</Link>
         </div>
       </div>
     )

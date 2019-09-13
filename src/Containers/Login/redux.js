@@ -78,7 +78,8 @@ export const LoginSelectors = {
 
   isRequesting: st => st.isRequesting,
   responseMessage: st => st.responseMessage,
-  responseCode: st => st.responseCode
+  responseCode: st => st.responseCode,
+  responseDescription: st => st.responseDescription
 }
 
 /* ------------- Reducers ------------- */
@@ -115,6 +116,7 @@ export const removeSuccess = (state, action) => {
   window.localStorage.setItem('isLoggedIn', false)
   return state.merge({
     fetching: false,
+    isRequesting: false,
     error: null,
     payload,
     isLoggedIn: false,
@@ -208,9 +210,10 @@ export const loginDoLogoutSuccess = (state, { data }) => {
 export const loginPatch = (state, { data }) => {
   let mergeData = {}
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
-  if (data.responseCode) mergeData.responseCode = data.responseCode
-  if (data.responseMessage) mergeData.responseMessage = data.responseMessage
+  if (data.hasOwnProperty('responseCode')) mergeData.responseCode = data.responseCode
+  if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
   if (data.isLoggedIn) mergeData.isLoggedIn = data.isLoggedIn
+  if (data.hasOwnProperty('responseDescription')) mergeData.responseDescription = data.responseDescription
   mergeData.version = state.version + 1
   return state.merge(mergeData)
 }

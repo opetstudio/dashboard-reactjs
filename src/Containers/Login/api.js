@@ -4,13 +4,13 @@ import AppConfig from '../../Config/AppConfig'
 export const create = api => ({
   loginDoLogin: (data, opt) => {
     // api.setHeader('authorization', opt.session.token)
-    const resp = api.post('/dashboard/login/submit', data)
+    const resp = api.post('/plink/login', {email: data.userid, password: data.password})
     return resp
   },
   postLogin: (data, opt) => {
     console.log('postLogin data', data)
     // api.setHeader('authorization', opt.session.token)
-    const resp = api.post('/dashboard/login/submit', data)
+    const resp = api.post('/plink/login', data)
     return resp
   },
   getLogin: data => api.get('/logins/' + data.id),
@@ -24,7 +24,7 @@ export const create = api => ({
       AppConfig.authHeader,
       opt.session.token_type + ' ' + opt.session.access_token
     )
-    return api.get('/dashboard/logout/submit')
+    return api.get('/plink/logout')
   },
   getLoginStatus: (data, opt) => {
     // const auth = opt.session.token_type + ' ' + opt.session.access_token

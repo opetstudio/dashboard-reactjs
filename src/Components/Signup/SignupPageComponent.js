@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import {Link} from 'react-router-dom'
+import AppConfig from '../../Config/AppConfig'
+const basePath = AppConfig.basePath
 
 export default class SignupPageComponent extends Component {
   componentDidMount () {
@@ -61,7 +63,7 @@ export default class SignupPageComponent extends Component {
               {/* /.col */}
             </div>
           </form>
-          <Link to='/' className='text-center'>I already have a membership</Link>
+          <Link to={`${basePath}/login`} className='text-center'>I already have a membership</Link>
 
         </div>
         {/* /.form-box */}

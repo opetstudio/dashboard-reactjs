@@ -135,25 +135,26 @@ export function * removeLogin (api, action) {
   const { data } = action
   const s = yield select(session)
   // // make the call to the api
-  const response = yield call(api.removeLogin, data, { session: s })
+  const response = yield call(api.removeLogin, data, { session: {token_type: 'Bearer', access_token: getAccessToken()} })
   console.log('response logout==>', response)
   // // success?
-  if (response.ok) {
-    let status = path(['data', 'responseCode'], response)
-    let responseMessage = path(['data', 'responseMessage'], response)
-    if (status === 'MBDD00') {
-      yield call(doLogout)
-      // yield put(UserActions.userReset())
-      // yield put(ParticipantActions.participantReset())
-    } else {
-      alert(responseMessage)
-    }
-    // yield call(RehydrationServices, data)
-  } else {
-    //   yield put(LoginActions.loginFailure())
-    alert('logout failed, please try again.')
-    // yield call(doLogout)
-  }
+  // if (response.ok) {
+  //   let status = path(['data', 'responseCode'], response)
+  //   let responseMessage = path(['data', 'responseMessage'], response)
+  //   if (status === 'MBDD00') {
+  yield call(doLogout)
+  // yield put(LoginActions.loginPatch({isRequesting: false}))
+  //     // yield put(UserActions.userReset())
+  //     // yield put(ParticipantActions.participantReset())
+  //   } else {
+  //     alert(responseMessage)
+  //   }
+  //   // yield call(RehydrationServices, data)
+  // } else {
+  //   //   yield put(LoginActions.loginFailure())
+  //   alert('logout failed, please try again.')
+  //   // yield call(doLogout)
+  // }
 }
 
 export function * getLogins (api, action) {
@@ -174,20 +175,22 @@ export function * getLogins (api, action) {
 export function * loginDoLogin (api, action) {
   console.log('loginDoLogin')
   const { data } = action
-  const response = yield call(api.loginDoLogin, data.payload, {url: data.url, method: data.method})
+  const response = yield call(api.loginDoLogin, data, {url: data.url, method: data.method})
   console.log('response loginDoLogin=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
   let sessionToken = path(['data', 'sessionToken'], response)
   let publicToken = path(['data', 'publicToken'], response)
+  let responseDescription = path(['data', 'responseDescription'], response) || responseMessage
   if (!response.ok) {
     responseMessage = response.problem
-    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage}))
+    responseDescription = responseDescription || responseMessage
+    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription}))
   }
   if (responseCode !== 'MBDD00') {
-    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage}))
+    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription}))
   }
-  yield put(LoginActions.loginDoLoginSuccess({sessionToken, publicToken}))
+  yield put(LoginActions.loginDoLoginSuccess({sessionToken, publicToken, responseCode, responseMessage, responseDescription}))
 }
 export function * loginCheckStatus (api, action) {
   const { data } = action

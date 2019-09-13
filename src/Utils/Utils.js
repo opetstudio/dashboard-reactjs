@@ -102,6 +102,10 @@ export const getAccessToken = () => {
   console.log('getAccessToken')
   const publicToken = window.sessionStorage.getItem(AppConfig.publicToken)
   const sessionToken = window.sessionStorage.getItem(AppConfig.sessionToken)
+  const ok = true
+  // dont encrypt
+  if (ok) return sessionToken
+
   if (!publicToken || !sessionToken) return ''
   const ciphertext = AES.encrypt(publicToken, sessionToken)
   // const plaintext = ciphertext.toString(EncUtf8)
