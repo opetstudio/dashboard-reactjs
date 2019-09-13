@@ -53,9 +53,9 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Registrasi User</Link></li>
-                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> Daftar User</Link></li>
-                <li><Link to='/merchant/change-limit'><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
+                <li><Link to='/user/create'><i className='fa fa-circle-o' /> Registrasi User</Link></li>
+                <li className='active'><Link to='/user/list'><i className='fa fa-circle-o' /> Daftar User</Link></li>
+                <li><Link to='/user/change-limit'><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -68,19 +68,6 @@ class SidebarComponent extends Component {
               </Link>
               <ul className='treeview-menu'>
                 <li><Link to='/report'><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
-              </ul>
-            </li>
-            <li className='treeview'>
-              <Link to='#'>
-                <i className='fa fa-dashboard' /> <span>Profile</span>
-                <span className='pull-right-container'>
-                  <i className='fa fa-angle-left pull-right' />
-                </span>
-              </Link>
-              <ul className='treeview-menu'>
-                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Profile Merchant</Link></li>
-                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> Profile Payment Gateway</Link></li>
-                <li><Link to='/merchant/list'><i className='fa fa-circle-o' /> Profile User</Link></li>
               </ul>
             </li>
           </ul>

@@ -14,6 +14,7 @@ import { LoginTypes } from '../Containers/Login/redux'
 // end Ignite-Entity-Login
 import { MerchantTypes } from '../Containers/Merchant/redux'
 import { PaymentgwTypes } from '../Containers/Paymentgw/redux'
+import { UserTypes } from '../Containers/User/redux'
 import {TransactionTypes} from '../Containers/Transaction/redux'
 
 // begin Ignite-Entity-Paymentpage
@@ -37,6 +38,7 @@ import {
 } from '../Containers/Login/sagas'
 // end Ignite-Entity-Login
 import {merchantCreateRequest, merchantReadRequest} from '../Containers/Merchant/sagas'
+import {userCreateRequest, userReadRequest} from '../Containers/User/sagas'
 import {paymentgwCreateRequest, paymentgwReadRequest} from '../Containers/Paymentgw/sagas'
 import {transactionReadRequest} from '../Containers/Transaction/sagas'
 
@@ -73,6 +75,9 @@ const apiDashboard2 = API.create(AppConfig.env === 'development' ? 'http://local
 
 export default function * root () {
   yield all([
+    takeLatest(UserTypes.USER_CREATE_REQUEST, userCreateRequest, apiDashboard),
+    takeLatest(UserTypes.USER_READ_REQUEST, userReadRequest, apiDashboard),
+    
     takeLatest(MerchantTypes.MERCHANT_CREATE_REQUEST, merchantCreateRequest, apiDashboard),
     takeLatest(MerchantTypes.MERCHANT_READ_REQUEST, merchantReadRequest, apiDashboard),
 

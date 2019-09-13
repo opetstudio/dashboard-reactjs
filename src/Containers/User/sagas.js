@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects'
-import MerchantActions from './redux'
+import UserActions from './redux'
 import { getAttributes } from '../../Transforms/TransformAttributes'
 import { merge, path } from 'ramda'
 import _ from 'lodash'
@@ -8,9 +8,9 @@ import Cookies from 'universal-cookie'
 // export const session = state => ({...state.login.single, token: state.login.token, isLoggedIn: state.login.isLoggedIn})
 export const transformedData = response => getAttributes(response.data)
 
-export function * merchantCreateRequest (api, action) {
+export function * userCreateRequest (api, action) {
   const { data } = action
-  const response = yield call(api.merchantCreateRequest, data.payload, {url: data.url, method: data.method})
+  const response = yield call(api.userCreateRequest, data.payload, {url: data.url, method: data.method})
   console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
@@ -19,24 +19,24 @@ export function * merchantCreateRequest (api, action) {
   } else {
     responseMessage = response.problem
   }
-  yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage}))
+  yield put(UserActions.userRequestPatch({isRequesting: false, responseCode, responseMessage}))
 }
-export function * merchantReadRequest (api, action) {
+export function * userReadRequest (api, action) {
   const { data } = action
   console.log('action===>', action)
-  const response = yield call(api.merchantReadRequest, data, {url: data.url, method: data.method})
+  const response = yield call(api.userReadRequest, data, {url: data.url, method: data.method})
   console.log('response=>', response)
-  let dataMerchant = []
+  let dataUser = []
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
   if (response.ok) {
-    dataMerchant = path(['data', 'reports'], response) || []
+    dataUser = path(['data', 'reports'], response) || []
     responseCode = 'MBDD00'
     responseMessage = 'SUCCESS'
   } else {
-    dataMerchant = []
+    dataUser = []
     responseCode = 'MBDD01'
     responseMessage = 'FAILED'
   }
-  yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage, dataMerchant}))
+  yield put(UserActions.userRequestPatch({isRequesting: false, responseCode, responseMessage, dataUser}))
 }
