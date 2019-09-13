@@ -30,7 +30,7 @@ class ChangeLimitPageComponent extends Component {
                 <i className='fa fa-dashboard' /> Merchant
               </a>
             </li>
-            <li className='active'>Rubah Limit</li>
+            <li className='active'>Rubah Limit Merchant</li>
           </ol>
         </section>
         <section className='content'>

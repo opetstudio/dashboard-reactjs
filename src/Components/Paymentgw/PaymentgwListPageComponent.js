@@ -11,18 +11,18 @@ class PaymentgwListPageComponent extends Component {
     return (
       <div className='content-wrapper'>
         <Helmet>
-          <title>Paymentgw List</title>
+          <title>Daftar Payment Gateway</title>
           <body className='hold-transition skin-blue sidebar-mini' />
         </Helmet>
         <section className='content-header'>
-          <h1>Paymentgw List</h1>
+          <h1>Daftar Payment Gateway</h1>
           <ol className='breadcrumb'>
             <li>
               <a href='#'>
-                <i className='fa fa-dashboard' /> Paymentgw
+                <i className='fa fa-dashboard' /> Payment Gateway
               </a>
             </li>
-            <li className='active'>List</li>
+            <li className='active'>Daftar Payment Gateway</li>
           </ol>
         </section>
         <section className='content'>

@@ -20,18 +20,18 @@ class MerchantCreatePageComponent extends Component {
     return (
       <div className='content-wrapper'>
         <Helmet>
-          <title>Merchant Create</title>
+          <title>Registrasi Merchant</title>
           <body className='hold-transition skin-blue sidebar-mini' />
         </Helmet>
         <section className='content-header'>
-          <h1>Merchant Create</h1>
+          <h1>Registrasi Merchant</h1>
           <ol className='breadcrumb'>
             <li>
               <a href='#'>
                 <i className='fa fa-dashboard' /> Merchant
               </a>
             </li>
-            <li className='active'>Create</li>
+            <li className='active'>Registrasi Merchant</li>
           </ol>
         </section>
         <section className='content'>
