@@ -10,6 +10,11 @@ import HomePageContainer from '../Containers/Home/HomePageContainer'
 
 import MerchantCreatePageContainer from '../Containers/Merchant/MerchantCreatePageContainer'
 import MerchantListPageContainer from '../Containers/Merchant/MerchantListPageContainer'
+import MerchantChangeLimitPageContainer from '../Containers/Merchant/ChangeLimitPageContainer'
+
+import UserCreatePageContainer from '../Containers/User/UserCreatePageContainer'
+import UserListPageContainer from '../Containers/User/UserListPageContainer'
+import UserChangeLimitPageContainer from '../Containers/User/ChangeLimitPageContainer'
 
 import PaymentgwCreatePageContainer from '../Containers/Paymentgw/PaymentgwCreatePageContainer'
 import PaymentgwListPageContainer from '../Containers/Paymentgw/PaymentgwListPageContainer'
@@ -18,7 +23,7 @@ import TransactionListPageContainer from '../Containers/Transaction/TransactionL
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
 import GenerateQrcodePageContainer from '../Containers/Qrcode/GenerateQrcodePageContainer'
-import ChangeLimitPageContainer from '../Containers/Merchant/ChangeLimitPageContainer'
+
 import { loadScript } from '../Utils/Utils'
 import AppConfig from '../Config/AppConfig'
 const basePath = AppConfig.basePath
@@ -87,12 +92,27 @@ class NavigationRouter extends Component {
             <Route
               exact
               path={`${basePath}/merchant/change-limit`}
-              component={ChangeLimitPageContainer}
+              component={MerchantChangeLimitPageContainer}
             />
             <Route
               exact
               path={`${basePath}/merchant/list`}
               component={MerchantListPageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/user/create`}
+              component={UserCreatePageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/user/change-limit`}
+              component={UserChangeLimitPageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/user/list`}
+              component={UserListPageContainer}
             />
             <Route
               exact

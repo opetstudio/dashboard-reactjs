@@ -71,19 +71,6 @@ class SidebarComponent extends Component {
                 <li><Link to={`${basePath}/report`}><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
               </ul>
             </li>
-            <li className='treeview'>
-              <Link to='#'>
-                <i className='fa fa-dashboard' /> <span>Profile</span>
-                <span className='pull-right-container'>
-                  <i className='fa fa-angle-left pull-right' />
-                </span>
-              </Link>
-              <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/merchant/create`}><i className='fa fa-circle-o' /> Profile Merchant</Link></li>
-                <li className='active'><Link to={`${basePath}/merchant/list`}><i className='fa fa-circle-o' /> Profile Payment Gateway</Link></li>
-                <li><Link to={`${basePath}/merchant/list`}><i className='fa fa-circle-o' /> Profile User</Link></li>
-              </ul>
-            </li>
           </ul>
         </section>
       </aside>
