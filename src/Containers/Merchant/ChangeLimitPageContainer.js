@@ -28,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    merchantCreateRequestPatch: query => dispatch(MerchantActions.merchantCreateRequestPatch(query)),
+    merchantRequestPatch: query => dispatch(MerchantActions.merchantRequestPatch(query)),
     merchantCreateRequest: query => dispatch(MerchantActions.merchantCreateRequest(query))
   }
 }

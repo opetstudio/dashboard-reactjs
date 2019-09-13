@@ -3,6 +3,10 @@ import Helmet from 'react-helmet'
 import TablePaymentgw from './TablePaymentgw'
 
 class PaymentgwListPageComponent extends Component {
+  componentWillUnmount () {
+    console.log('componentWillUnmount')
+    this.props.paymentgwRequestPatch({isRequesting: false, responseCode: '', responseMessage: ''})
+  }
   render () {
     return (
       <div className='content-wrapper'>

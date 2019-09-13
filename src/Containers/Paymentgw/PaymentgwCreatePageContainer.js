@@ -28,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    paymentgwCreateRequestPatch: query => dispatch(PaymentgwActions.paymentgwCreateRequestPatch(query)),
+    paymentgwRequestPatch: query => dispatch(PaymentgwActions.paymentgwRequestPatch(query)),
     paymentgwCreateRequest: query => dispatch(PaymentgwActions.paymentgwCreateRequest(query))
   }
 }

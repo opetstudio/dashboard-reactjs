@@ -4,8 +4,8 @@ import Helmet from 'react-helmet'
 
 class MerchantCreatePageComponent extends Component {
 
-  componentDidMount () {
-    console.log('componentDidMount')
+  componentWillUnmount () {
+    this.props.merchantRequestPatch({isRequesting: false, responseCode: '', responseMessage: ''})
   }
   _onSubmitForm (e) {
     if (e) e.preventDefault()
