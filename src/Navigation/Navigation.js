@@ -25,6 +25,8 @@ import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
 import GenerateQrcodePageContainer from '../Containers/Qrcode/GenerateQrcodePageContainer'
 
 import { loadScript } from '../Utils/Utils'
+import AppConfig from '../Config/AppConfig'
+const basePath = AppConfig.basePath
 
 class App extends Component {
   constructor (props) {
@@ -60,7 +62,8 @@ class NavigationRouter extends Component {
   render () {
     // let basePath = '/PaymentPageCc' // for jboss
     // let basePath = '/paymentpage' // for jboss
-    let basePath = '' // for docker
+    // let basePath = '' // for docker
+    // let basePath = '/dashboard' // for docker
     return (
       <Router>
         <AppContainer checkLogedStatus={this.props.checkLogedStatus}>

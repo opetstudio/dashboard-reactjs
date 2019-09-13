@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {Images} from '../../Themes'
-
+import AppConfig from '../../Config/AppConfig'
+const basePath = AppConfig.basePath
 const useravatar = Images.useravatar
 
 class SidebarComponent extends Component {
@@ -28,8 +29,8 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/paymentgw/create'><i className='fa fa-circle-o' /> Registrasi Payment Gateway</Link></li>
-                <li className='active'><Link to='/paymentgw/list'><i className='fa fa-circle-o' /> Daftar Payment Gateway</Link></li>
+                <li><Link to={`${basePath}/paymentgw/create`}><i className='fa fa-circle-o' /> Registrasi Payment Gateway</Link></li>
+                <li className='active'><Link to={`${basePath}/paymentgw/list`}><i className='fa fa-circle-o' /> Daftar Payment Gateway</Link></li>
               </ul>
             </li>
             <li className='active treeview menu-open'>
@@ -40,9 +41,9 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Registrasi Merchant</Link></li>
-                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> Daftar Merchant</Link></li>
-                <li><Link to='/merchant/change-limit'><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
+                <li><Link to={`${basePath}/merchant/create`}><i className='fa fa-circle-o' /> Registrasi Merchant</Link></li>
+                <li className='active'><Link to={`${basePath}/merchant/list`}><i className='fa fa-circle-o' /> Daftar Merchant</Link></li>
+                <li><Link to={`${basePath}/merchant/change-limit`}><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -53,9 +54,9 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/user/create'><i className='fa fa-circle-o' /> Registrasi User</Link></li>
-                <li className='active'><Link to='/user/list'><i className='fa fa-circle-o' /> Daftar User</Link></li>
-                <li><Link to='/user/change-limit'><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
+                <li><Link to={`${basePath}/merchant/create`}><i className='fa fa-circle-o' /> Registrasi User</Link></li>
+                <li className='active'><Link to={`${basePath}/merchant/list`}><i className='fa fa-circle-o' /> Daftar User</Link></li>
+                <li><Link to={`${basePath}/merchant/change-limit`}><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -67,7 +68,7 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/report'><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
+                <li><Link to={`${basePath}/report`}><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
               </ul>
             </li>
           </ul>

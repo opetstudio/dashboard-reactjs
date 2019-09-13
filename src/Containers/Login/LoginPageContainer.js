@@ -2,11 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import LoginActions, { LoginSelectors } from './redux'
 import LoginPageComponent from '../../Components/Login/LoginPageComponent'
+import AppConfig from '../../Config/AppConfig'
+const basePath = AppConfig.basePath
 
 class TheComponent extends React.PureComponent {
   render () {
     if (window.localStorage.getItem('isLoggedIn') !== 'true') return (<LoginPageComponent {...this.props} />)
-    else return window.open('/home', '_self', true)
+    else return window.open(`${basePath}/home`, '_self', true)
   }
 }
 
