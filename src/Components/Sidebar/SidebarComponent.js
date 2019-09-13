@@ -28,8 +28,8 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/paymentgw/create'><i className='fa fa-circle-o' /> Create New</Link></li>
-                <li className='active'><Link to='/paymentgw/list'><i className='fa fa-circle-o' /> All PG</Link></li>
+                <li><Link to='/paymentgw/create'><i className='fa fa-circle-o' /> Registrasi Payment Gateway</Link></li>
+                <li className='active'><Link to='/paymentgw/list'><i className='fa fa-circle-o' /> Daftar Payment Gateway</Link></li>
               </ul>
             </li>
             <li className='active treeview menu-open'>
@@ -40,9 +40,9 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Create New</Link></li>
-                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> All Merchant</Link></li>
-                <li><Link to='/merchant/change-limit'><i className='fa fa-circle-o' /> Change Limit</Link></li>
+                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Registrasi Merchant</Link></li>
+                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> Daftar Merchant</Link></li>
+                <li><Link to='/merchant/change-limit'><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -53,21 +53,21 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Create New</Link></li>
-                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> All User</Link></li>
-                <li><Link to='/merchant/change-limit'><i className='fa fa-circle-o' /> Change Limit</Link></li>
+                <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Registrasi User</Link></li>
+                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> Daftar User</Link></li>
+                <li><Link to='/merchant/change-limit'><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
               </ul>
             </li>
             <li className='treeview'>
               <Link to='#'>
                 <i className='fa fa-pie-chart' />
-                <span>Transaction</span>
+                <span>Transaksi</span>
                 <span className='pull-right-container'>
                   <i className='fa fa-angle-left pull-right' />
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to='/report'><i className='fa fa-circle-o' /> Report</Link></li>
+                <li><Link to='/report'><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -79,7 +79,7 @@ class SidebarComponent extends Component {
               </Link>
               <ul className='treeview-menu'>
                 <li><Link to='/merchant/create'><i className='fa fa-circle-o' /> Profile Merchant</Link></li>
-                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> Profile PG</Link></li>
+                <li className='active'><Link to='/merchant/list'><i className='fa fa-circle-o' /> Profile Payment Gateway</Link></li>
                 <li><Link to='/merchant/list'><i className='fa fa-circle-o' /> Profile User</Link></li>
               </ul>
             </li>

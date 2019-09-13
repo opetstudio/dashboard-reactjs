@@ -20,25 +20,25 @@ class PaymentgwCreatePageComponent extends Component {
     return (
       <div className='content-wrapper'>
         <Helmet>
-          <title>Paymentgw Create</title>
+          <title>Registrasi Payment Gateway</title>
           <body className='hold-transition skin-blue sidebar-mini' />
         </Helmet>
         <section className='content-header'>
-          <h1>Paymentgw Create</h1>
+          <h1>Registrasi Payment Gateway</h1>
           <ol className='breadcrumb'>
             <li>
               <a href='#'>
-                <i className='fa fa-dashboard' /> Paymentgw
+                <i className='fa fa-dashboard' /> Payment Gateway
               </a>
             </li>
-            <li className='active'>Create</li>
+            <li className='active'>Registrasi Payment Gateway</li>
           </ol>
         </section>
         <section className='content'>
           <form onSubmit={e => this._onSubmitForm(e)}>
             <div className='box box-primary'>
               <div className='box-header with-border'>
-                <h3 className='box-title'>Paymentgw Information</h3>
+                <h3 className='box-title'>Registrasi Payment Gateway</h3>
               </div>
               <div className='box-body'>
                 {this.props.responseCode !== '' &&

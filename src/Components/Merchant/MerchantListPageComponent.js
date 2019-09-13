@@ -10,18 +10,18 @@ class MerchantListPageComponent extends Component {
     return (
       <div className='content-wrapper'>
         <Helmet>
-          <title>Merchant List</title>
+          <title>Daftar Merchant</title>
           <body className='hold-transition skin-blue sidebar-mini' />
         </Helmet>
         <section className='content-header'>
-          <h1>Merchant List</h1>
+          <h1>Daftar Merchant</h1>
           <ol className='breadcrumb'>
             <li>
               <a href='#'>
                 <i className='fa fa-dashboard' /> Merchant
               </a>
             </li>
-            <li className='active'>List</li>
+            <li className='active'>Daftar Merchant</li>
           </ol>
         </section>
         <section className='content'>
