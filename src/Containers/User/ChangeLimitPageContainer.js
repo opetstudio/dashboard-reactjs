@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
-import MerchantActions, {MerchantSelectors} from './redux'
+import UserActions, {UserSelectors} from './redux'
 import LoginActions, { LoginSelectors } from '../Login/redux'
 import { Redirect } from 'react-router-dom'
 
-import ChangeLimitPageComponent from '../../Components/Merchant/ChangeLimitPageComponent'
+import ChangeLimitPageComponent from '../../Components/User/ChangeLimitPageComponent'
 
 class TheComponent extends React.PureComponent {
   render () {
@@ -21,15 +21,15 @@ class TheComponent extends React.PureComponent {
 const mapStateToProps = (state, ownProps) => {
   return {
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    isRequesting: MerchantSelectors.isRequesting(state.merchant),
-    responseMessage: MerchantSelectors.responseMessage(state.merchant),
-    responseCode: MerchantSelectors.responseCode(state.merchant)
+    isRequesting: UserSelectors.isRequesting(state.user),
+    responseMessage: UserSelectors.responseMessage(state.user),
+    responseCode: UserSelectors.responseCode(state.user)
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    merchantRequestPatch: query => dispatch(MerchantActions.merchantRequestPatch(query)),
-    merchantCreateRequest: query => dispatch(MerchantActions.merchantCreateRequest(query))
+    userRequestPatch: query => dispatch(UserActions.userRequestPatch(query)),
+    userCreateRequest: query => dispatch(UserActions.userCreateRequest(query))
   }
 }
 export default connect(

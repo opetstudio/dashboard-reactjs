@@ -4,12 +4,12 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  merchantCreateRequest: ['data'],
-  merchantRequestPatch: ['data'],
-  merchantReadRequest: ['data']
+  userCreateRequest: ['data'],
+  userRequestPatch: ['data'],
+  userReadRequest: ['data']
 })
 
-export const MerchantTypes = Types
+export const UserTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -19,47 +19,47 @@ export const INITIAL_STATE = Immutable({
   responseMessage: '',
   responseCode: '',
   version: 0,
-  dataMerchant: [],
+  dataUser: [],
   pages: 10,
   page: 0
 })
 
 /* ------------- Selectors ------------- */
 
-export const MerchantSelectors = {
+export const UserSelectors = {
   isRequesting: st => st.isRequesting,
   responseMessage: st => st.responseMessage,
   responseCode: st => st.responseCode,
   page: st => st.page,
   pages: st => st.pages,
-  dataMerchant: st => st.dataMerchant
+  dataUser: st => st.dataUser
 }
 
 /* ------------- Reducers ------------- */
 
-export const merchantCreateRequest = (state, { data }) => {
+export const userCreateRequest = (state, { data }) => {
   data.isRequesting = true
-  return merchantRequestPatch(state, { data })
+  return userRequestPatch(state, { data })
 }
-export const merchantReadRequest = (state, { data }) => {
+export const userReadRequest = (state, { data }) => {
   data.isRequesting = true
-  return merchantRequestPatch(state, { data })
+  return userRequestPatch(state, { data })
 }
-export const merchantRequestPatch = (state, { data }) => {
+export const userRequestPatch = (state, { data }) => {
   let mergeData = {}
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
   if (data.hasOwnProperty('responseCode')) mergeData.responseCode = data.responseCode
   if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
   if (data.pages) mergeData.pages = data.pages
   if (data.page) mergeData.page = data.page
-  if (mergeData.dataMerchant) mergeData.dataMerchant = data.dataMerchant
+  if (mergeData.dataUser) mergeData.dataUser = data.dataUser
   return state.merge(mergeData)
 }
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.MERCHANT_READ_REQUEST]: merchantReadRequest,
-  [Types.MERCHANT_CREATE_REQUEST]: merchantCreateRequest,
-  [Types.MERCHANT_REQUEST_PATCH]: merchantRequestPatch
+  [Types.USER_READ_REQUEST]: userReadRequest,
+  [Types.USER_CREATE_REQUEST]: userCreateRequest,
+  [Types.USER_REQUEST_PATCH]: userRequestPatch
 })

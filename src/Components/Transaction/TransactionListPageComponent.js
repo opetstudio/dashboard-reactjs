@@ -37,15 +37,15 @@ class TransactionListPageComponent extends Component {
     return (
       <div className='content-wrapper'>
         <Helmet>
-          <title>Transaction</title>
+          <title>Transaksi</title>
         </Helmet>
         <section className='content-header'>
           <h1>
-            Transaction Report
+            Laporan Transaksi
           </h1>
           <ol className='breadcrumb'>
-            <li><a href='#'><i className='fa fa-dashboard' /> Transaction</a></li>
-            <li className='active'>Report</li>
+            <li><a href='#'><i className='fa fa-dashboard' /> Transaksi</a></li>
+            <li className='active'>Laporan Transaksi</li>
           </ol>
         </section>
         <section className='content'>
