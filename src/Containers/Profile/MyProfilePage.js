@@ -15,7 +15,7 @@ import AppConfig from '../../Config/AppConfig'
 class MyProfilePage extends React.PureComponent {
   render () {
     // cek apakah sedang login atau tidak. kalo tidak login, lakukan redirect page ke halaman login
-    if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to={`${AppConfig.basePath}/login`} /> }
+    if (window.localStorage.getItem('isLoggedIn') !== true) { return <Redirect to={`${AppConfig.basePath}/login`} /> }
     // render component MyProfilePageComp
     return (<MyProfilePageComp
       history={this.props.history}

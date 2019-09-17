@@ -4,7 +4,7 @@ import immutablePersistenceTransform from '../Services/ImmutablePersistenceTrans
 // More info here:  https://shift.infinite.red/shipping-persistant-reducers-7341691232b1
 const REDUX_PERSIST = {
   active: true,
-  reducerVersion: '233',
+  reducerVersion: '236',
   storeConfig: {
     key: 'root',
     storage: storage, // Come back and replace this at some point
@@ -14,6 +14,15 @@ const REDUX_PERSIST = {
     // persistence. An empty array means 'don't store any reducers' -> infinitered/ignite#409
     transforms: [immutablePersistenceTransform]
   }
+}
+
+const currentReducerVersion = window.localStorage.getItem('currentReducerVersion')
+const nextReducerVersion = REDUX_PERSIST.reducerVersion
+if (currentReducerVersion !== nextReducerVersion) {
+  window.localStorage.setItem('currentReducerVersion', nextReducerVersion)
+  window.localStorage.setItem('isLoggedIn', false)
+  window.sessionStorage.setItem('sessionToken', '')
+  window.sessionStorage.setItem('publicToken', '')
 }
 
 export default REDUX_PERSIST

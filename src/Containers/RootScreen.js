@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom'
 import PointofsaleLayout from '../Components/PointofsaleLayout'
 import LoginActions, { LoginSelectors } from './Login/redux'
 import UserActions from './User/redux'
+import {isLoggedIn} from '../Utils/Utils'
 
 export class RootScreen extends React.Component {
   // constructor (props) {
@@ -24,7 +25,7 @@ export class RootScreen extends React.Component {
 }
 
 const TheComponent = props =>
-  window.localStorage.getItem('isLoggedIn') === 'true' ? (
+  isLoggedIn(this.props.isLoggedIn) === true ? (
     <PointofsaleLayout {...props} />
   ) : (
     <Redirect to='/login' />

@@ -5,12 +5,13 @@ import UserActions, {UserSelectors} from './redux'
 import LoginActions, { LoginSelectors } from '../Login/redux'
 import { Redirect } from 'react-router-dom'
 import ChangeLimitPageComponent from '../../Components/User/ChangeLimitPageComponent'
+import {isLoggedIn} from '../../Utils/Utils'
 import AppConfig from '../../Config/AppConfig'
 const basePath = AppConfig.basePath
 
 class TheComponent extends React.PureComponent {
   render () {
-    if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to={`${basePath}/login`} /> }
+    if (isLoggedIn(this.props.isLoggedIn) !== true) { return <Redirect to={`${basePath}/login`} /> }
     return (<ChangeLimitPageComponent
       history={this.props.history}
       {...this.props}

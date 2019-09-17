@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 import LoginActions, { LoginSelectors } from './Login/redux'
 import Header from '../Containers/Header/HeaderContainer'
 import Sidebar from '../Containers/Sidebar/SidebarContainer'
+import {isLoggedIn} from '../Utils/Utils'
 
 class AdminlteContainer extends React.PureComponent {
   static propTypes = {
@@ -48,13 +49,6 @@ class AdminlteContainer extends React.PureComponent {
     // })
   }
   componentDidUpdate (prevProps, prevState) {
-    // if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to='/login' /> }
-    // if (!_.isEqual(prevProps.isLoggedIn, this.props.isLoggedIn)) {
-    //   if (this.props.isLoggedIn) window.location.href = '/home'
-    //   // this.setState({
-    //   //   images: Immutable.asMutable(this.props.images, { deep: true })
-    //   // })
-    // }
   }
   renderLoggedIn (children) {
     return (
@@ -63,10 +57,10 @@ class AdminlteContainer extends React.PureComponent {
           <title>Homessss</title>
           <body className='hold-transition skin-blue sidebar-mini' />
         </Helmet>
-        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Header userRole={window.localStorage.getItem('userRole')} />}
-        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Sidebar userRole={window.localStorage.getItem('userRole')} />}
+        {(isLoggedIn(this.props.isLoggedIn) === true) && <Header userRole={window.localStorage.getItem('userRole')} />}
+        {(isLoggedIn(this.props.isLoggedIn) === true) && <Sidebar userRole={window.localStorage.getItem('userRole')} />}
         {children}
-        {(window.localStorage.getItem('isLoggedIn') === 'true') &&
+        {(isLoggedIn(this.props.isLoggedIn) === true) &&
         <footer className='main-footer'>
           <div className='pull-right hidden-xs'>
             <b>Version</b> 0.0.1.1

@@ -81,9 +81,6 @@ class LoginPageComponent extends React.Component {
   render () {
     const { isLoggedIn } = this.props
     const { password, email } = this.state
-
-    // if (window.localStorage.getItem('isLoggedIn') === 'true') { return window.open('/', '_self', true) }
-    // if (window.localStorage.getItem('isLoggedIn') === 'true') { return <Redirect to='/' /> }
     return (
       <div className='login-box'>
         <Helmet>
