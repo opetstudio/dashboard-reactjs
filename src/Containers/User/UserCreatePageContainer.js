@@ -24,6 +24,7 @@ const mapStateToProps = (state, ownProps) => {
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
     isRequesting: UserSelectors.isRequesting(state.user),
     responseMessage: UserSelectors.responseMessage(state.user),
+    responseDescription: UserSelectors.responseDescription(state.user),
     responseCode: UserSelectors.responseCode(state.user)
   }
 }

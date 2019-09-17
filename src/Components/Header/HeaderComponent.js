@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {Images} from '../../Themes'
+import AppConfig from '../../Config/AppConfig'
 
 const useravatar = Images.useravatar
 class HeaderComponent extends Component {
@@ -10,11 +11,12 @@ class HeaderComponent extends Component {
     alert('do logout')
   }
   render () {
+    console.log('userFullName=', this.props.userFullName)
     return (
       <div>
         <header className='main-header'>
           {/* Logo */}
-          <Link to='/' className='logo'>
+          <Link to={`${AppConfig.basePath}/home`} className='logo'>
             {/* mini logo for sidebar mini 50x50 pixels */}
             <span className='logo-mini'><b>PL</b></span>
             {/* logo for regular state and mobile devices */}
@@ -33,14 +35,14 @@ class HeaderComponent extends Component {
                 <li className='dropdown user user-menu'>
                   <a href='#' className='dropdown-toggle' data-toggle='dropdown'>
                     <img src={useravatar} className='user-image' alt='User Image' />
-                    <span className='hidden-xs'>Admin Mbdd</span>
+                    <span className='hidden-xs'>{this.props.userFullName}</span>
                   </a>
                   <ul className='dropdown-menu'>
                     {/* User image */}
                     <li className='user-header'>
                       <img src='/dist/img/user2-160x160.jpg' className='img-circle' alt='User Image' />
                       <p>
-                Admin Mbdd - Operator
+                        {this.props.userFullName}
                         {/* <small>Member since Nov. 2012</small> */}
                       </p>
                     </li>

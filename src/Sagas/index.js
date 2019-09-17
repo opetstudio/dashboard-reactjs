@@ -66,9 +66,10 @@ const host = baseUrl + ''
 const api = DebugConfig.useFixtures ? FixtureAPI : API.create(host)
 const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'https://api.erevnaraya.com/simulator/' : 'https://api.erevnaraya.com/simulator/')
+// const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://192.168.99.100:31965/dashboard-api/' : 'http://192.168.99.100:31965/dashboard-api/')
 const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'http://188.166.198.144:8762/dashboard-api/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'https://api.erevnaraya.com/dashboard-api/')
-const apiDashboard2 = API.create(AppConfig.env === 'development' ? 'http://localhost:8280/' : 'http://localhost:8280/')
+// const apiDashboard2 = API.create(AppConfig.env === 'development' ? 'http://localhost:8280/' : 'http://localhost:8280/')
 // const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
 // const apiPaymentpage = API.create(AppConfig.env === 'development' ? 'http://202.158.24.186:8380/' : '/')
 // const baseApi = DebugConfig.useFixtures ? FixtureAPI : API.create(baseUrl)
@@ -91,7 +92,7 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_DO_LOGIN, loginDoLogin, apiDashboard),
     takeLatest(LoginTypes.LOGIN_CHECK_STATUS, loginCheckStatus, apiDashboard),
 
-    takeLatest(TransactionTypes.TRANSACTION_READ_REQUEST, transactionReadRequest, apiDashboard2),
+    takeLatest(TransactionTypes.TRANSACTION_READ_REQUEST, transactionReadRequest, apiDashboard),
 
     takeLatest(StartupTypes.STARTUP, startup, api)
     // some sagas receive extra parameters in addition to an action

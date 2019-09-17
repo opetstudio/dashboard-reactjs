@@ -39,6 +39,7 @@ export const TransactionSelectors = {
 /* ------------- Reducers ------------- */
 
 export const transactionReadRequest = (state, { data }) => {
+  console.log('redux transactionReadRequest invoked')
   data.isRequesting = true
   return transactionReadRequestPatch(state, { data })
 }

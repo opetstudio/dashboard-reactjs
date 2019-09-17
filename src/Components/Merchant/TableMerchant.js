@@ -14,6 +14,10 @@ export default class TableMerchant extends Component {
   }
   fetchData (state, instance) {
     console.log('fetchData')
+    if (this.props.loading) {
+      console.log('still fetching')
+      return
+    }
     this.props.requestData({
       pageSize: state.pageSize,
       page: state.page,
@@ -24,9 +28,9 @@ export default class TableMerchant extends Component {
   render () {
     const { data, pages, loading, page } = this.props
     const columns = [{
-      id: 'ecommRefNo',
-      Header: 'Transaction Id',
-      accessor: 'ecommRefNo' // String-based value accessors!
+      id: 'instCd',
+      Header: 'instCd',
+      accessor: 'instCd' // String-based value accessors!
     }, {
       id: 'pymtMethodCd',
       Header: 'Method',

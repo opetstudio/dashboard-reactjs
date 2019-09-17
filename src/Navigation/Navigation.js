@@ -33,13 +33,7 @@ class App extends Component {
     super(props)
     this.unlisten = this.props.history.listen((location, action) => {
       console.log('props.history.listen ', window.location.pathname)
-      // if ((window.location.pathname).includes('/login')) {
-      //   document.getElementsByTagName('body')[0].setAttribute('class', 'hold-transition login-page')
-      // } else {
-      //   document.getElementsByTagName('body')[0].setAttribute('class', 'hold-transition skin-blue sidebar-mini')
-      // }
-      // this.props.onRouteChange(location)
-      const loginRestriction = ['/home', '/', '/merchant/create']
+      const loginRestriction = [basePath + '/home', basePath + '/', basePath + '/merchant/create']
       if (loginRestriction.indexOf(location.pathname) !== -1) {
         this.props.checkLogedStatus({})
       }

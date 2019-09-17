@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
-import LoginActions from '../Login/redux'
+import LoginActions, {LoginSelectors} from '../Login/redux'
 
 import HeaderComponent from '../../Components/Header/HeaderComponent'
 
@@ -16,7 +16,9 @@ class TheComponent extends React.PureComponent {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    userFullName: LoginSelectors.userFullName(state.login)
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {

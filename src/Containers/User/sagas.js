@@ -4,22 +4,26 @@ import { getAttributes } from '../../Transforms/TransformAttributes'
 import { merge, path } from 'ramda'
 import _ from 'lodash'
 import Cookies from 'universal-cookie'
+import {getAccessToken} from '../../Utils/Utils'
 
 // export const session = state => ({...state.login.single, token: state.login.token, isLoggedIn: state.login.isLoggedIn})
 export const transformedData = response => getAttributes(response.data)
 
 export function * userCreateRequest (api, action) {
+  console.log('userCreateRequest invoked')
   const { data } = action
-  const response = yield call(api.userCreateRequest, data.payload, {url: data.url, method: data.method})
+  const response = yield call(api.userCreateRequest, data, { session: {token_type: 'Bearer', access_token: getAccessToken()} })
   console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
+  let responseDescription = path(['data', 'responseDescription'], response)
   if (response.ok) {
     // message = '00'
   } else {
     responseMessage = response.problem
   }
-  yield put(UserActions.userRequestPatch({isRequesting: false, responseCode, responseMessage}))
+  responseDescription = responseDescription || responseMessage
+  yield put(UserActions.userRequestPatch({isRequesting: false, responseCode, responseMessage, responseDescription}))
 }
 export function * userReadRequest (api, action) {
   const { data } = action
@@ -29,6 +33,7 @@ export function * userReadRequest (api, action) {
   let dataUser = []
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
+  let responseDescription = path(['data', 'responseDescription'], response)
   if (response.ok) {
     dataUser = path(['data', 'reports'], response) || []
     responseCode = 'MBDD00'
@@ -38,5 +43,5 @@ export function * userReadRequest (api, action) {
     responseCode = 'MBDD01'
     responseMessage = 'FAILED'
   }
-  yield put(UserActions.userRequestPatch({isRequesting: false, responseCode, responseMessage, dataUser}))
+  yield put(UserActions.userRequestPatch({isRequesting: false, responseCode, responseMessage, dataUser, responseDescription}))
 }

@@ -37,6 +37,6 @@ export const create = api => ({
       AppConfig.authHeader,
       opt.session.token_type + ' ' + opt.session.access_token
     )
-    return api.get('/dashboard/login/checkloginstatus')
+    return api.get('/plink/islogin')
   }
 })

@@ -3,8 +3,12 @@ import AppConfig from '../../Config/AppConfig'
 
 export const create = api => ({
   userCreateRequest: (data, opt) => {
-    // api.setHeader('authorization', opt.session.token)
-    const resp = api.post('/dashboard/userCreate', data)
+    console.log('userCreateRequest invoked')
+    api.setHeader(
+      AppConfig.authHeader,
+      opt.session.token_type + ' ' + opt.session.access_token
+    )
+    const resp = api.post('/plink/signup', data)
     return resp
   },
   userReadRequest: (data, opt) => {

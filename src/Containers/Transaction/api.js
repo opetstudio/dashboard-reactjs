@@ -3,11 +3,21 @@ import AppConfig from '../../Config/AppConfig'
 
 export const create = api => ({
   transactionReadRequest: (data, opt) => {
-    let filtered = encodeURIComponent(JSON.stringify(data.filtered))
-    let sorted = encodeURIComponent(JSON.stringify(data.sorted))
+    // let filtered = encodeURIComponent(JSON.stringify(data.filtered))
+    // let sorted = encodeURIComponent(JSON.stringify(data.sorted))
     // api.setHeader('authorization', opt.session.token)
     // const resp = api.get('/plink/report/list', {page: data.page + 1, pageSize: data.pageSize, filtered: data.filtered.map(r => ), sorted: data.sorted})
-    const resp = api.get('/plink/report/list', {page: data.page, pageSize: data.pageSize, filtered, sorted})
+    let params = {}
+    params.page = (data.page || 0) + 1
+    params.pageSize = data.pageSize
+    data.filtered.forEach((v, k) => {
+      params[v['id']] = v['value']
+    })
+    data.sorted.forEach((v, k) => {
+      params['orderby'] = v['id']
+      params['desc'] = v['desc']
+    })
+    const resp = api.get('/plink/report/list', params)
     return resp
   }
 })

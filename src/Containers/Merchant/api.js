@@ -9,7 +9,7 @@ export const create = api => ({
   },
   merchantReadRequest: (data, opt) => {
     let params = {}
-    params.page = data.page
+    params.page = (data.page || 0) + 1
     params.pageSize = data.pageSize
     data.filtered.forEach((v, k) => {
       params[v['id']] = v['value']
@@ -18,7 +18,7 @@ export const create = api => ({
       params['orderby'] = v['id']
       params['desc'] = v['desc']
     })
-    const resp = api.get('/plink/report/list', params)
+    const resp = api.get('/plink/merchant/list', params)
     return resp
   }
 })

@@ -181,24 +181,27 @@ export function * loginDoLogin (api, action) {
   let responseMessage = path(['data', 'responseMessage'], response)
   let sessionToken = path(['data', 'sessionToken'], response)
   let publicToken = path(['data', 'publicToken'], response)
+  let userFullName = path(['data', 'user', 'userFullname'], response)
   let responseDescription = path(['data', 'responseDescription'], response) || responseMessage
+  let userRole = path(['data', 'user', 'userRole'], response) || '100'
   if (!response.ok) {
     responseMessage = response.problem
     responseDescription = responseDescription || responseMessage
-    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription}))
+    // return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription, userFullName}))
   }
-  if (responseCode !== 'MBDD00') {
-    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription}))
+  if (responseCode === 'MBDD00') {
+    return yield put(LoginActions.loginDoLoginSuccess({sessionToken, publicToken, responseCode, responseMessage, responseDescription, userFullName, userRole}))
+  } else {
+    return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription, userFullName, userRole}))
   }
-  yield put(LoginActions.loginDoLoginSuccess({sessionToken, publicToken, responseCode, responseMessage, responseDescription}))
 }
 export function * loginCheckStatus (api, action) {
   const { data } = action
   const response = yield call(api.getLoginStatus, data, { session: {token_type: 'Bearer', access_token: getAccessToken()} })
   // const response = yield call(api.getLoginStatus, data, { session: {token_type: 'Bearer', access_token: decryptAt(getAccessToken())} })
   // success?
-  let loginStatus = path(['data', 'loginStatus'], response)
-  if (response.ok && loginStatus !== 'Y') {
+  let responseDescription = path(['data', 'responseDescription'], response)
+  if (response.ok && responseDescription !== 'USER IS LOGIN') {
     console.log('LOGOUT')
     // yield call(doLogout)
     yield put(LoginActions.loginDoLogoutSuccess({}))

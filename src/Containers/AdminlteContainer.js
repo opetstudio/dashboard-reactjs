@@ -64,14 +64,14 @@ class AdminlteContainer extends React.PureComponent {
           <body className='hold-transition skin-blue sidebar-mini' />
         </Helmet>
         {(window.localStorage.getItem('isLoggedIn') === 'true') && <Header />}
-        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Sidebar />}
+        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Sidebar userRole={window.localStorage.getItem('userRole')} />}
         {children}
         {(window.localStorage.getItem('isLoggedIn') === 'true') &&
         <footer className='main-footer'>
           <div className='pull-right hidden-xs'>
-            <b>Version</b> 2.4.18
+            <b>Version</b> 0.0.1.1
           </div>
-          <strong>Copyright &copy; 2019 <Link to='https://adminlte.io'>PT. Prismalink International</Link>.</strong> All rights
+          <strong>Copyright &copy; 2019 <Link to='https://prismalink.co.id'>PT. Prismalink International</Link>.</strong> All rights
             reserved.
         </footer>
         }
@@ -88,7 +88,8 @@ class AdminlteContainer extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: LoginSelectors.isLoggedIn(state.login)
+    isLoggedIn: LoginSelectors.isLoggedIn(state.login),
+    userRole: LoginSelectors.userRole(state.login)
   }
 }
 

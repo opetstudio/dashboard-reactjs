@@ -30,7 +30,7 @@ export function * merchantReadRequest (api, action) {
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
   if (response.ok) {
-    dataMerchant = path(['data', 'reports'], response) || []
+    dataMerchant = path(['data', 'merchants'], response) || []
     responseCode = 'MBDD00'
     responseMessage = 'SUCCESS'
   } else {

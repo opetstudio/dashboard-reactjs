@@ -15,6 +15,10 @@ export default class TableTransaction extends Component {
   }
   fetchData (state, instance) {
     console.log('fetchData')
+    if (this.props.loading) {
+      console.log('still fetching')
+      return
+    }
     this.props.requestData({
       pageSize: state.pageSize,
       page: state.page,

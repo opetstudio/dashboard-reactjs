@@ -21,18 +21,6 @@ class SidebarComponent extends Component {
           </div> */}
           <ul className='sidebar-menu' data-widget='tree'>
             <li className='header'>MAIN NAVIGATION</li>
-            <li className='treeview'>
-              <Link to='#'>
-                <i className='fa fa-dashboard' /> <span>Payment Gateway</span>
-                <span className='pull-right-container'>
-                  <i className='fa fa-angle-left pull-right' />
-                </span>
-              </Link>
-              <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/paymentgw/create`}><i className='fa fa-circle-o' /> Registrasi Payment Gateway</Link></li>
-                <li className='active'><Link to={`${basePath}/paymentgw/list`}><i className='fa fa-circle-o' /> Daftar Payment Gateway</Link></li>
-              </ul>
-            </li>
             <li className='active treeview menu-open'>
               <Link to='#'>
                 <i className='fa fa-dashboard' /> <span>Merchant</span>

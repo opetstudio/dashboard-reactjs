@@ -5,7 +5,7 @@ import AppConfig from '../../Config/AppConfig'
 const basePath = AppConfig.basePath
 const useravatar = Images.useravatar
 
-class SidebarComponent extends Component {
+class SidebarMerchant extends Component {
   render () {
     return (
       <aside className='main-sidebar'>
@@ -21,18 +21,6 @@ class SidebarComponent extends Component {
           </div> */}
           <ul className='sidebar-menu' data-widget='tree'>
             <li className='header'>MAIN NAVIGATION</li>
-            <li className='treeview'>
-              <Link to='#'>
-                <i className='fa fa-dashboard' /> <span>Payment Gateway</span>
-                <span className='pull-right-container'>
-                  <i className='fa fa-angle-left pull-right' />
-                </span>
-              </Link>
-              <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/paymentgw/create`}><i className='fa fa-circle-o' /> Registrasi Payment Gateway</Link></li>
-                <li className='active'><Link to={`${basePath}/paymentgw/list`}><i className='fa fa-circle-o' /> Daftar Payment Gateway</Link></li>
-              </ul>
-            </li>
             <li className='active treeview menu-open'>
               <Link to='#'>
                 <i className='fa fa-dashboard' /> <span>Merchant</span>
@@ -41,22 +29,7 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/merchant/create`}><i className='fa fa-circle-o' /> Registrasi Merchant</Link></li>
-                <li className='active'><Link to={`${basePath}/merchant/list`}><i className='fa fa-circle-o' /> Daftar Merchant</Link></li>
                 <li><Link to={`${basePath}/merchant/change-limit`}><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
-              </ul>
-            </li>
-            <li className='treeview'>
-              <Link to='#'>
-                <i className='fa fa-dashboard' /> <span>User</span>
-                <span className='pull-right-container'>
-                  <i className='fa fa-angle-left pull-right' />
-                </span>
-              </Link>
-              <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/user/create`}><i className='fa fa-circle-o' /> Registrasi User</Link></li>
-                <li className='active'><Link to={`${basePath}/user/list`}><i className='fa fa-circle-o' /> Daftar User</Link></li>
-                <li><Link to={`${basePath}/user/change-limit`}><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -77,4 +50,4 @@ class SidebarComponent extends Component {
     )
   }
 }
-export default SidebarComponent
+export default SidebarMerchant

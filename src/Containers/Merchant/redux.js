@@ -46,6 +46,7 @@ export const merchantReadRequest = (state, { data }) => {
   return merchantRequestPatch(state, { data })
 }
 export const merchantRequestPatch = (state, { data }) => {
+  console.log('merchantRequestPatch invoked. dataMerchant=', data.dataMerchant)
   let mergeData = {}
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
   if (data.hasOwnProperty('responseCode')) mergeData.responseCode = data.responseCode

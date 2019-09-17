@@ -3,7 +3,6 @@ import _ from 'lodash'
 import Helmet from 'react-helmet'
 
 class UserCreatePageComponent extends Component {
-
   componentWillUnmount () {
     this.props.userRequestPatch({isRequesting: false, responseCode: '', responseMessage: ''})
   }
@@ -46,7 +45,7 @@ class UserCreatePageComponent extends Component {
                     <div className='row'>
                       <div className='col-md-12'>
                         <div className='alert alert-success' role='alert'>
-                          {this.props.responseMessage}
+                          {this.props.responseDescription}
                         </div>
                       </div>
                     </div>
@@ -56,38 +55,29 @@ class UserCreatePageComponent extends Component {
                     <div className='row'>
                       <div className='col-md-12'>
                         <div className='alert alert-danger' role='alert'>
-                          {this.props.responseMessage}
+                          {this.props.responseDescription}
                         </div>
                       </div>
                     </div>
                   )}
                 <div className='row'>
-                  <div className='col-md-6'>
+                  <div className='col-md-12'>
                     <div className='box-body'>
+                      
                       <div className='form-group'>
-                        <label htmlFor='exampleInputEmail1'>User Code</label>
+                        <label htmlFor='exampleInputPassword1'>Full Name</label>
                         <input
-                          type='mcode'
+                          type='text'
                           className='form-control'
-                          id='mcode'
-                          placeholder='Enter User Code'
-                          ref='mcode'
+                          id='userFullname'
+                          placeholder='Enter User Full Name'
+                          ref='userFullname'
                         />
                       </div>
                       <div className='form-group'>
-                        <label htmlFor='exampleInputPassword1'>User Name</label>
+                        <label htmlFor='exampleInputEmail1'>Email Address</label>
                         <input
-                          type='mname'
-                          className='form-control'
-                          id='mname'
-                          placeholder='Enter User Name'
-                          ref='mname'
-                        />
-                      </div>
-                      <div className='form-group'>
-                        <label htmlFor='exampleInputEmail1'>Email address</label>
-                        <input
-                          type='email'
+                          type='text'
                           className='form-control'
                           id='email'
                           placeholder='Enter email'
@@ -95,13 +85,23 @@ class UserCreatePageComponent extends Component {
                         />
                       </div>
                       <div className='form-group'>
-                        <label htmlFor='exampleInputPassword1'>Phone No.</label>
+                        <label htmlFor='exampleInputPassword1'>Mobile Phone Number</label>
                         <input
-                          type='phone'
+                          type='text'
                           className='form-control'
-                          id='phone'
+                          id='mobile'
                           placeholder='Enter Phone Number'
-                          ref='phone'
+                          ref='mobile'
+                        />
+                      </div>
+                      <div className='form-group'>
+                        <label htmlFor='exampleInputEmail1'>Password</label>
+                        <input
+                          type='text'
+                          className='form-control'
+                          id='userPassword'
+                          placeholder='Enter User Password'
+                          ref='userPassword'
                         />
                       </div>
                       <div className='form-group'>
@@ -112,41 +112,6 @@ class UserCreatePageComponent extends Component {
                           placeholder='Enter Address'
                           ref='address'
                         />
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col-md-6'>
-                    <div className='box-body'>
-                      <div className='form-group'>
-                        <label htmlFor='exampleInputEmail1'>
-                          Front End Callback URL
-                        </label>
-                        <input
-                          type='frontend'
-                          className='form-control'
-                          id='frontend'
-                          placeholder='Enter Front End Callback URL'
-                          ref='frontend'
-                        />
-                      </div>
-                      <div className='form-group'>
-                        <label htmlFor='exampleInputPassword1'>
-                          Back End Callback URL
-                        </label>
-                        <input
-                          type='backend'
-                          className='form-control'
-                          id='backend'
-                          placeholder='Enter Back End Callback URL'
-                          ref='backend'
-                        />
-                      </div>
-                      <div className='form-group'>
-                        <label>Status</label>
-                        <select className='form-control' ref='status'>
-                          <option value='active'>Active</option>
-                          <option value='inactive'>Inactive</option>
-                        </select>
                       </div>
                     </div>
                   </div>

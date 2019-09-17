@@ -58,7 +58,10 @@ export const INITIAL_STATE = Immutable({
   isRequesting: false,
   responseMessage: '',
   responseCode: '',
-  version: 0
+  version: 0,
+  userFullName: '',
+  responseDescription: '',
+  userRole: ''
 })
 
 /* ------------- Selectors ------------- */
@@ -79,7 +82,9 @@ export const LoginSelectors = {
   isRequesting: st => st.isRequesting,
   responseMessage: st => st.responseMessage,
   responseCode: st => st.responseCode,
-  responseDescription: st => st.responseDescription
+  userFullName: st => st.userFullName,
+  responseDescription: st => st.responseDescription,
+  userRole: st => st.userRole
 }
 
 /* ------------- Reducers ------------- */
@@ -192,6 +197,7 @@ export const loginCheckStatus = (state, { data }) => {
 export const loginDoLoginSuccess = (state, { data }) => {
   console.log('loginDoLoginSuccess')
   window.localStorage.setItem('isLoggedIn', true)
+  window.localStorage.setItem('userRole', data.userRole)
   window.sessionStorage.setItem(AppConfig.sessionToken, data.sessionToken)
   window.sessionStorage.setItem(AppConfig.publicToken, data.publicToken)
   data.isRequesting = false
@@ -214,6 +220,8 @@ export const loginPatch = (state, { data }) => {
   if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
   if (data.isLoggedIn) mergeData.isLoggedIn = data.isLoggedIn
   if (data.hasOwnProperty('responseDescription')) mergeData.responseDescription = data.responseDescription
+  if (data.hasOwnProperty('userFullName')) mergeData.userFullName = data.userFullName
+  if (data.hasOwnProperty('userRole')) mergeData.userRole = data.userRole
   mergeData.version = state.version + 1
   return state.merge(mergeData)
 }
