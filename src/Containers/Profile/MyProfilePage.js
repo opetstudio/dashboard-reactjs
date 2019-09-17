@@ -8,6 +8,7 @@ import { injectIntl } from 'react-intl'
 import { Redirect } from 'react-router-dom'
 // import component untuk halaman my-profile
 import MyProfilePageComp from '../../Components/Profile/MyProfilePageComp'
+import {isLoggedIn} from '../../Utils/Utils'
 // import object AppConfig untuk ambil variable basepath dari file configurasi aplikasi
 import AppConfig from '../../Config/AppConfig'
 
@@ -15,7 +16,7 @@ import AppConfig from '../../Config/AppConfig'
 class MyProfilePage extends React.PureComponent {
   render () {
     // cek apakah sedang login atau tidak. kalo tidak login, lakukan redirect page ke halaman login
-    if (window.localStorage.getItem('isLoggedIn') !== true) { return <Redirect to={`${AppConfig.basePath}/login`} /> }
+    if (isLoggedIn(this.props.isLoggedIn) !== true) { return <Redirect to={`${AppConfig.basePath}/login`} /> }
     // render component MyProfilePageComp
     return (<MyProfilePageComp
       history={this.props.history}

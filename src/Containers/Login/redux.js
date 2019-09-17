@@ -207,6 +207,7 @@ export const loginDoLoginSuccess = (state, { data }) => {
 export const loginDoLogoutSuccess = (state, { data }) => {
   console.log('loginDoLogoutSuccess')
   window.localStorage.setItem('isLoggedIn', false)
+  window.localStorage.setItem('userRole', '')
   window.sessionStorage.removeItem(AppConfig.sessionToken)
   window.sessionStorage.removeItem(AppConfig.publicToken)
   data.isRequesting = false
