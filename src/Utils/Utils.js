@@ -9,6 +9,13 @@ var AES = require('crypto-js/aes')
 var sha256 = require('crypto-js/sha256')
 var EncUtf8 = require('crypto-js/enc-utf8')
 
+const userPriv = {
+  '100': 'Customer',
+  '200': 'Merchant Admin',
+  '300': 'Partner Admin',
+  '400': 'Operator'
+}
+
 const range = len => {
   const arr = []
   for (let i = 0; i < len; i++) {
@@ -129,4 +136,7 @@ export const decryptAt = (msg, key) => {
   const str = AES.decrypt(msg, sessionToken)
   var plaintext = str.toString(EncUtf8)
   return plaintext
+}
+export const getUserPrivName = (uPriv) => {
+  return userPriv[uPriv]
 }

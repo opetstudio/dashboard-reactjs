@@ -20,7 +20,8 @@ export const INITIAL_STATE = Immutable({
   version: 0,
   dataTransaction: [],
   pages: 10,
-  page: 0
+  page: 0,
+  pageSize: 10
 //   rows: ''
 })
 
@@ -32,6 +33,7 @@ export const TransactionSelectors = {
   responseCode: st => st.responseCode,
   page: st => st.page,
   pages: st => st.pages,
+  pageSize: st => st.pageSize,
   dataTransaction: st => st.dataTransaction
 //   rows: st => st.rows
 }
@@ -39,7 +41,7 @@ export const TransactionSelectors = {
 /* ------------- Reducers ------------- */
 
 export const transactionReadRequest = (state, { data }) => {
-  console.log('redux transactionReadRequest invoked')
+  console.log('redux transactionReadRequest invoked ', data)
   data.isRequesting = true
   return transactionReadRequestPatch(state, { data })
 }
@@ -48,6 +50,7 @@ export const transactionReadRequestPatch = (state, { data }) => {
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
   if (data.responseCode) mergeData.responseCode = data.responseCode
   if (data.responseMessage) mergeData.responseMessage = data.responseMessage
+  if (data.pageSize) mergeData.pages = data.pageSize
   if (data.pages) mergeData.pages = data.pages
   if (data.page) mergeData.page = data.page
   if (data.dataTransaction) {

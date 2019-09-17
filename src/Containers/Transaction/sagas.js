@@ -14,10 +14,12 @@ export function * transactionReadRequest (api, action) {
   const response = yield call(api.transactionReadRequest, data, {url: data.url, method: data.method})
   console.log('response=>', response)
   let dataTransaction = []
+  let pageSize = 0
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
   if (response.ok) {
     dataTransaction = path(['data', 'reports'], response) || []
+    pageSize = path(['data', 'pageSize'], response)
     responseCode = 'MBDD00'
     responseMessage = 'SUCCESS'
   } else {
@@ -25,5 +27,5 @@ export function * transactionReadRequest (api, action) {
     responseCode = 'MBDD01'
     responseMessage = 'FAILED'
   }
-  yield put(TransactionActions.transactionReadRequestPatch({isRequesting: false, responseCode, responseMessage, dataTransaction}))
+  yield put(TransactionActions.transactionReadRequestPatch({isRequesting: false, responseCode, responseMessage, dataTransaction, pageSize}))
 }

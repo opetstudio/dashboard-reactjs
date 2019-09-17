@@ -63,6 +63,7 @@ class TransactionListPageComponent extends Component {
                         data={this.props.dataTransaction}
                         page={this.props.page}
                         pages={this.props.pages}
+                        pageSize={this.props.pageSize}
                         loading={this.props.isRequesting}
                         requestData={this.props.transactionReadRequest}
                       />

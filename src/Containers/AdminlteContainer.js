@@ -63,7 +63,7 @@ class AdminlteContainer extends React.PureComponent {
           <title>Homessss</title>
           <body className='hold-transition skin-blue sidebar-mini' />
         </Helmet>
-        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Header />}
+        {(window.localStorage.getItem('isLoggedIn') === 'true') && <Header userRole={window.localStorage.getItem('userRole')} />}
         {(window.localStorage.getItem('isLoggedIn') === 'true') && <Sidebar userRole={window.localStorage.getItem('userRole')} />}
         {children}
         {(window.localStorage.getItem('isLoggedIn') === 'true') &&

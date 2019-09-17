@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {Images} from '../../Themes'
 import AppConfig from '../../Config/AppConfig'
+import {getUserPrivName} from '../../Utils/Utils'
 
 const useravatar = Images.useravatar
 class HeaderComponent extends Component {
@@ -43,7 +44,7 @@ class HeaderComponent extends Component {
                       <img src='/dist/img/user2-160x160.jpg' className='img-circle' alt='User Image' />
                       <p>
                         {this.props.userFullName}
-                        {/* <small>Member since Nov. 2012</small> */}
+                        <small>{getUserPrivName(this.props.userRole)}</small>
                       </p>
                     </li>
                     {/* Menu Body */}
@@ -64,7 +65,9 @@ class HeaderComponent extends Component {
                     {/* Menu Footer */}
                     <li className='user-footer'>
                       <div className='pull-left'>
-                        {/* <a href='#' className='btn btn-default btn-flat'>Profile</a> */}
+                        <Link to={`${AppConfig.basePath}/my-profile`} className='btn btn-default btn-flat'>
+                        Profile
+                        </Link>
                       </div>
                       <div className='pull-right'>
                         {/* <a href='#' className='btn btn-default btn-flat' onClick={(e) => this._logout(e)}>Sign out</a> */}

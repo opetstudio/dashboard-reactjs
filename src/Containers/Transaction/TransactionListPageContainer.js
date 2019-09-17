@@ -25,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     dataTransaction: TransactionSelectors.dataTransaction(state.transaction),
     pages: TransactionSelectors.pages(state.transaction),
     page: TransactionSelectors.page(state.transaction),
+    pageSize: TransactionSelectors.pageSize(state.transaction),
     isRequesting: TransactionSelectors.isRequesting(state.transaction)
   }
 }

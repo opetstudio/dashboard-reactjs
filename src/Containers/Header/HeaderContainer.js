@@ -17,7 +17,8 @@ class TheComponent extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    userFullName: LoginSelectors.userFullName(state.login)
+    userFullName: LoginSelectors.userFullName(state.login),
+    userRole: LoginSelectors.userRole(state.login)
   }
 }
 const mapDispatchToProps = dispatch => {

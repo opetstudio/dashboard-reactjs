@@ -27,7 +27,7 @@ export default class TableTransaction extends Component {
     })
   }
   render () {
-    const { data, pages, loading, page } = this.props
+    const { data, pages, loading, page, pageSize } = this.props
     const columns = [{
       id: 'ecommRefNo',
       Header: 'Transaction Id',
@@ -71,7 +71,7 @@ export default class TableTransaction extends Component {
           loading={loading} // Display the loading overlay when we need it
           onFetchData={this.fetchData} // Request new data when things change
           filterable
-          defaultPageSize={10}
+          defaultPageSize={this.props.pageSize}
           className='-striped -highlight'
         />
       </div>
