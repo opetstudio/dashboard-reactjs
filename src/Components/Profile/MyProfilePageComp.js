@@ -2,6 +2,11 @@
 import React, { Component } from 'react'
 // import library react-helmet, gunanya untuk edit meta tag di html
 import Helmet from 'react-helmet'
+import {Images} from '../../Themes'
+import {getUserPrivName} from '../../Utils/Utils'
+
+
+const useravatar = Images.useravatar
 export default class MyProfilePageComp extends Component {
   render () {
     return (
@@ -21,6 +26,16 @@ export default class MyProfilePageComp extends Component {
           </ol>
         </section>
         <section className='content'>
+
+          <div class='box box-primary'>
+            <div class='box-body box-profile'>
+              <img class='profile-user-img img-responsive img-circle' src={useravatar} alt='User profile picture' />
+              <h3 class='profile-username text-center'>{this.props.userFullName}</h3>
+              <p class='text-muted text-center'>as {getUserPrivName(this.props.userRole)}</p>
+            </div>
+          </div>
+        </section>
+        {/* <section className='content'>
           <div className='row'>
             <div className='col-xs-12'>
               <div className='box'>
@@ -41,7 +56,8 @@ export default class MyProfilePageComp extends Component {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
+
       </div>
     )
   }

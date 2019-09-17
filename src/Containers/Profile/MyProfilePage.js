@@ -11,6 +11,7 @@ import MyProfilePageComp from '../../Components/Profile/MyProfilePageComp'
 // import object AppConfig untuk ambil variable basepath dari file configurasi aplikasi
 import AppConfig from '../../Config/AppConfig'
 
+import {LoginSelectors} from '../Login/redux'
 // ini adalah kelas contianer (container artinya, kelas yang akan konek ke local storage atau redux)
 class MyProfilePage extends React.PureComponent {
   render () {
@@ -27,7 +28,9 @@ class MyProfilePage extends React.PureComponent {
 // ini fungsi untuk melakukan inject atau parsing state2 yang ada di localstorage atau redux, ke dalam props nya sih kelas ini.
 const mapStateToProps = (state, ownProps) => {
   return {
-    parameterRedux1: 'value dari parameterRedux1'
+    parameterRedux1: 'value dari parameterRedux1s',
+    userFullName: LoginSelectors.userFullName(state.login),
+    userRole: LoginSelectors.userRole(state.login)
   }
 }
 
