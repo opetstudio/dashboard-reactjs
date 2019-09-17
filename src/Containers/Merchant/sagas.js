@@ -29,8 +29,10 @@ export function * merchantReadRequest (api, action) {
   let dataMerchant = []
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
+  let pages = 0
   if (response.ok) {
     dataMerchant = path(['data', 'merchants'], response) || []
+    pages = parseInt(path(['data', 'pages'], response) || 0)
     responseCode = 'MBDD00'
     responseMessage = 'SUCCESS'
   } else {
@@ -38,5 +40,6 @@ export function * merchantReadRequest (api, action) {
     responseCode = 'MBDD01'
     responseMessage = 'FAILED'
   }
-  yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage, dataMerchant}))
+  console.log('dataMerchant', dataMerchant)
+  yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage, dataMerchant, pages}))
 }

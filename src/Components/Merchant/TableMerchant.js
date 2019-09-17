@@ -26,38 +26,38 @@ export default class TableMerchant extends Component {
     })
   }
   render () {
-    const { data, pages, loading, page } = this.props
+    console.log('render =====>', this.props)
+    const { data, pages, loading, page, pageSize } = this.props
     const columns = [{
       id: 'instCd',
       Header: 'instCd',
       accessor: 'instCd' // String-based value accessors!
     }, {
-      id: 'pymtMethodCd',
-      Header: 'Method',
-      accessor: 'pymtMethodCd',
+      id: 'nm',
+      Header: 'nm',
+      accessor: 'nm'
+    }, {
+      id: 'merchantEmail', // Required because our accessor is not a string
+      Header: 'merchantEmail',
+      accessor: d => d.merchantEmail, // Custom value accessors!,
       Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
     }, {
-      id: 'coCcyAmt', // Required because our accessor is not a string
-      Header: 'Amount',
-      accessor: d => d.coCcyAmt, // Custom value accessors!,
-      Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-    }, {
-      id: 'coDt',
-      Header: props => <span>Checkout Date</span>, // Custom header components!
-      accessor: 'coDt'
+      id: 'cd',
+      Header: props => <span>cd</span>, // Custom header components!
+      accessor: 'cd'
       // accessor: 'friend.age'
     }, {
-      Header: 'Customer',
-      accessor: 'consUsernameMerchant'
+      Header: 'isInactive',
+      accessor: 'isInactive'
     }, {
-      Header: 'PgID',
-      accessor: 'paymentGatewayCode'
+      Header: 'pgid',
+      accessor: 'pgid'
     }, {
-      Header: 'MID',
-      accessor: 'mercId'
+      Header: 'website',
+      accessor: 'website'
     }, {
-      Header: 'Status',
-      accessor: 'paySts'
+      Header: 'createdBy',
+      accessor: 'createdBy'
     }]
     return (
       <div>
@@ -70,7 +70,7 @@ export default class TableMerchant extends Component {
           loading={loading} // Display the loading overlay when we need it
           onFetchData={this.fetchData} // Request new data when things change
           filterable
-          defaultPageSize={10}
+          defaultPageSize={pageSize}
           className='-striped -highlight'
         />
       </div>

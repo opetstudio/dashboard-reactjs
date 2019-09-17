@@ -21,7 +21,8 @@ export const INITIAL_STATE = Immutable({
   version: 0,
   dataMerchant: [],
   pages: 10,
-  page: 0
+  page: 0,
+  pageSize: 10
 })
 
 /* ------------- Selectors ------------- */
@@ -32,7 +33,8 @@ export const MerchantSelectors = {
   responseCode: st => st.responseCode,
   page: st => st.page,
   pages: st => st.pages,
-  dataMerchant: st => st.dataMerchant
+  dataMerchant: st => st.dataMerchant,
+  pageSize: st => st.pageSize
 }
 
 /* ------------- Reducers ------------- */
@@ -53,7 +55,8 @@ export const merchantRequestPatch = (state, { data }) => {
   if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
   if (data.pages) mergeData.pages = data.pages
   if (data.page) mergeData.page = data.page
-  if (mergeData.dataMerchant) mergeData.dataMerchant = data.dataMerchant
+  if (data.dataMerchant) mergeData.dataMerchant = data.dataMerchant
+  // if (data.pageSize) mergeData.pageSize = data.pageSize
   return state.merge(mergeData)
 }
 

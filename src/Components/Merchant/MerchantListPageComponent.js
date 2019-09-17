@@ -38,6 +38,7 @@ class MerchantListPageComponent extends Component {
                         data={this.props.dataMerchant}
                         page={this.props.page}
                         pages={this.props.pages}
+                        pageSize={this.props.pageSize}
                         loading={this.props.isRequesting}
                         requestData={this.props.merchantReadRequest}
                       />

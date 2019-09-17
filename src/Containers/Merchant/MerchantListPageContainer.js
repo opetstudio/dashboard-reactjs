@@ -25,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     dataMerchant: MerchantSelectors.dataMerchant(state.merchant),
     pages: MerchantSelectors.pages(state.merchant),
     page: MerchantSelectors.page(state.merchant),
+    pageSize: MerchantSelectors.pageSize(state.merchant),
     isRequesting: MerchantSelectors.isRequesting(state.merchant)
   }
 }
