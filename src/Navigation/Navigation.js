@@ -24,6 +24,9 @@ import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
 import GenerateQrcodePageContainer from '../Containers/Qrcode/GenerateQrcodePageContainer'
 
+// import contiainer untuk halaman my profile
+import MyProfilePage from '../Containers/Profile/MyProfilePage'
+
 import { loadScript } from '../Utils/Utils'
 import AppConfig from '../Config/AppConfig'
 const basePath = AppConfig.basePath
@@ -127,6 +130,11 @@ class NavigationRouter extends Component {
               exact
               path={`${basePath}/qrcode/generate`}
               component={GenerateQrcodePageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/my-profile`}
+              component={MyProfilePage}
             />
           </ResponsiveContainer>
         </AppContainer>

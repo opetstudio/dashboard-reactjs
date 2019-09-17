@@ -5,12 +5,13 @@ import LoginActions, { LoginSelectors } from '../Login/redux'
 import TransactionActions, {TransactionSelectors} from './redux'
 import { Redirect } from 'react-router-dom'
 import TransactionListPageComponent from '../../Components/Transaction/TransactionListPageComponent'
+import {isLoggedIn} from '../../Utils/Utils'
 import AppConfig from '../../Config/AppConfig'
 const basePath = AppConfig.basePath
 
 class TheComponent extends React.PureComponent {
   render () {
-    if (window.localStorage.getItem('isLoggedIn') !== 'true') { return <Redirect to={`${basePath}/login`} /> }
+    if (isLoggedIn(this.props.isLoggedIn) !== true) { return <Redirect to={`${basePath}/login`} /> }
     return (<TransactionListPageComponent
       history={this.props.history}
       {...this.props}

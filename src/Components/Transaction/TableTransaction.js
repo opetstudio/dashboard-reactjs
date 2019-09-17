@@ -71,7 +71,7 @@ export default class TableTransaction extends Component {
           loading={loading} // Display the loading overlay when we need it
           onFetchData={this.fetchData} // Request new data when things change
           filterable
-          defaultPageSize={this.props.pageSize}
+          defaultPageSize={pageSize}
           className='-striped -highlight'
         />
       </div>
