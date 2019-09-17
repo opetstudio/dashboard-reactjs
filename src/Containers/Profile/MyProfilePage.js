@@ -9,6 +9,7 @@ import { Redirect } from 'react-router-dom'
 // import component untuk halaman my-profile
 import MyProfilePageComp from '../../Components/Profile/MyProfilePageComp'
 import {isLoggedIn} from '../../Utils/Utils'
+import LoginActions, { LoginSelectors } from '../Login/redux'
 // import object AppConfig untuk ambil variable basepath dari file configurasi aplikasi
 import AppConfig from '../../Config/AppConfig'
 
@@ -28,6 +29,7 @@ class MyProfilePage extends React.PureComponent {
 // ini fungsi untuk melakukan inject atau parsing state2 yang ada di localstorage atau redux, ke dalam props nya sih kelas ini.
 const mapStateToProps = (state, ownProps) => {
   return {
+    isLoggedIn: LoginSelectors.isLoggedIn(state.login),
     parameterRedux1: 'value dari parameterRedux1'
   }
 }
