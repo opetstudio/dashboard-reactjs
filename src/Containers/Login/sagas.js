@@ -21,6 +21,7 @@ import {getAccessToken, decryptAt} from '../../Utils/Utils'
 export const session = state => ({
   ...state.login.single,
   token: state.login.token,
+  sessionToken: state.login.sessionToken,
   isLoggedIn: state.login.isLoggedIn
 })
 export const theData = state => state.login.data
@@ -135,7 +136,7 @@ export function * removeLogin (api, action) {
   const { data } = action
   const s = yield select(session)
   // // make the call to the api
-  const response = yield call(api.removeLogin, data, { session: {token_type: 'Bearer', access_token: getAccessToken()} })
+  const response = yield call(api.removeLogin, data, { session: {token_type: 'Bearer', access_token: getAccessToken(s.sessionToken)} })
   console.log('response logout==>', response)
   // // success?
   // if (response.ok) {

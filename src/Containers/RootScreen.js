@@ -34,7 +34,7 @@ const TheComponent = props =>
 const mapStateToProps = state => {
   return {
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    username: LoginSelectors.getToken(state.login)
+    username: LoginSelectors.sessionToken(state.login)
   }
 }
 

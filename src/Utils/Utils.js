@@ -6,6 +6,7 @@ import AppConfig from '../Config/AppConfig'
 // import Chance from 'chance'
 
 var AES = require('crypto-js/aes')
+var hmacSha256 = require('crypto-js/hmac-sha256')
 var sha256 = require('crypto-js/sha256')
 var EncUtf8 = require('crypto-js/enc-utf8')
 
@@ -105,16 +106,23 @@ export const loadScript = (pathname) => {
   })
 }
 
-export const getAccessToken = () => {
-  console.log('getAccessToken')
-  const publicToken = window.sessionStorage.getItem(AppConfig.publicToken)
-  const sessionToken = window.sessionStorage.getItem(AppConfig.sessionToken)
-  const ok = true
+export const getAccessToken = (accessTokenState) => {
+  // console.log('getAccessToken')
+  // const publicToken = window.localStorage.getItem(AppConfig.publicToken)
+  // const sessionToken = window.localStorage.getItem(AppConfig.sessionToken)
+  // accessTokenState = accessTokenState || sessionToken
+  // const ok = true
   // dont encrypt
-  if (ok) return sessionToken
+  // if (ok) return accessTokenState
+  return accessTokenState
 
-  if (!publicToken || !sessionToken) return ''
-  const ciphertext = AES.encrypt(publicToken, sessionToken)
+  // lakukan encrypt accessTokenState dengan RSA algoritma
+  // publicToken sebagai secretKey nya
+  // encryptedAccessToken = RSA(accessTokenState, publicToken)
+  // encryptedBody = AES(body, encryptedAccessToken)
+
+  // if (!publicToken || !sessionToken) return ''
+  // const ciphertext = AES.encrypt(publicToken, sessionToken)
   // const plaintext = ciphertext.toString(EncUtf8)
   // const plaintext = ciphertext.toString(EncUtf8)
   // const test = aesjs.utils.utf8.toBytes('asdfadsfd')
@@ -125,7 +133,7 @@ export const getAccessToken = () => {
   // console.log('getAccessToken ciphertext=', ciphertext)
   // console.log('getAccessToken publicToken=', publicToken)
   // console.log('getAccessToken sessionToken=', sessionToken)
-  return ciphertext
+  // return ciphertext
   // return AES.decrypt(ciphertext.toString(), sessionToken)
 }
 export const decryptAt = (msg, key) => {
@@ -143,8 +151,14 @@ export const getUserPrivName = (uPriv) => {
 export const isLoggedIn = (isLoggedInState) => {
   // console.log('isLoggedIn isLoggedInState1===>', isLoggedInState)
   isLoggedInState = isLoggedInState || window.localStorage.getItem('isLoggedIn') || false
-  if (isLoggedInState === 'true' || isLoggedInState === true) isLoggedInState = true
+  if ((isLoggedInState === 'true' || isLoggedInState === true)) isLoggedInState = true
   else isLoggedInState = false
   // console.log('isLoggedIn isLoggedInState2===>', isLoggedInState)
   return isLoggedInState
+}
+export const generateHmac = (msg) => {
+  return hmacSha256(msg, 'prismalink2019').toString()
+}
+export const generateSha256 = (msg) => {
+  return sha256(msg).toString()
 }

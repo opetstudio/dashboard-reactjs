@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
-import UserActions, {UserSelectors} from './redux'
-import LoginActions, { LoginSelectors } from '../Login/redux'
+import UserActions from './redux'
+import { LoginSelectors } from '../Login/redux'
 import { Redirect } from 'react-router-dom'
 import UserListPageComponent from '../../Components/User/UserListPageComponent'
 import {isLoggedIn} from '../../Utils/Utils'
@@ -22,11 +22,7 @@ class TheComponent extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    dataUser: UserSelectors.dataUser(state.user),
-    pages: UserSelectors.pages(state.user),
-    page: UserSelectors.page(state.user),
-    isRequesting: UserSelectors.isRequesting(state.user)
+    isLoggedIn: LoginSelectors.isLoggedIn(state.login)
   }
 }
 const mapDispatchToProps = dispatch => {

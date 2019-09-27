@@ -1,9 +1,14 @@
 // a library to wrap and simplify api calls
 import AppConfig from '../../Config/AppConfig'
+import {generateHmac} from '../../Utils/Utils'
 
 export const create = api => ({
   loginDoLogin: (data, opt) => {
     // api.setHeader('authorization', opt.session.token)
+    let body = {email: data.userid, password: data.password}
+    console.log('body==>', JSON.stringify(body))
+    api.setHeader('mac', generateHmac(JSON.stringify(body)))
+    api.setHeader('xxxx', 'xxxxx')
     const resp = api.post('/plink/login', {email: data.userid, password: data.password})
     return resp
   },
@@ -20,10 +25,9 @@ export const create = api => ({
   },
   updateLogin: data => api.patch('/logins/' + data.id, { login: data }),
   removeLogin: (data, opt) => {
-    api.setHeader(
-      AppConfig.authHeader,
-      opt.session.token_type + ' ' + opt.session.access_token
-    )
+    console.log('removeLogin invoked')
+    api.setHeader('mac', '6905fad8847d8548e225e1701ada9f502741e0f6c3fd68697017e5c06b7ff733')
+    api.setHeader(AppConfig.authHeader, opt.session.token_type + ' ' + opt.session.access_token)
     return api.get('/plink/logout')
   },
   getLoginStatus: (data, opt) => {
@@ -31,6 +35,7 @@ export const create = api => ({
     // console.log('auth===>', auth)
     api.setHeader('Content-Type', 'application/json')
     api.setHeader('Accept', 'application/json')
+    api.setHeader('mac', '6905fad8847d8548e225e1701ada9f502741e0f6c3fd68697017e5c06b7ff733')
     // api.setHeader('Cookie', 'XSRF-TOKEN=asdfadsf;')
     // api.setHeader('testing', 'asdfadf')
     api.setHeader(

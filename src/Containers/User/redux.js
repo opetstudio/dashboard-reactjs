@@ -22,7 +22,8 @@ export const INITIAL_STATE = Immutable({
   version: 0,
   dataUser: [],
   pages: 10,
-  page: 0
+  page: 0,
+  pageSize: 10
 })
 
 /* ------------- Selectors ------------- */
@@ -31,10 +32,7 @@ export const UserSelectors = {
   isRequesting: st => st.isRequesting,
   responseMessage: st => st.responseMessage,
   responseCode: st => st.responseCode,
-  responseDescription: st => st.responseDescription,
-  page: st => st.page,
-  pages: st => st.pages,
-  dataUser: st => st.dataUser
+  responseDescription: st => st.responseDescription
 }
 
 /* ------------- Reducers ------------- */
@@ -54,9 +52,6 @@ export const userRequestPatch = (state, { data }) => {
   if (data.hasOwnProperty('responseCode')) mergeData.responseCode = data.responseCode
   if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
   if (data.hasOwnProperty('responseDescription')) mergeData.responseDescription = data.responseDescription
-  if (data.pages) mergeData.pages = data.pages
-  if (data.page) mergeData.page = data.page
-  if (mergeData.dataUser) mergeData.dataUser = data.dataUser
   return state.merge(mergeData)
 }
 

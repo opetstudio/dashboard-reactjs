@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {Images} from '../../Themes'
 import AppConfig from '../../Config/AppConfig'
-import {getUserPrivName} from '../../Utils/Utils'
+import {getAccessToken, getUserPrivName} from '../../Utils/Utils'
 
 const useravatar = Images.useravatar
 class HeaderComponent extends Component {
@@ -12,12 +12,12 @@ class HeaderComponent extends Component {
     alert('do logout')
   }
   render () {
-    console.log('userFullName=', this.props.userFullName)
+    // console.log('userFullName=', this.props.userFullName)
     return (
       <div>
         <header className='main-header'>
           {/* Logo */}
-          <Link to={`${AppConfig.basePath}/home`} className='logo'>
+          <Link to={`${AppConfig.basePath}/home/${getAccessToken(this.props.sessionToken)}`} className='logo'>
             {/* mini logo for sidebar mini 50x50 pixels */}
             <span className='logo-mini'><b>PL</b></span>
             {/* logo for regular state and mobile devices */}
@@ -41,7 +41,7 @@ class HeaderComponent extends Component {
                   <ul className='dropdown-menu'>
                     {/* User image */}
                     <li className='user-header'>
-                      <img src='/dist/img/user2-160x160.jpg' className='img-circle' alt='User Image' />
+                      <img src={useravatar} className='img-circle' alt='User Image' />
                       <p>
                         {this.props.userFullName}
                         <small>{getUserPrivName(this.props.userRole)}</small>

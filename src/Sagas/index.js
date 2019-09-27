@@ -15,6 +15,7 @@ import { LoginTypes } from '../Containers/Login/redux'
 import { MerchantTypes } from '../Containers/Merchant/redux'
 import { PaymentgwTypes } from '../Containers/Paymentgw/redux'
 import { UserTypes } from '../Containers/User/redux'
+import { TablepaginationTypes } from '../Containers/TablePagination/redux'
 import {TransactionTypes} from '../Containers/Transaction/redux'
 
 // begin Ignite-Entity-Paymentpage
@@ -41,6 +42,7 @@ import {merchantCreateRequest, merchantReadRequest} from '../Containers/Merchant
 import {userCreateRequest, userReadRequest} from '../Containers/User/sagas'
 import {paymentgwCreateRequest, paymentgwReadRequest} from '../Containers/Paymentgw/sagas'
 import {transactionReadRequest} from '../Containers/Transaction/sagas'
+import {tablepaginationReadRequest} from '../Containers/TablePagination/sagas'
 
 // begin Ignite-Entity-Paymentpage
 // import { paymentpageRequest } from '../Containers/Paymentpage/sagas'
@@ -64,10 +66,14 @@ const baseUrl =
 // const baseUrl = 'http://localhost:8080/'
 const host = baseUrl + ''
 const api = DebugConfig.useFixtures ? FixtureAPI : API.create(host)
-const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
+// const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
+// const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'http://localhost:8762/')
+const apiQrcode = API.create(AppConfig.env === 'development' ? 'https://api.erevnaraya.com/' : 'https://api.erevnaraya.com/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'https://api.erevnaraya.com/simulator/' : 'https://api.erevnaraya.com/simulator/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://192.168.99.100:31965/dashboard-api/' : 'http://192.168.99.100:31965/dashboard-api/')
-const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'http://188.166.198.144:8762/dashboard-api/')
+const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://188.166.198.144:8762/dashboard-api/' : 'http://188.166.198.144:8762/dashboard-api/')
+// const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'http://localhost:8762/dashboard-api/')
+// const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'http://188.166.198.144:8762/dashboard-api/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'https://api.erevnaraya.com/dashboard-api/')
 // const apiDashboard2 = API.create(AppConfig.env === 'development' ? 'http://localhost:8280/' : 'http://localhost:8280/')
 // const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/' : 'https://api.erevnaraya.com/')
@@ -93,6 +99,7 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_CHECK_STATUS, loginCheckStatus, apiDashboard),
 
     takeLatest(TransactionTypes.TRANSACTION_READ_REQUEST, transactionReadRequest, apiDashboard),
+    takeLatest(TablepaginationTypes.TABLEPAGINATION_READ_REQUEST, tablepaginationReadRequest, apiDashboard),
 
     takeLatest(StartupTypes.STARTUP, startup, api)
     // some sagas receive extra parameters in addition to an action

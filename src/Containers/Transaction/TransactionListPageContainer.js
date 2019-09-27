@@ -22,12 +22,7 @@ class TheComponent extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    dataTransaction: TransactionSelectors.dataTransaction(state.transaction),
-    pages: TransactionSelectors.pages(state.transaction),
-    page: TransactionSelectors.page(state.transaction),
-    pageSize: TransactionSelectors.pageSize(state.transaction),
-    isRequesting: TransactionSelectors.isRequesting(state.transaction)
+    isLoggedIn: LoginSelectors.isLoggedIn(state.login)
   }
 }
 const mapDispatchToProps = dispatch => {

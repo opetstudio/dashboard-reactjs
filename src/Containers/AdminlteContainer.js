@@ -23,7 +23,7 @@ class AdminlteContainer extends React.PureComponent {
     this.renderLoggedIn = this.renderLoggedIn.bind(this)
   }
   componentDidMount () {
-    console.log('AdminlteContainer.componentDidMount')
+    // console.log('AdminlteContainer.componentDidMount')
     // let listJs = [
     //   // '/bower_components/jquery/dist/jquery.min.js',
     //   // '/bower_components/bootstrap/dist/js/bootstrap.min.js',
@@ -73,7 +73,7 @@ class AdminlteContainer extends React.PureComponent {
     )
   }
   render () {
-    console.log('render adminltecontainer ===>', this.props)
+    // console.log('render adminltecontainer ===>', this.props)
     const { children } = this.props
     return this.renderLoggedIn(children)
     // else return children

@@ -13,7 +13,7 @@ export function * userCreateRequest (api, action) {
   console.log('userCreateRequest invoked')
   const { data } = action
   const response = yield call(api.userCreateRequest, data, { session: {token_type: 'Bearer', access_token: getAccessToken()} })
-  console.log('response=>', response)
+  // console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
   let responseDescription = path(['data', 'responseDescription'], response)
@@ -27,9 +27,9 @@ export function * userCreateRequest (api, action) {
 }
 export function * userReadRequest (api, action) {
   const { data } = action
-  console.log('action===>', action)
+  // console.log('action===>', action)
   const response = yield call(api.userReadRequest, data, {url: data.url, method: data.method})
-  console.log('response=>', response)
+  // console.log('response=>', response)
   let dataUser = []
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)

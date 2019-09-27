@@ -35,12 +35,22 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.unlisten = this.props.history.listen((location, action) => {
-      console.log('props.history.listen ', window.location.pathname)
-      const loginRestriction = [basePath + '/home', basePath + '/', basePath + '/merchant/create']
-      if (loginRestriction.indexOf(location.pathname) !== -1) {
-        this.props.checkLogedStatus({})
+      // console.log('props.history.listen ', window.location.pathname)
+      // const loginRestriction = [basePath + '/home', basePath + '/', basePath + '/merchant/create']
+      // if (loginRestriction.indexOf(location.pathname) !== -1) {
+      //   this.props.checkLogedStatus({})
+      // }
+      var str = location.pathname
+      console.log('location==>', str)
+      console.log('basePath==>', basePath)
+      if (
+        str.startsWith(basePath + '/home') ||
+        str.startsWith(basePath + '/') ||
+        str.startsWith(basePath + '/merchant/create')
+      ) {
+        console.log('checkLogedStatus')
+        // this.props.checkLogedStatus({})
       }
-      loadScript(location.pathname)
     })
   }
   componentWillUnmount () {
@@ -65,55 +75,55 @@ class NavigationRouter extends Component {
       <Router>
         <AppContainer checkLogedStatus={this.props.checkLogedStatus}>
           <ResponsiveContainer appname='adminlte'>
-            <Route exact path={`${basePath}/`} component={HomePageContainer} />
+            <Route exact path={`${basePath}/:sessionToken`} component={HomePageContainer} />
             <Route
               exact
-              path={`${basePath}/home`}
+              path={`${basePath}/home/:sessionToken`}
               component={HomePageContainer}
             />
             <Route
               exact
-              path={`${basePath}/paymentgw/create`}
+              path={`${basePath}/paymentgw/create/:sessionToken`}
               component={PaymentgwCreatePageContainer}
             />
             <Route
               exact
-              path={`${basePath}/paymentgw/list`}
+              path={`${basePath}/paymentgw/list/:sessionToken`}
               component={PaymentgwListPageContainer}
             />
             <Route
               exact
-              path={`${basePath}/merchant/create`}
+              path={`${basePath}/merchant/create/:sessionToken`}
               component={MerchantCreatePageContainer}
             />
             <Route
               exact
-              path={`${basePath}/merchant/change-limit`}
+              path={`${basePath}/merchant/change-limit/:sessionToken`}
               component={MerchantChangeLimitPageContainer}
             />
             <Route
               exact
-              path={`${basePath}/merchant/list`}
+              path={`${basePath}/merchant/list/:sessionToken`}
               component={MerchantListPageContainer}
             />
             <Route
               exact
-              path={`${basePath}/user/create`}
+              path={`${basePath}/user/create/:sessionToken`}
               component={UserCreatePageContainer}
             />
             <Route
               exact
-              path={`${basePath}/user/change-limit`}
+              path={`${basePath}/user/change-limit/:sessionToken`}
               component={UserChangeLimitPageContainer}
             />
             <Route
               exact
-              path={`${basePath}/user/list`}
+              path={`${basePath}/user/list/:sessionToken`}
               component={UserListPageContainer}
             />
             <Route
               exact
-              path={`${basePath}/report`}
+              path={`${basePath}/report/:sessionToken`}
               component={TransactionListPageContainer}
             />
             <Route
@@ -123,17 +133,17 @@ class NavigationRouter extends Component {
             />
             <Route
               exact
-              path={`${basePath}/signup`}
+              path={`${basePath}/signup/:sessionToken`}
               component={SignupPageContainer}
             />
             <Route
               exact
-              path={`${basePath}/qrcode/generate`}
+              path={`${basePath}/qrcode/generate/:sessionToken`}
               component={GenerateQrcodePageContainer}
             />
             <Route
               exact
-              path={`${basePath}/my-profile`}
+              path={`${basePath}/my-profile/:sessionToken`}
               component={MyProfilePage}
             />
           </ResponsiveContainer>

@@ -17,6 +17,7 @@ class TheComponent extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    sessionToken: LoginSelectors.sessionToken(state.login),
     userFullName: LoginSelectors.userFullName(state.login),
     userRole: LoginSelectors.userRole(state.login)
   }

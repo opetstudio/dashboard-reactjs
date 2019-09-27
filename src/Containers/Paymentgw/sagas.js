@@ -11,7 +11,7 @@ export const transformedData = response => getAttributes(response.data)
 export function * paymentgwCreateRequest (api, action) {
   const { data } = action
   const response = yield call(api.paymentgwCreateRequest, data.payload, {url: data.url, method: data.method})
-  console.log('response=>', response)
+  // console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
   if (response.ok) {
@@ -23,9 +23,9 @@ export function * paymentgwCreateRequest (api, action) {
 }
 export function * paymentgwReadRequest (api, action) {
   const { data } = action
-  console.log('action===>', action)
+  // console.log('action===>', action)
   const response = yield call(api.paymentgwReadRequest, data, {url: data.url, method: data.method})
-  console.log('response=>', response)
+  // console.log('response=>', response)
   let dataPaymentgw = []
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)

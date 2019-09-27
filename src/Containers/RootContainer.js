@@ -73,7 +73,7 @@ class RootContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    loginToken: LoginSelectors.getToken(state.login),
+    loginToken: LoginSelectors.sessionToken(state.login),
     lang: AppSelectors.lang(state.app)
   }
 }

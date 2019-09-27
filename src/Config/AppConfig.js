@@ -14,7 +14,8 @@ export default {
   basePath: '/dashboard',
   env,
   minDesktopScreenWidth: 770,
-  authHeader: env === 'development' ? 'Authorization' : 'Auth',
+  authHeader: env === 'development' ? 'Authorization' : 'Authorization',
+  authTokenType: 'Bearer',
   publicToken: 'publicToken',
   sessionToken: 'sessionToken'
 }

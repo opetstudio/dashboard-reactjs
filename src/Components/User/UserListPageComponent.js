@@ -34,13 +34,7 @@ class UserListPageComponent extends Component {
                 <div className='box-body'>
                   <div className='row'>
                     <div className='col-sm-12'>
-                      <TableUser
-                        data={this.props.dataUser}
-                        page={this.props.page}
-                        pages={this.props.pages}
-                        loading={this.props.isRequesting}
-                        requestData={this.props.userReadRequest}
-                      />
+                      <TableUser />
                     </div>
                   </div>
                 </div>

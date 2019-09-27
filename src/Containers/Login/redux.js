@@ -2,9 +2,7 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 import { arrayMerge } from '../../Utils/helper/datamining'
 import { isEmpty } from 'ramda'
-import Cookies from 'universal-cookie'
 import AppConfig from '../../Config/AppConfig'
-const cookies = new Cookies()
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -61,7 +59,8 @@ export const INITIAL_STATE = Immutable({
   version: 0,
   userFullName: '',
   responseDescription: '',
-  userRole: ''
+  userRole: '',
+  sessionToken: null
 })
 
 /* ------------- Selectors ------------- */
@@ -80,6 +79,7 @@ export const LoginSelectors = {
   getToken: state => state.token,
 
   isRequesting: st => st.isRequesting,
+  sessionToken: st => st.sessionToken,
   responseMessage: st => st.responseMessage,
   responseCode: st => st.responseCode,
   userFullName: st => st.userFullName,
@@ -198,20 +198,17 @@ export const loginDoLoginSuccess = (state, { data }) => {
   console.log('loginDoLoginSuccess')
   window.localStorage.setItem('isLoggedIn', true)
   window.localStorage.setItem('userRole', data.userRole)
-  window.sessionStorage.setItem(AppConfig.sessionToken, data.sessionToken)
-  window.sessionStorage.setItem(AppConfig.publicToken, data.publicToken)
   data.isRequesting = false
   data.isLoggedIn = true
   return loginPatch(state, { data })
 }
 export const loginDoLogoutSuccess = (state, { data }) => {
   console.log('loginDoLogoutSuccess')
-  window.localStorage.setItem('isLoggedIn', false)
+  window.localStorage.removeItem('isLoggedIn', false)
   window.localStorage.setItem('userRole', '')
-  window.sessionStorage.removeItem(AppConfig.sessionToken)
-  window.sessionStorage.removeItem(AppConfig.publicToken)
   data.isRequesting = false
   data.isLoggedIn = true
+  data.sessionToken = null
   return loginPatch(state, { data })
 }
 export const loginPatch = (state, { data }) => {
@@ -223,6 +220,7 @@ export const loginPatch = (state, { data }) => {
   if (data.hasOwnProperty('responseDescription')) mergeData.responseDescription = data.responseDescription
   if (data.hasOwnProperty('userFullName')) mergeData.userFullName = data.userFullName
   if (data.hasOwnProperty('userRole')) mergeData.userRole = data.userRole
+  if (data.hasOwnProperty('sessionToken')) mergeData.sessionToken = data.sessionToken
   mergeData.version = state.version + 1
   return state.merge(mergeData)
 }

@@ -10,9 +10,9 @@ import SidebarPartner from '../../Components/Sidebar/SidebarPartner'
 
 class TheComponent extends React.PureComponent {
   render () {
-    if (this.props.userRole === '100') return (<SidebarUser history={this.props.history} {...this.props} />)
-    else if (this.props.userRole === '200') return (<SidebarMerchant history={this.props.history} {...this.props} />)
-    else if (this.props.userRole === '300') return (<SidebarPartner history={this.props.history} {...this.props} />)
+    if (this.props.userRole === '100') return (<SidebarUser sessionToken={this.props.sessionToken} history={this.props.history} {...this.props} />)
+    else if (this.props.userRole === '200') return (<SidebarMerchant sessionToken={this.props.sessionToken} history={this.props.history} {...this.props} />)
+    else if (this.props.userRole === '300') return (<SidebarPartner sessionToken={this.props.sessionToken} history={this.props.history} {...this.props} />)
     else {
       return (<SidebarComponent
         history={this.props.history}
@@ -26,6 +26,7 @@ class TheComponent extends React.PureComponent {
 const mapStateToProps = (state, ownProps) => {
   return {
     userFullName: LoginSelectors.userFullName(state.login),
+    sessionToken: LoginSelectors.sessionToken(state.login)
     // userRole: LoginSelectors.userRole(state.login)
   }
 }

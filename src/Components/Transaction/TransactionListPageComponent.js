@@ -17,7 +17,7 @@ class TransactionListPageComponent extends Component {
     // window.TransactionListPageComponent()
   }
   componentDidMount () {
-    console.log('componentDidMount')
+    // console.log('componentDidMount')
     // this.props.transactionReadRequest({})
     // let str = 'dist/js/transactionListPageComponent.js'
     // var element = document.querySelector('[src=\'' + str + '\']')
@@ -59,14 +59,7 @@ class TransactionListPageComponent extends Component {
                 <div className='box-body'>
                   <div className='row'>
                     <div className='col-sm-12'>
-                      <TableTransaction
-                        data={this.props.dataTransaction}
-                        page={this.props.page}
-                        pages={this.props.pages}
-                        pageSize={this.props.pageSize}
-                        loading={this.props.isRequesting}
-                        requestData={this.props.transactionReadRequest}
-                      />
+                      <TableTransaction />
                     </div>
                   </div>
                 </div>

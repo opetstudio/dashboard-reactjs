@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {Images} from '../../Themes'
 import AppConfig from '../../Config/AppConfig'
+import {getAccessToken} from '../../Utils/Utils'
 const basePath = AppConfig.basePath
 const useravatar = Images.useravatar
 
@@ -29,9 +30,9 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/merchant/create`}><i className='fa fa-circle-o' /> Registrasi Merchant</Link></li>
-                <li className='active'><Link to={`${basePath}/merchant/list`}><i className='fa fa-circle-o' /> Daftar Merchant</Link></li>
-                <li><Link to={`${basePath}/merchant/change-limit`}><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
+                <li><Link to={`${basePath}/merchant/create/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Registrasi Merchant</Link></li>
+                <li className='active'><Link to={`${basePath}/merchant/list/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Daftar Merchant</Link></li>
+                <li><Link to={`${basePath}/merchant/change-limit/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -42,9 +43,9 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/user/create`}><i className='fa fa-circle-o' /> Registrasi User</Link></li>
-                <li className='active'><Link to={`${basePath}/user/list`}><i className='fa fa-circle-o' /> Daftar User</Link></li>
-                <li><Link to={`${basePath}/user/change-limit`}><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
+                <li><Link to={`${basePath}/user/create/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Registrasi User</Link></li>
+                <li className='active'><Link to={`${basePath}/user/list/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Daftar User</Link></li>
+                <li><Link to={`${basePath}/user/change-limit/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -56,7 +57,7 @@ class SidebarComponent extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/report`}><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
+                <li><Link to={`${basePath}/report${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
               </ul>
             </li>
           </ul>

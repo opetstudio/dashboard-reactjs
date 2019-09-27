@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {Images} from '../../Themes'
 import AppConfig from '../../Config/AppConfig'
+import {getAccessToken} from '../../Utils/Utils'
+
 const basePath = AppConfig.basePath
 const useravatar = Images.useravatar
 
@@ -29,7 +31,7 @@ class SidebarUser extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/user/change-limit`}><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
+                <li><Link to={`${basePath}/user/change-limit/${getAccessToken(this.props.sessionToken)}}`}><i className='fa fa-circle-o' /> Rubah Limit User</Link></li>
               </ul>
             </li>
             <li className='treeview'>
@@ -41,7 +43,7 @@ class SidebarUser extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/report`}><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
+                <li><Link to={`${basePath}/report/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
               </ul>
             </li>
           </ul>

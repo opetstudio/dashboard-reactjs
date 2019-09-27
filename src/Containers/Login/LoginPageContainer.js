@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import LoginActions, { LoginSelectors } from './redux'
-import {isLoggedIn} from '../../Utils/Utils'
+import {isLoggedIn, getAccessToken} from '../../Utils/Utils'
 import LoginPageComponent from '../../Components/Login/LoginPageComponent'
+import { injectIntl } from 'react-intl'
 import AppConfig from '../../Config/AppConfig'
 const basePath = AppConfig.basePath
 
@@ -11,7 +12,7 @@ class TheComponent extends React.PureComponent {
     if (isLoggedIn(this.props.isLoggedIn) !== true) return (<LoginPageComponent {...this.props} />)
     // if (isLoggedIn(this.props.isLoggedIn) !== true) return null
     // else return null
-    else return window.open(`${basePath}/home`, '_self', true)
+    else return window.open(`${basePath}/home/${getAccessToken(this.props.sessionToken)}`, '_self', true)
   }
 }
 
@@ -28,10 +29,11 @@ class TheComponent extends React.PureComponent {
 //   //gotohome
 // }
 const mapStateToProps = (state, ownProps) => {
-  const isLoggedIn = LoginSelectors.isLoggedIn(state.login)
-  console.log('mapStateToProps isLoggedIn=', isLoggedIn)
+  // const isLoggedIn = LoginSelectors.isLoggedIn(state.login)
+  // console.log('mapStateToProps isLoggedIn=', isLoggedIn)
   return {
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
+    sessionToken: LoginSelectors.sessionToken(state.login),
     formSubmitMessage: LoginSelectors.getFormSubmitMessage(state.login),
     responseMessage: LoginSelectors.responseMessage(state.login),
     responseDescription: LoginSelectors.responseDescription(state.login),
@@ -49,4 +51,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TheComponent)
+)(injectIntl(TheComponent))

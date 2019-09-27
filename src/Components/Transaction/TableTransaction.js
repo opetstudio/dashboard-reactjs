@@ -1,33 +1,12 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
-// Import React Table
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+import TablePaginationContainer from '../../Containers/TablePagination/TablePaginationContainer'
 export default class TableTransaction extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      data: [],
-      pages: null,
-      loading: true
     }
-    this.fetchData = this.fetchData.bind(this)
-  }
-  fetchData (state, instance) {
-    console.log('fetchData')
-    if (this.props.loading) {
-      console.log('still fetching')
-      return
-    }
-    this.props.requestData({
-      pageSize: state.pageSize,
-      page: state.page,
-      sorted: state.sorted,
-      filtered: state.filtered
-    })
   }
   render () {
-    const { data, pages, loading, page, pageSize } = this.props
     const columns = [{
       id: 'ecommRefNo',
       Header: 'Transaction Id',
@@ -62,17 +41,9 @@ export default class TableTransaction extends Component {
     }]
     return (
       <div>
-        <ReactTable
+        <TablePaginationContainer
+          url='/plink/report/list'
           columns={columns}
-          manual // Forces table not to paginate or sort automatically, so we can handle it server-side
-          data={data}
-          page={page}
-          pages={pages} // Display the total number of pages
-          loading={loading} // Display the loading overlay when we need it
-          onFetchData={this.fetchData} // Request new data when things change
-          filterable
-          defaultPageSize={pageSize}
-          className='-striped -highlight'
         />
       </div>
     )

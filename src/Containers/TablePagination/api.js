@@ -1,7 +1,8 @@
 // a library to wrap and simplify api calls
 import AppConfig from '../../Config/AppConfig'
 export const create = api => ({
-  transactionReadRequest: (data, {encryptedAccessToken}) => {
+  tablepaginationReadRequest: (data, {encryptedAccessToken, url}) => {
+    // console.log('tablepaginationReadRequest===>', data)
     // let filtered = encodeURIComponent(JSON.stringify(data.filtered))
     // let sorted = encodeURIComponent(JSON.stringify(data.sorted))
     // api.setHeader('authorization', opt.session.token)

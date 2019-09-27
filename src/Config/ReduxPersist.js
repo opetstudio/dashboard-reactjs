@@ -5,7 +5,7 @@ import AppConfig from './AppConfig'
 // More info here:  https://shift.infinite.red/shipping-persistant-reducers-7341691232b1
 const REDUX_PERSIST = {
   active: true,
-  reducerVersion: '237',
+  reducerVersion: '242',
   storeConfig: {
     key: 'root',
     storage: storage, // Come back and replace this at some point
@@ -21,9 +21,7 @@ const currentReducerVersion = window.localStorage.getItem('currentReducerVersion
 const nextReducerVersion = REDUX_PERSIST.reducerVersion
 if (currentReducerVersion !== nextReducerVersion) {
   window.localStorage.setItem('currentReducerVersion', nextReducerVersion)
-  window.localStorage.setItem('isLoggedIn', false)
-  window.sessionStorage.removeItem(AppConfig.sessionToken)
-  window.sessionStorage.removeItem(AppConfig.publicToken)
+  window.localStorage.removeItem('isLoggedIn', false)
 }
 
 export default REDUX_PERSIST
