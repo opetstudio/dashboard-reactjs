@@ -5,12 +5,12 @@ import AppConfig from './AppConfig'
 // More info here:  https://shift.infinite.red/shipping-persistant-reducers-7341691232b1
 const REDUX_PERSIST = {
   active: true,
-  reducerVersion: '242',
+  reducerVersion: '244',
   storeConfig: {
     key: 'root',
     storage: storage, // Come back and replace this at some point
     // storage: 'AsyncStorage', // Come back and replace this at some point
-    blacklist: ['paymentpage', 'app', 'qrcode'], // reducer keys that you do NOT want stored to persistence here
+    blacklist: ['paymentpage', 'app', 'qrcode', 'tablepagination'], // reducer keys that you do NOT want stored to persistence here
     // whitelist: [], Optionally, just specify the keys you DO want stored to
     // persistence. An empty array means 'don't store any reducers' -> infinitered/ignite#409
     transforms: [immutablePersistenceTransform]

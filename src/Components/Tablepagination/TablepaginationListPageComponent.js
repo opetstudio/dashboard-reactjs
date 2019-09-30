@@ -42,7 +42,7 @@ class TransactionListPageComponent extends Component {
         pages={this.props.pages}
         pageSize={this.props.pageSize}
         loading={this.props.isRequesting}
-        requestData={(d) => this.props.tablepaginationReadRequest({url: this.props.url, ...d})}
+        requestData={(d) => this.props.tablepaginationReadRequest({url: this.props.url, userMerchantCode: this.props.userMerchantCode, ...d})}
       />
     )
   }

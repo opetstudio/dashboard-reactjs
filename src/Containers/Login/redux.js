@@ -60,6 +60,7 @@ export const INITIAL_STATE = Immutable({
   userFullName: '',
   responseDescription: '',
   userRole: '',
+  userMerchantCode: '',
   sessionToken: null
 })
 
@@ -84,7 +85,8 @@ export const LoginSelectors = {
   responseCode: st => st.responseCode,
   userFullName: st => st.userFullName,
   responseDescription: st => st.responseDescription,
-  userRole: st => st.userRole
+  userRole: st => st.userRole,
+  userMerchantCode: st => st.userMerchantCode
 }
 
 /* ------------- Reducers ------------- */
@@ -221,6 +223,7 @@ export const loginPatch = (state, { data }) => {
   if (data.hasOwnProperty('userFullName')) mergeData.userFullName = data.userFullName
   if (data.hasOwnProperty('userRole')) mergeData.userRole = data.userRole
   if (data.hasOwnProperty('sessionToken')) mergeData.sessionToken = data.sessionToken
+  if (data.hasOwnProperty('userMerchantCode')) mergeData.userMerchantCode = data.userMerchantCode
   mergeData.version = state.version + 1
   return state.merge(mergeData)
 }

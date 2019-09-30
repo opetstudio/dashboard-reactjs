@@ -59,7 +59,9 @@ class TransactionListPageComponent extends Component {
                 <div className='box-body'>
                   <div className='row'>
                     <div className='col-sm-12'>
-                      <TableTransaction />
+                      <TableTransaction
+                        userMerchantCode={this.props.userMerchantCode}
+                      />
                     </div>
                   </div>
                 </div>

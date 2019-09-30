@@ -1,7 +1,7 @@
 // a library to wrap and simplify api calls
 import AppConfig from '../../Config/AppConfig'
 export const create = api => ({
-  transactionReadRequest: (data, {encryptedAccessToken}) => {
+  transactionReadRequest: (data, {encryptedAccessToken, userMerchantCode}) => {
     // let filtered = encodeURIComponent(JSON.stringify(data.filtered))
     // let sorted = encodeURIComponent(JSON.stringify(data.sorted))
     // api.setHeader('authorization', opt.session.token)
@@ -20,6 +20,8 @@ export const create = api => ({
       AppConfig.authHeader,
       AppConfig.authTokenType + ' ' + encryptedAccessToken
     )
+    console.log('userMerchantCode====>', userMerchantCode)
+    params['mercId'] = userMerchantCode
     const resp = api.get('/plink/report/list', params)
     return resp
   }

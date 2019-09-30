@@ -44,6 +44,7 @@ export default class TableTransaction extends Component {
         <TablePaginationContainer
           url='/plink/report/list'
           columns={columns}
+          userMerchantCode={this.props.userMerchantCode}
         />
       </div>
     )

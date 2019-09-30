@@ -64,13 +64,23 @@ class ChangeLimitPageComponent extends Component {
                   <div className='col-md-6'>
                     <div className='box-body'>
                       <div className='form-group'>
-                        <label htmlFor='exampleInputEmail1'>Merchant New Limit</label>
+                        <label htmlFor='exampleInputEmail1'>Merchant Max Limit</label>
                         <input
-                          type='mcode'
+                          type='maxlimit'
                           className='form-control'
-                          id='mcode'
-                          placeholder='Enter Merchant Code'
-                          ref='mcode'
+                          id='maxlimit'
+                          placeholder='Enter merchant maximal limit'
+                          ref='maxlimit'
+                        />
+                      </div>
+                      <div className='form-group'>
+                        <label htmlFor='exampleInputEmail1'>Merchant Min Limit</label>
+                        <input
+                          type='minlimit'
+                          className='form-control'
+                          id='minlimit'
+                          placeholder='Enter merchant minimal limit'
+                          ref='minlimit'
                         />
                       </div>
                     </div>

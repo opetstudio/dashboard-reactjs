@@ -8,7 +8,8 @@ import Cookies from 'universal-cookie'
 
 export const session = state => ({
   token: state.login.token,
-  isLoggedIn: state.login.isLoggedIn
+  isLoggedIn: state.login.isLoggedIn,
+  userMerchantCode: state.login.userMerchantCode
 })
 export const transformedData = response => getAttributes(response.data)
 
@@ -17,7 +18,7 @@ export function * transactionReadRequest (api, action) {
   // console.log('action===>', action)
   const s = yield select(session)
   const encryptedAccessToken = getAccessToken(s.token)
-  const response = yield call(api.transactionReadRequest, data, {encryptedAccessToken})
+  const response = yield call(api.transactionReadRequest, data, {encryptedAccessToken, userMerchantCode: s.userMerchantCode})
   // console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)

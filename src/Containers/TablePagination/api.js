@@ -1,7 +1,7 @@
 // a library to wrap and simplify api calls
 import AppConfig from '../../Config/AppConfig'
 export const create = api => ({
-  tablepaginationReadRequest: (data, {encryptedAccessToken, url}) => {
+  tablepaginationReadRequest: (data, {encryptedAccessToken, url, userMerchantCode}) => {
     // console.log('tablepaginationReadRequest===>', data)
     // let filtered = encodeURIComponent(JSON.stringify(data.filtered))
     // let sorted = encodeURIComponent(JSON.stringify(data.sorted))
@@ -21,6 +21,9 @@ export const create = api => ({
       AppConfig.authHeader,
       AppConfig.authTokenType + ' ' + encryptedAccessToken
     )
+    if (userMerchantCode !== null) {
+      params['mercId'] = userMerchantCode
+    }
     const resp = api.get('/plink/report/list', params)
     return resp
   }

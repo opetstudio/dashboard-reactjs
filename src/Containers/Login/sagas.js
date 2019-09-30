@@ -48,7 +48,6 @@ export function * getLogin (api, action) {
   }
 }
 
-
 export function * postLogin (api, action) {
   const { data } = action
   const s = yield select(session)
@@ -185,13 +184,27 @@ export function * loginDoLogin (api, action) {
   let userFullName = path(['data', 'user', 'userFullname'], response)
   let responseDescription = path(['data', 'responseDescription'], response) || responseMessage
   let userRole = path(['data', 'user', 'userRole'], response) || '100'
+  let userMerchantCodeArr = path(['data', 'user', 'merchant'], response) || [{}]
+  // let userMerchantCodeArr = path(['data', 'user', 'merchant'], response) || [{merchantCode: '000000070070070', isDefaultMerchant: 'Y'}, {merchantCode: '000000070070071', isDefaultMerchant: 'N'}]
+  let userMerchantCode = ''
+
   if (!response.ok) {
     responseMessage = response.problem
     responseDescription = responseDescription || responseMessage
     // return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription, userFullName}))
   }
   if (responseCode === 'MBDD00') {
-    return yield put(LoginActions.loginDoLoginSuccess({sessionToken, publicToken, responseCode, responseMessage, responseDescription, userFullName, userRole}))
+    if (userMerchantCodeArr !== null && userMerchantCodeArr.length > 0) {
+      for (let v of userMerchantCodeArr) {
+        if (v['isDefaultMerchant'] === 'Y') {
+          userMerchantCode = v['merchantCode']
+          break
+        }
+        userMerchantCode = v['merchantCode'] || ''
+      }
+    }
+
+    return yield put(LoginActions.loginDoLoginSuccess({sessionToken, publicToken, responseCode, responseMessage, responseDescription, userFullName, userRole, userMerchantCode}))
   } else {
     return yield put(LoginActions.loginPatch({isRequesting: false, responseCode, responseMessage, responseDescription, userFullName, userRole}))
   }
