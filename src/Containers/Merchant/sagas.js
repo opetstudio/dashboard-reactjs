@@ -1,12 +1,17 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put, select } from 'redux-saga/effects'
 import MerchantActions from './redux'
 import { getAttributes } from '../../Transforms/TransformAttributes'
-import { merge, path } from 'ramda'
-import _ from 'lodash'
-import Cookies from 'universal-cookie'
+import { path } from 'ramda'
+import {getAccessToken} from '../../Utils/Utils'
 
 // export const session = state => ({...state.login.single, token: state.login.token, isLoggedIn: state.login.isLoggedIn})
 export const transformedData = response => getAttributes(response.data)
+export const session = state => ({
+  ...state.login.single,
+  token: state.login.token,
+  sessionToken: state.login.sessionToken,
+  isLoggedIn: state.login.isLoggedIn
+})
 
 export function * merchantCreateRequest (api, action) {
   const { data } = action
@@ -42,4 +47,22 @@ export function * merchantReadRequest (api, action) {
   }
   console.log('dataMerchant', dataMerchant)
   yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage, dataMerchant, pages}))
+}
+export function * merchantReadOneRequest (api, action) {
+  const { data } = action
+  console.log('merchantReadOneRequest data=', data)
+  const s = yield select(session)
+  const response = yield call(api.merchantReadOneRequest, data, {merchantCode: data.merchantCode, session: {access_token: getAccessToken(s.sessionToken)}})
+  console.log('response=>', response)
+  let merchantDetail = path(['data'], response)
+  let responseMessage = ''
+  let responseCode = ''
+  if (response.ok) {
+    responseCode = 'MBDD00'
+    responseMessage = 'SUCCESS'
+  } else {
+    responseCode = 'MBDD01'
+    responseMessage = 'FAILED'
+  }
+  yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage, merchantDetail}))
 }

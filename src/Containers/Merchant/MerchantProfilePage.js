@@ -4,15 +4,15 @@ import { injectIntl } from 'react-intl'
 import MerchantActions, {MerchantSelectors} from './redux'
 import LoginActions, { LoginSelectors } from '../Login/redux'
 import { Redirect } from 'react-router-dom'
+import MerchantProfilePageComp from '../../Components/Merchant/MerchantProfilePageComp'
 import {isLoggedIn} from '../../Utils/Utils'
-import MerchantListPageComponent from '../../Components/Merchant/MerchantListPageComponent'
 import AppConfig from '../../Config/AppConfig'
 const basePath = AppConfig.basePath
 
 class TheComponent extends React.PureComponent {
   render () {
     if (isLoggedIn(this.props.isLoggedIn) !== true) { return <Redirect to={`${basePath}/login`} /> }
-    return (<MerchantListPageComponent
+    return (<MerchantProfilePageComp
       history={this.props.history}
       {...this.props}
     />
@@ -22,14 +22,20 @@ class TheComponent extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    sessionToken: LoginSelectors.sessionToken(state.login),
     isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    isRequesting: MerchantSelectors.isRequesting(state.merchant)
+    isRequesting: MerchantSelectors.isRequesting(state.merchant),
+    responseMessage: MerchantSelectors.responseMessage(state.merchant),
+    responseCode: MerchantSelectors.responseCode(state.merchant),
+    merchantDetail: MerchantSelectors.merchantDetail(state.merchant),
+    userMerchantCode: LoginSelectors.userMerchantCode(state.login)
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     merchantRequestPatch: query => dispatch(MerchantActions.merchantRequestPatch(query)),
-    merchantReadRequest: query => dispatch(MerchantActions.merchantReadRequest(query))
+    merchantCreateRequest: query => dispatch(MerchantActions.merchantCreateRequest(query)),
+    merchantReadOneRequest: query => dispatch(MerchantActions.merchantReadOneRequest(query))
   }
 }
 export default connect(

@@ -184,8 +184,8 @@ export function * loginDoLogin (api, action) {
   let userFullName = path(['data', 'user', 'userFullname'], response)
   let responseDescription = path(['data', 'responseDescription'], response) || responseMessage
   let userRole = path(['data', 'user', 'userRole'], response) || '100'
-  let userMerchantCodeArr = path(['data', 'user', 'merchant'], response) || [{}]
-  // let userMerchantCodeArr = path(['data', 'user', 'merchant'], response) || [{merchantCode: '000000070070070', isDefaultMerchant: 'Y'}, {merchantCode: '000000070070071', isDefaultMerchant: 'N'}]
+  // let userMerchantCodeArr = path(['data', 'user', 'merchant'], response) || [{}]
+  let userMerchantCodeArr = path(['data', 'user', 'merchant'], response) || [{merchantCode: '000000070070070', isDefaultMerchant: 'Y'}, {merchantCode: '000000070070071', isDefaultMerchant: 'N'}]
   let userMerchantCode = ''
 
   if (!response.ok) {

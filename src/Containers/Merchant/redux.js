@@ -6,7 +6,8 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   merchantCreateRequest: ['data'],
   merchantRequestPatch: ['data'],
-  merchantReadRequest: ['data']
+  merchantReadRequest: ['data'],
+  merchantReadOneRequest: ['data']
 })
 
 export const MerchantTypes = Types
@@ -18,11 +19,7 @@ export const INITIAL_STATE = Immutable({
   isRequesting: false,
   responseMessage: '',
   responseCode: '',
-  version: 0,
-  dataMerchant: [],
-  pages: 10,
-  page: 0,
-  pageSize: 10
+  merchantDetail: {}
 })
 
 /* ------------- Selectors ------------- */
@@ -31,10 +28,7 @@ export const MerchantSelectors = {
   isRequesting: st => st.isRequesting,
   responseMessage: st => st.responseMessage,
   responseCode: st => st.responseCode,
-  page: st => st.page,
-  pages: st => st.pages,
-  dataMerchant: st => st.dataMerchant,
-  pageSize: st => st.pageSize
+  merchantDetail: st => st.merchantDetail
 }
 
 /* ------------- Reducers ------------- */
@@ -47,15 +41,17 @@ export const merchantReadRequest = (state, { data }) => {
   data.isRequesting = true
   return merchantRequestPatch(state, { data })
 }
+export const merchantReadOneRequest = (state, { data }) => {
+  data.isRequesting = true
+  return merchantRequestPatch(state, { data })
+}
 export const merchantRequestPatch = (state, { data }) => {
   // console.log('merchantRequestPatch invoked. dataMerchant=', data.dataMerchant)
   let mergeData = {}
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
   if (data.hasOwnProperty('responseCode')) mergeData.responseCode = data.responseCode
   if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
-  if (data.pages) mergeData.pages = data.pages
-  if (data.page) mergeData.page = data.page
-  if (data.dataMerchant) mergeData.dataMerchant = data.dataMerchant
+  if (data.hasOwnProperty('merchantDetail')) mergeData.merchantDetail = data.merchantDetail
   // if (data.pageSize) mergeData.pageSize = data.pageSize
   return state.merge(mergeData)
 }
@@ -64,6 +60,7 @@ export const merchantRequestPatch = (state, { data }) => {
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.MERCHANT_READ_REQUEST]: merchantReadRequest,
+  [Types.MERCHANT_READ_ONE_REQUEST]: merchantReadOneRequest,
   [Types.MERCHANT_CREATE_REQUEST]: merchantCreateRequest,
   [Types.MERCHANT_REQUEST_PATCH]: merchantRequestPatch
 })

@@ -6,6 +6,9 @@ class ChangeLimitPageComponent extends Component {
   componentWillUnmount () {
     this.props.merchantRequestPatch({isRequesting: false, responseCode: '', responseMessage: ''})
   }
+  componentWillMount () {
+    this.props.merchantRequestPatch({isRequesting: false, responseCode: '', responseMessage: ''})
+  }
   _onSubmitForm (e) {
     if (e) e.preventDefault()
     let bodyJson = {}

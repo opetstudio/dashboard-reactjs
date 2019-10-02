@@ -38,7 +38,7 @@ import {
   removeLogin
 } from '../Containers/Login/sagas'
 // end Ignite-Entity-Login
-import {merchantCreateRequest, merchantReadRequest} from '../Containers/Merchant/sagas'
+import {merchantCreateRequest, merchantReadRequest, merchantReadOneRequest} from '../Containers/Merchant/sagas'
 import {userCreateRequest, userReadRequest} from '../Containers/User/sagas'
 import {paymentgwCreateRequest, paymentgwReadRequest} from '../Containers/Paymentgw/sagas'
 import {transactionReadRequest} from '../Containers/Transaction/sagas'
@@ -88,6 +88,7 @@ export default function * root () {
     
     takeLatest(MerchantTypes.MERCHANT_CREATE_REQUEST, merchantCreateRequest, apiDashboard),
     takeLatest(MerchantTypes.MERCHANT_READ_REQUEST, merchantReadRequest, apiDashboard),
+    takeLatest(MerchantTypes.MERCHANT_READ_ONE_REQUEST, merchantReadOneRequest, apiDashboard),
 
     takeLatest(PaymentgwTypes.PAYMENTGW_CREATE_REQUEST, paymentgwCreateRequest, apiDashboard),
     takeLatest(PaymentgwTypes.PAYMENTGW_READ_REQUEST, paymentgwReadRequest, apiDashboard),

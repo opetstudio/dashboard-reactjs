@@ -22,6 +22,7 @@ class SidebarMerchant extends Component {
           </div> */}
           <ul className='sidebar-menu' data-widget='tree'>
             <li className='header'>MAIN NAVIGATION</li>
+            <li><Link to={`${basePath}/merchant/management/all-user${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' />User Management</Link></li>
             <li className='active treeview menu-open'>
               <Link to='#'>
                 <i className='fa fa-dashboard' /> <span>Merchant</span>
@@ -30,6 +31,8 @@ class SidebarMerchant extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
+                <li><Link to={`${basePath}/merchant/profile/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Profile</Link></li>
+                <li><Link to={`${basePath}/merchant/credential/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Credential</Link></li>
                 <li><Link to={`${basePath}/merchant/change-limit/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
               </ul>
             </li>
