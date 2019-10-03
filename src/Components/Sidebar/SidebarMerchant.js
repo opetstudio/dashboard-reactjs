@@ -7,7 +7,23 @@ const basePath = AppConfig.basePath
 const useravatar = Images.useravatar
 
 class SidebarMerchant extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      'routeActive': ''
+    }
+    this._isMenuActive = this._isMenuActive.bind(this)
+  }
+  _isMenuActive (route) {
+    if (this.state.routeActive.startsWith(route)) return 'active'
+    return ''
+  }
+  _getMenuLi (route, title) {
+    let baseRoute = `${basePath}${route}`
+    return (<li className={`${this._isMenuActive(baseRoute)}`}><Link onClick={() => this.setState({routeActive: baseRoute})} to={`${baseRoute}/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> {title}</Link></li>)
+  }
   render () {
+    console.log('this.state====>', this.state)
     return (
       <aside className='main-sidebar'>
         <section className='sidebar'>
@@ -22,7 +38,7 @@ class SidebarMerchant extends Component {
           </div> */}
           <ul className='sidebar-menu' data-widget='tree'>
             <li className='header'>MAIN NAVIGATION</li>
-            <li><Link to={`${basePath}/usermanagement/listAllUser/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Dashboard</Link></li>
+            {this._getMenuLi('/home', 'Dashboard')}
             <li className='active treeview menu-open'>
               <Link to='#'>
                 <i className='fa fa-dashboard' /> <span>Merchant Administration</span>
@@ -31,9 +47,9 @@ class SidebarMerchant extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/merchant/profile/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Profile</Link></li>
-                <li><Link to={`${basePath}/merchant/credential/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Credential</Link></li>
-                <li><Link to={`${basePath}/merchant/change-limit/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Limit</Link></li>
+                {this._getMenuLi('/merchant/profile', 'Merchant Profile')}
+                {this._getMenuLi('/merchant/credential', 'Merchant Credential')}
+                {this._getMenuLi('/merchant/change-limit', 'Merchant Limit')}
               </ul>
             </li>
             <li className='active treeview menu-open'>
@@ -45,7 +61,7 @@ class SidebarMerchant extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/report/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Refund Process</Link></li>
+                {this._getMenuLi('/report', 'Refund Process')}
               </ul>
             </li>
             <li className='active treeview menu-open'>
@@ -57,7 +73,7 @@ class SidebarMerchant extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/report/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> List Detail Transaction</Link></li>
+                {this._getMenuLi('/report', 'List Detail Transaction')}
               </ul>
             </li>
             <li className='active treeview menu-open'>
@@ -68,8 +84,8 @@ class SidebarMerchant extends Component {
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/usermanagement/listAllUser/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> List All User</Link></li>
-                <li><Link to={`${basePath}/usermanagement/listAllUser/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Create New User</Link></li>
+                {this._getMenuLi('/usermanagement/listAllUser', 'List All User')}
+                {this._getMenuLi('/usermanagement/listAllUser', 'Create New User')}
               </ul>
             </li>
           </ul>
