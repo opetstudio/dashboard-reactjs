@@ -3,6 +3,7 @@ import MerchantActions from './redux'
 import { getAttributes } from '../../Transforms/TransformAttributes'
 import { path } from 'ramda'
 import {getAccessToken} from '../../Utils/Utils'
+import LoginActions from '../Login/redux'
 
 // export const session = state => ({...state.login.single, token: state.login.token, isLoggedIn: state.login.isLoggedIn})
 export const transformedData = response => getAttributes(response.data)
@@ -20,7 +21,11 @@ export function * merchantCreateRequest (api, action) {
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
   if (response.ok) {
-    // message = '00'
+    if (responseCode === 'MBDD04') {
+      // invalid session token. redirect to logout
+      yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage}))
+      return yield put(LoginActions.loginRemoveSuccess({}))
+    }
   } else {
     responseMessage = response.problem
   }
@@ -36,6 +41,11 @@ export function * merchantReadRequest (api, action) {
   let responseMessage = path(['data', 'responseMessage'], response)
   let pages = 0
   if (response.ok) {
+    if (responseCode === 'MBDD04') {
+      // invalid session token. redirect to logout
+      yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage}))
+      return yield put(LoginActions.loginRemoveSuccess({}))
+    }
     dataMerchant = path(['data', 'merchants'], response) || []
     pages = parseInt(path(['data', 'pages'], response) || 0)
     responseCode = 'MBDD00'
@@ -56,8 +66,13 @@ export function * merchantReadOneRequest (api, action) {
   console.log('response=>', response)
   let merchantDetail = path(['data'], response)
   let responseMessage = ''
-  let responseCode = ''
+  let responseCode = path(['data', 'responseCode'], response)
   if (response.ok) {
+    if (responseCode === 'MBDD04') {
+      // invalid session token. redirect to logout
+      yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage}))
+      return yield put(LoginActions.loginRemoveSuccess({}))
+    }
     responseCode = 'MBDD00'
     responseMessage = 'SUCCESS'
   } else {

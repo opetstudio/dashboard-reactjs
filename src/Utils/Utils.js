@@ -149,11 +149,11 @@ export const getUserPrivName = (uPriv) => {
   return userPriv[uPriv]
 }
 export const isLoggedIn = (isLoggedInState) => {
-  console.log('isLoggedIn isLoggedInState1===>', isLoggedInState)
+  // console.log('isLoggedIn isLoggedInState1===>', isLoggedInState)
   isLoggedInState = isLoggedInState || window.localStorage.getItem('isLoggedIn') || false
   if ((isLoggedInState === 'true' || isLoggedInState === true)) isLoggedInState = true
   else isLoggedInState = false
-  console.log('isLoggedIn isLoggedInState2===>', isLoggedInState)
+  // console.log('isLoggedIn isLoggedInState2===>', isLoggedInState)
   return isLoggedInState
 }
 export const generateHmac = (msg) => {
