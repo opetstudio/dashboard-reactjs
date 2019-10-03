@@ -80,9 +80,9 @@ class MerchantProfilePageComp extends Component {
 
               <div className='box-footer'>
                 {/* <button type='button' className='btn btn-primary' onClick={(e) => <Redirect to={`${basePath}/edit-profile/${getAccessToken(this.props.sessionToken)}`} />}> */}
-                <button type='button' className='btn btn-primary' onClick={(e) => this.props.history.push(`${basePath}/merchant/edit-profile/${getAccessToken(this.props.sessionToken)}`)}>
+                {/* <button type='button' className='btn btn-primary' onClick={(e) => this.props.history.push(`${basePath}/merchant/edit-profile/${getAccessToken(this.props.sessionToken)}`)}>
                   Edit Profile
-                </button>
+                </button> */}
                 {/* <button type="submit" className="btn btn-info pull-right">Sign in</button> */}
               </div>
             </div>

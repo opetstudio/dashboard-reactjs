@@ -15,6 +15,9 @@ import MerchantProfilePage from '../Containers/Merchant/MerchantProfilePage'
 import MerchantCredentialPage from '../Containers/Merchant/MerchantCredentialPage'
 import MerchantEditProfilePage from '../Containers/Merchant/MerchantEditProfilePage'
 
+// merchantusermanagement
+import UsermanagementListAllUser from '../Containers/Usermanagement/ListAllUser'
+
 import UserCreatePageContainer from '../Containers/User/UserCreatePageContainer'
 import UserListPageContainer from '../Containers/User/UserListPageContainer'
 import UserChangeLimitPageContainer from '../Containers/User/ChangeLimitPageContainer'
@@ -83,6 +86,11 @@ class NavigationRouter extends Component {
               exact
               path={`${basePath}/home/:sessionToken`}
               component={HomePageContainer}
+            />
+            <Route
+              exact
+              path={`${basePath}/usermanagement/listAllUser/:sessionToken`}
+              component={UsermanagementListAllUser}
             />
             <Route
               exact

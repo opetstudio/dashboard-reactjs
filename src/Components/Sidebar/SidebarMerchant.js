@@ -22,10 +22,10 @@ class SidebarMerchant extends Component {
           </div> */}
           <ul className='sidebar-menu' data-widget='tree'>
             <li className='header'>MAIN NAVIGATION</li>
-            <li><Link to={`${basePath}/merchant/management/all-user${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' />User Management</Link></li>
+            <li><Link to={`${basePath}/usermanagement/listAllUser/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Dashboard</Link></li>
             <li className='active treeview menu-open'>
               <Link to='#'>
-                <i className='fa fa-dashboard' /> <span>Merchant</span>
+                <i className='fa fa-dashboard' /> <span>Merchant Administration</span>
                 <span className='pull-right-container'>
                   <i className='fa fa-angle-left pull-right' />
                 </span>
@@ -33,19 +33,43 @@ class SidebarMerchant extends Component {
               <ul className='treeview-menu'>
                 <li><Link to={`${basePath}/merchant/profile/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Profile</Link></li>
                 <li><Link to={`${basePath}/merchant/credential/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Credential</Link></li>
-                <li><Link to={`${basePath}/merchant/change-limit/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Rubah Limit Merchant</Link></li>
+                <li><Link to={`${basePath}/merchant/change-limit/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Merchant Limit</Link></li>
               </ul>
             </li>
-            <li className='treeview'>
+            <li className='active treeview menu-open'>
               <Link to='#'>
                 <i className='fa fa-pie-chart' />
-                <span>Transaksi</span>
+                <span>Transaction</span>
                 <span className='pull-right-container'>
                   <i className='fa fa-angle-left pull-right' />
                 </span>
               </Link>
               <ul className='treeview-menu'>
-                <li><Link to={`${basePath}/report/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Laporan Transaksi</Link></li>
+                <li><Link to={`${basePath}/report/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Refund Process</Link></li>
+              </ul>
+            </li>
+            <li className='active treeview menu-open'>
+              <Link to='#'>
+                <i className='fa fa-pie-chart' />
+                <span>Report Transaction</span>
+                <span className='pull-right-container'>
+                  <i className='fa fa-angle-left pull-right' />
+                </span>
+              </Link>
+              <ul className='treeview-menu'>
+                <li><Link to={`${basePath}/report/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> List Detail Transaction</Link></li>
+              </ul>
+            </li>
+            <li className='active treeview menu-open'>
+              <Link to='#'>
+                <i className='fa fa-dashboard' /> <span>User Management</span>
+                <span className='pull-right-container'>
+                  <i className='fa fa-angle-left pull-right' />
+                </span>
+              </Link>
+              <ul className='treeview-menu'>
+                <li><Link to={`${basePath}/usermanagement/listAllUser/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> List All User</Link></li>
+                <li><Link to={`${basePath}/usermanagement/listAllUser/${getAccessToken(this.props.sessionToken)}`}><i className='fa fa-circle-o' /> Create New User</Link></li>
               </ul>
             </li>
           </ul>
