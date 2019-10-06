@@ -1,5 +1,8 @@
 import { call, put, select } from 'redux-saga/effects'
 import LoginActions from './redux'
+import AppActions from '../../Redux/AppRedux'
+import MerchantActions from '../Merchant/redux'
+import UsermanagementActions from '../Usermanagement/redux'
 // import UserActions from '../User/redux'
 // import ParticipantActions from '../Participant/redux'
 // import ClassesActions from '../Classes/redux'
@@ -123,6 +126,9 @@ export function * updateLogin (api, action) {
 
 function * doLogout () {
   yield put(LoginActions.loginRemoveSuccess({}))
+  yield put(AppActions.reset())
+  yield put(MerchantActions.reset())
+  yield put(UsermanagementActions.reset())
   // yield put(UserActions.userReset())
   // yield put(RoleActions.roleReset())
   // yield put(ParticipantActions.participantReset())

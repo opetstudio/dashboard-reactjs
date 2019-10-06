@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
 import LoginActions, { LoginSelectors } from '../Login/redux'
-import TransactionActions, {TransactionSelectors} from './redux'
 import { Redirect } from 'react-router-dom'
 import TransactionListPageComponent from '../../Components/Transaction/TransactionListPageComponent'
 import {isLoggedIn} from '../../Utils/Utils'
@@ -28,7 +27,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    transactionReadRequest: query => dispatch(TransactionActions.transactionReadRequest(query))
+    // transactionReadRequest: query => dispatch(TransactionActions.transactionReadRequest(query))
   }
 }
 export default connect(

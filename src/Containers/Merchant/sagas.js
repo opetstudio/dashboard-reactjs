@@ -81,3 +81,65 @@ export function * merchantReadOneRequest (api, action) {
   }
   yield put(MerchantActions.merchantRequestPatch({isRequesting: false, responseCode, responseMessage, merchantDetail}))
 }
+export function * merchantRequestMinMaxLimit (api, action) {
+  const { data } = action
+  const s = yield select(session)
+  const response = yield call(api.merchantRequestMinMaxLimit, data, {merchantCode: data.merchantCode, session: {access_token: getAccessToken(s.sessionToken)}})
+  console.log('response=>', response)
+  let responseCode = path(['data', 'responseCode'], response)
+  let responseMessage = path(['data', 'responseMessage'], response)
+  let responseDescription = path(['data', 'responseDescription'], response)
+  const merchantLimitMin = path(['data', 'merchantLimitMin'], response)
+  const merchantLimitMax = path(['data', 'merchantLimitMax'], response)
+  if (response.ok) {
+    responseCode = 'MBDD00'
+    responseMessage = 'SUCCESS'
+    responseDescription = 'SUCCESS'
+  } else {
+    responseCode = 'MBDD99'
+    responseMessage = 'FAILED_SYSTEM'
+    responseDescription = response.problem
+  }
+  yield put(MerchantActions.merchantRequestPatch({responseDescription, isRequesting: false, responseCode, responseMessage, merchantLimitMin, merchantLimitMax}))
+}
+export function * merchantUpdateMinMaxLimit (api, action) {
+  const { data } = action
+  const s = yield select(session)
+  const response = yield call(api.merchantUpdateMinMaxLimit, data.body, {merchantCode: data.merchantCode, session: {access_token: getAccessToken(s.sessionToken)}})
+  console.log('response=>', response)
+  let responseCode = path(['data', 'responseCode'], response)
+  let responseMessage = path(['data', 'responseMessage'], response)
+  let responseDescription = path(['data', 'responseDescription'], response)
+  const merchantLimitMin = path(['data', 'merchantLimitMin'], response)
+  const merchantLimitMax = path(['data', 'merchantLimitMax'], response)
+  if (response.ok) {
+    responseCode = 'MBDD00'
+    responseMessage = 'SUCCESS'
+    responseDescription = 'SUCCESS'
+  } else {
+    responseCode = 'MBDD99'
+    responseMessage = 'FAILED_SYSTEM'
+    responseDescription = response.problem
+  }
+  yield put(MerchantActions.merchantRequestPatch({responseDescription, isRequesting: false, responseCode, responseMessage, merchantLimitMin, merchantLimitMax}))
+}
+export function * merchantGetCredential (api, action) {
+  const { data } = action
+  const s = yield select(session)
+  const response = yield call(api.merchantGetCredential, {}, {merchantCode: data.merchantCode, session: {access_token: getAccessToken(s.sessionToken)}})
+  console.log('response=>', response)
+  let responseCode = path(['data', 'responseCode'], response)
+  let responseMessage = path(['data', 'responseMessage'], response)
+  let responseDescription = path(['data', 'responseDescription'], response)
+  const merchantCredential = path(['data', 'merchantCredential'], response)
+  if (response.ok) {
+    responseCode = 'MBDD00'
+    responseMessage = 'SUCCESS'
+    responseDescription = 'SUCCESS'
+  } else {
+    responseCode = 'MBDD99'
+    responseMessage = 'FAILED_SYSTEM'
+    responseDescription = response.problem
+  }
+  yield put(MerchantActions.merchantRequestPatch({responseDescription, isRequesting: false, responseCode, responseMessage, merchantCredential}))
+}

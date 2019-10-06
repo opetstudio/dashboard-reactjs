@@ -4,8 +4,8 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  transactionReadRequest: ['data'],
-  transactionReadRequestPatch: ['data']
+  transactionPatch: ['data'],
+  reset: null
 })
 
 export const TransactionTypes = Types
@@ -17,8 +17,7 @@ export const INITIAL_STATE = Immutable({
   isRequesting: false,
   responseMessage: '',
   responseCode: '',
-  version: 0
-//   rows: ''
+  responseDescription: ''
 })
 
 /* ------------- Selectors ------------- */
@@ -26,29 +25,29 @@ export const INITIAL_STATE = Immutable({
 export const TransactionSelectors = {
   isRequesting: st => st.isRequesting,
   responseMessage: st => st.responseMessage,
-  responseCode: st => st.responseCode
-//   rows: st => st.rows
+  responseCode: st => st.responseCode,
+  responseDescription: st => st.responseDescription
 }
 
 /* ------------- Reducers ------------- */
-
-export const transactionReadRequest = (state, { data }) => {
-  console.log('redux transactionReadRequest invoked ', data)
-  data.isRequesting = true
-  return transactionReadRequestPatch(state, { data })
-}
-export const transactionReadRequestPatch = (state, { data }) => {
+// const transactionGetCredential = (state, { data }) => {
+//   data.isRequesting = true
+//   return transactionRequestPatch(state, { data })
+// }
+export const transactionPatch = (state, { data }) => {
+  // console.log('transactionRequestPatch invoked. dataTransaction=', data.dataTransaction)
   let mergeData = {}
   if (data.hasOwnProperty('isRequesting')) mergeData.isRequesting = data.isRequesting
-  if (data.responseCode) mergeData.responseCode = data.responseCode
-  if (data.responseMessage) mergeData.responseMessage = data.responseMessage
-  mergeData.version = state.version + 1
+  if (data.hasOwnProperty('responseCode')) mergeData.responseCode = data.responseCode
+  if (data.hasOwnProperty('responseMessage')) mergeData.responseMessage = data.responseMessage
+  if (data.hasOwnProperty('responseDescription')) mergeData.responseDescription = data.responseDescription
+  // if (data.pageSize) mergeData.pageSize = data.pageSize
   return state.merge(mergeData)
 }
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.TRANSACTION_READ_REQUEST]: transactionReadRequest,
-  [Types.TRANSACTION_READ_REQUEST_PATCH]: transactionReadRequestPatch
+  [Types.TRANSACTION_PATCH]: transactionPatch,
+  [Types.RESET]: (state) => INITIAL_STATE
 })

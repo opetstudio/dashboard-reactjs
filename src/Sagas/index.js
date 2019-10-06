@@ -16,7 +16,6 @@ import { MerchantTypes } from '../Containers/Merchant/redux'
 import { PaymentgwTypes } from '../Containers/Paymentgw/redux'
 import { UserTypes } from '../Containers/User/redux'
 import { TablepaginationTypes } from '../Containers/TablePagination/redux'
-import {TransactionTypes} from '../Containers/Transaction/redux'
 
 // begin Ignite-Entity-Paymentpage
 // import { PaymentpageTypes } from '../Containers/Paymentpage/redux'
@@ -38,10 +37,16 @@ import {
   removeLogin
 } from '../Containers/Login/sagas'
 // end Ignite-Entity-Login
-import {merchantCreateRequest, merchantReadRequest, merchantReadOneRequest} from '../Containers/Merchant/sagas'
+import {
+  merchantCreateRequest,
+  merchantReadRequest,
+  merchantReadOneRequest,
+  merchantRequestMinMaxLimit,
+  merchantUpdateMinMaxLimit,
+  merchantGetCredential
+} from '../Containers/Merchant/sagas'
 import {userCreateRequest, userReadRequest} from '../Containers/User/sagas'
 import {paymentgwCreateRequest, paymentgwReadRequest} from '../Containers/Paymentgw/sagas'
-import {transactionReadRequest} from '../Containers/Transaction/sagas'
 import {tablepaginationReadRequest} from '../Containers/TablePagination/sagas'
 
 // begin Ignite-Entity-Paymentpage
@@ -72,6 +77,7 @@ const apiQrcode = API.create(AppConfig.env === 'development' ? 'http://localhost
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'https://api.erevnaraya.com/simulator/' : 'https://api.erevnaraya.com/simulator/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://192.168.99.100:31965/dashboard-api/' : 'http://192.168.99.100:31965/dashboard-api/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://188.166.198.144:8762/dashboard-api/' : 'http://188.166.198.144:8762/dashboard-api/')
+// const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8089/dashboard-api/' : 'http://localhost:8089/dashboard-api/')
 const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'http://localhost:8762/dashboard-api/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'http://188.166.198.144:8762/dashboard-api/')
 // const apiDashboard = API.create(AppConfig.env === 'development' ? 'http://localhost:8762/dashboard-api/' : 'https://api.erevnaraya.com/dashboard-api/')
@@ -89,6 +95,9 @@ export default function * root () {
     takeLatest(MerchantTypes.MERCHANT_CREATE_REQUEST, merchantCreateRequest, apiDashboard),
     takeLatest(MerchantTypes.MERCHANT_READ_REQUEST, merchantReadRequest, apiDashboard),
     takeLatest(MerchantTypes.MERCHANT_READ_ONE_REQUEST, merchantReadOneRequest, apiDashboard),
+    takeLatest(MerchantTypes.MERCHANT_REQUEST_MIN_MAX_LIMIT, merchantRequestMinMaxLimit, apiDashboard),
+    takeLatest(MerchantTypes.MERCHANT_UPDATE_MIN_MAX_LIMIT, merchantUpdateMinMaxLimit, apiDashboard),
+    takeLatest(MerchantTypes.MERCHANT_GET_CREDENTIAL, merchantGetCredential, apiDashboard),
 
     takeLatest(PaymentgwTypes.PAYMENTGW_CREATE_REQUEST, paymentgwCreateRequest, apiDashboard),
     takeLatest(PaymentgwTypes.PAYMENTGW_READ_REQUEST, paymentgwReadRequest, apiDashboard),
@@ -99,7 +108,6 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_DO_LOGIN, loginDoLogin, apiDashboard),
     takeLatest(LoginTypes.LOGIN_CHECK_STATUS, loginCheckStatus, apiDashboard),
 
-    takeLatest(TransactionTypes.TRANSACTION_READ_REQUEST, transactionReadRequest, apiDashboard),
     takeLatest(TablepaginationTypes.TABLEPAGINATION_READ_REQUEST, tablepaginationReadRequest, apiDashboard),
 
     takeLatest(StartupTypes.STARTUP, startup, api)

@@ -38,7 +38,7 @@ export default class TableTransaction extends Component {
           pages={pages} // Display the total number of pages
           loading={loading} // Display the loading overlay when we need it
           onFetchData={this.fetchData} // Request new data when things change
-          filterable
+          filterable={false}
           defaultPageSize={pageSize}
           className='-striped -highlight'
         />

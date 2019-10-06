@@ -7,7 +7,8 @@ const { Types, Creators } = createActions({
   usermanagementCreateRequest: ['data'],
   usermanagementRequestPatch: ['data'],
   usermanagementReadRequest: ['data'],
-  usermanagementReadOneRequest: ['data']
+  usermanagementReadOneRequest: ['data'],
+  reset: null
 })
 
 export const UsermanagementTypes = Types
@@ -57,5 +58,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.USERMANAGEMENT_READ_REQUEST]: usermanagementReadRequest,
   [Types.USERMANAGEMENT_READ_ONE_REQUEST]: usermanagementReadOneRequest,
   [Types.USERMANAGEMENT_CREATE_REQUEST]: usermanagementCreateRequest,
-  [Types.USERMANAGEMENT_REQUEST_PATCH]: usermanagementRequestPatch
+  [Types.USERMANAGEMENT_REQUEST_PATCH]: usermanagementRequestPatch,
+  [Types.RESET]: (state) => INITIAL_STATE
 })

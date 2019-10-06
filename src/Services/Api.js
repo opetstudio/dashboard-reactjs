@@ -91,8 +91,8 @@ const create = (baseURL = 'https://jsonplaceholder.typicode.com/') => {
   // begin Ignite-Entity-Login
   apiMerged = merge(apiMerged, require('../Containers/Login/api').create(api))
   // end Ignite-Entity-Login
-  apiMerged = merge(apiMerged, require('../Containers/Merchant/api').create(api))
   apiMerged = merge(apiMerged, require('../Containers/Transaction/api').create(api))
+  apiMerged = merge(apiMerged, require('../Containers/Merchant/api').create(api))
   apiMerged = merge(apiMerged, require('../Containers/Paymentgw/api').create(api))
   apiMerged = merge(apiMerged, require('../Containers/User/api').create(api))
   apiMerged = merge(apiMerged, require('../Containers/TablePagination/api').create(api))

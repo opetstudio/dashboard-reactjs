@@ -121,15 +121,16 @@ export const success = (state, action) => {
 export const removeSuccess = (state, action) => {
   const { payload } = action
   window.localStorage.setItem('isLoggedIn', false)
-  return state.merge({
-    fetching: false,
-    isRequesting: false,
-    error: null,
-    payload,
-    isLoggedIn: false,
-    single: {},
-    token: ''
-  })
+  return INITIAL_STATE
+  // return state.merge({
+  //   fetching: false,
+  //   isRequesting: false,
+  //   error: null,
+  //   payload,
+  //   isLoggedIn: false,
+  //   single: {},
+  //   token: ''
+  // })
 }
 
 export const singleSuccess = (state, action) => {
@@ -200,6 +201,7 @@ export const loginDoLoginSuccess = (state, { data }) => {
   console.log('loginDoLoginSuccess')
   window.localStorage.setItem('isLoggedIn', true)
   window.localStorage.setItem('userRole', data.userRole)
+  window.localStorage.setItem(AppConfig.sessionToken, data.sessionToken)
   data.isRequesting = false
   data.isLoggedIn = true
   return loginPatch(state, { data })

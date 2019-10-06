@@ -5,7 +5,11 @@ import AppConfig from '../Config/AppConfig'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  init: null
+  init: null,
+  setRouteActive: ['data'],
+  setMerchantCode: ['data'],
+  appPatch: ['data'],
+  reset: null
 })
 
 export const AppTypes = Types
@@ -20,7 +24,11 @@ let initialData = AppConfig.env === 'development' ? {
 
 // console.log('initialData===', initialData.LANG)
 export const INITIAL_STATE = Immutable({
-  lang: initialData.LANG
+  lang: initialData.LANG,
+  routeActive: '',
+  merchantCode: '',
+  version: 0,
+  sessionToken: ''
 })
 
 /* ------------- Selectors ------------- */
@@ -30,9 +38,23 @@ export const AppSelectors = {
     if (st.lang !== '__LANG__' && st.lang !== '') return st.lang
     // console.log('huffff')
     return 'id'
-  }
+  },
+  routeActive: st => st.routeActive,
+  merchantCode: st => st.merchantCode,
+  version: st => st.version
+}
+const appPatch = (state, { data }) => {
+  let mergeData = {}
+  if (data.hasOwnProperty('merchantCode')) mergeData.merchantCode = data.merchantCode
+  if (data.hasOwnProperty('routeActive')) mergeData.routeActive = data.routeActive
+  mergeData.version = state.version + 1
+  return state.merge(mergeData)
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.INIT]: () => {}
+  [Types.INIT]: () => {},
+  [Types.SET_ROUTE_ACTIVE]: (state, { data }) => state.merge({routeActive: data.routeActive || ''}),
+  [Types.SET_MERCHANT_CODE]: (state, { data }) => state.merge({merchantCode: data.merchantCode || ''}),
+  [Types.APP_PATCH]: appPatch,
+  [Types.RESET]: (state) => INITIAL_STATE
 })

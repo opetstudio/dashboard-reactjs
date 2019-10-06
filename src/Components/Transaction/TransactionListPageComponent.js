@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import TableTransaction from './TableTransaction'
+import Filter from './Filter'
 // import TablePagination from '../Table/TablePagination'
 
 // Import React Table
@@ -37,38 +38,33 @@ class TransactionListPageComponent extends Component {
     return (
       <div className='content-wrapper'>
         <Helmet>
-          <title>Transaksi</title>
+          <title>Report</title>
         </Helmet>
         <section className='content-header'>
           <h1>
-            Laporan Transaksi
+            Report
           </h1>
           <ol className='breadcrumb'>
-            <li><a href='#'><i className='fa fa-dashboard' /> Transaksi</a></li>
-            <li className='active'>Laporan Transaksi</li>
+            <li><a href='#'><i className='fa fa-dashboard' /> Report</a></li>
           </ol>
         </section>
         <section className='content'>
-          <div className='row'>
-            <div className='col-xs-12'>
-              {/* <MaterialUiTable   /> */}
-              <div className='box'>
-                {/* <div className='box-header'>
+          <Filter />
+          {/* <MaterialUiTable   /> */}
+          <div className='box'>
+            {/* <div className='box-header'>
                   <h3 className='box-title'>Data Table With Full Features</h3>
                 </div> */}
-                <div className='box-body'>
-                  <div className='row'>
-                    <div className='col-sm-12'>
-                      <TableTransaction
-                        userMerchantCode={this.props.userMerchantCode}
-                      />
-                    </div>
-                  </div>
+            <div className='box-body'>
+              <div className='row'>
+                <div className='col-sm-12'>
+                  <TableTransaction
+                    userMerchantCode={this.props.userMerchantCode}
+                  />
                 </div>
               </div>
             </div>
           </div>
-
         </section>
 
       </div>

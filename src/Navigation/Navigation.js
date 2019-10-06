@@ -26,6 +26,8 @@ import PaymentgwCreatePageContainer from '../Containers/Paymentgw/PaymentgwCreat
 import PaymentgwListPageContainer from '../Containers/Paymentgw/PaymentgwListPageContainer'
 
 import TransactionListPageContainer from '../Containers/Transaction/TransactionListPageContainer'
+import RefundRequestPage from '../Containers/Transaction/RefundRequestPage'
+import RefundReviewPage from '../Containers/Transaction/RefundReviewPage'
 import LoginPageContainer from '../Containers/Login/LoginPageContainer'
 import SignupPageContainer from '../Containers/Signup/SignupPageContainer'
 import GenerateQrcodePageContainer from '../Containers/Qrcode/GenerateQrcodePageContainer'
@@ -147,11 +149,10 @@ class NavigationRouter extends Component {
               path={`${basePath}/user/list/:sessionToken`}
               component={UserListPageContainer}
             />
-            <Route
-              exact
-              path={`${basePath}/report/:sessionToken`}
-              component={TransactionListPageContainer}
-            />
+            <Route exact path={`${basePath}/report/:sessionToken`} component={TransactionListPageContainer} />
+            <Route exact path={`${basePath}/transaction/refund-request/:sessionToken`} component={RefundRequestPage} />
+            <Route exact path={`${basePath}/transaction/refund-review/:sessionToken`} component={RefundReviewPage} />
+            <Route exact path={`${basePath}/report-transaction/list-detail-transaction/:sessionToken`} component={TransactionListPageContainer} />
             <Route
               exact
               path={`${basePath}/login`}

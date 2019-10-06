@@ -109,8 +109,8 @@ export const loadScript = (pathname) => {
 export const getAccessToken = (accessTokenState) => {
   // console.log('getAccessToken')
   // const publicToken = window.localStorage.getItem(AppConfig.publicToken)
-  // const sessionToken = window.localStorage.getItem(AppConfig.sessionToken)
-  // accessTokenState = accessTokenState || sessionToken
+  const sessionToken = window.localStorage.getItem(AppConfig.sessionToken)
+  accessTokenState = accessTokenState || sessionToken
   // const ok = true
   // dont encrypt
   // if (ok) return accessTokenState

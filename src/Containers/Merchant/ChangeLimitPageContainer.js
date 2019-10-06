@@ -21,18 +21,10 @@ class TheComponent extends React.PureComponent {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    isLoggedIn: LoginSelectors.isLoggedIn(state.login),
-    isRequesting: MerchantSelectors.isRequesting(state.merchant),
-    responseMessage: MerchantSelectors.responseMessage(state.merchant),
-    responseCode: MerchantSelectors.responseCode(state.merchant)
-  }
+  return {}
 }
 const mapDispatchToProps = dispatch => {
-  return {
-    merchantRequestPatch: query => dispatch(MerchantActions.merchantRequestPatch(query)),
-    merchantCreateRequest: query => dispatch(MerchantActions.merchantCreateRequest(query))
-  }
+  return {}
 }
 export default connect(
   mapStateToProps,

@@ -2,15 +2,16 @@ import storage from 'redux-persist/lib/storage' // or whatever storage you are u
 import immutablePersistenceTransform from '../Services/ImmutablePersistenceTransform'
 import AppConfig from './AppConfig'
 
+
 // More info here:  https://shift.infinite.red/shipping-persistant-reducers-7341691232b1
 const REDUX_PERSIST = {
   active: true,
-  reducerVersion: '246',
+  reducerVersion: '249',
   storeConfig: {
     key: 'root',
     storage: storage, // Come back and replace this at some point
     // storage: 'AsyncStorage', // Come back and replace this at some point
-    blacklist: ['paymentpage', 'app', 'qrcode', 'tablepagination'], // reducer keys that you do NOT want stored to persistence here
+    blacklist: ['paymentpage', 'qrcode', 'tablepagination'], // reducer keys that you do NOT want stored to persistence here
     // whitelist: [], Optionally, just specify the keys you DO want stored to
     // persistence. An empty array means 'don't store any reducers' -> infinitered/ignite#409
     transforms: [immutablePersistenceTransform]

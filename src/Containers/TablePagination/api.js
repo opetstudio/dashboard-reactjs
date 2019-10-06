@@ -24,7 +24,7 @@ export const create = api => ({
     if (userMerchantCode !== null) {
       params['mercId'] = userMerchantCode
     }
-    const resp = api.get('/plink/report/list', params)
+    const resp = api.get(url || '/plink/report/list', params)
     return resp
   }
 })

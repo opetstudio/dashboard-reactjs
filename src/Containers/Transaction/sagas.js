@@ -1,33 +1,35 @@
 import { call, put, select } from 'redux-saga/effects'
-import TransactionActions from './redux'
+import MerchantActions from './redux'
 import { getAttributes } from '../../Transforms/TransformAttributes'
-import { merge, path } from 'ramda'
+import { path } from 'ramda'
 import {getAccessToken} from '../../Utils/Utils'
-import _ from 'lodash'
-import Cookies from 'universal-cookie'
+import LoginActions from '../Login/redux'
 
-export const session = state => ({
-  token: state.login.token,
-  isLoggedIn: state.login.isLoggedIn,
-  userMerchantCode: state.login.userMerchantCode
-})
+// export const session = state => ({...state.login.single, token: state.login.token, isLoggedIn: state.login.isLoggedIn})
 export const transformedData = response => getAttributes(response.data)
-
-export function * transactionReadRequest (api, action) {
+export const session = state => ({
+  ...state.login.single,
+  token: state.login.token,
+  sessionToken: state.login.sessionToken,
+  isLoggedIn: state.login.isLoggedIn
+})
+export function * merchantGetCredential (api, action) {
   const { data } = action
-  // console.log('action===>', action)
   const s = yield select(session)
-  const encryptedAccessToken = getAccessToken(s.token)
-  const response = yield call(api.transactionReadRequest, data, {encryptedAccessToken, userMerchantCode: s.userMerchantCode})
-  // console.log('response=>', response)
+  const response = yield call(api.merchantGetCredential, {}, {merchantCode: data.merchantCode, session: {access_token: getAccessToken(s.sessionToken)}})
+  console.log('response=>', response)
   let responseCode = path(['data', 'responseCode'], response)
   let responseMessage = path(['data', 'responseMessage'], response)
+  let responseDescription = path(['data', 'responseDescription'], response)
+  const merchantCredential = path(['data', 'merchantCredential'], response)
   if (response.ok) {
     responseCode = 'MBDD00'
     responseMessage = 'SUCCESS'
+    responseDescription = 'SUCCESS'
   } else {
-    responseCode = 'MBDD01'
-    responseMessage = 'FAILED'
+    responseCode = 'MBDD99'
+    responseMessage = 'FAILED_SYSTEM'
+    responseDescription = response.problem
   }
-  yield put(TransactionActions.transactionReadRequestPatch({isRequesting: false, responseCode, responseMessage}))
+  yield put(MerchantActions.merchantRequestPatch({responseDescription, isRequesting: false, responseCode, responseMessage, merchantCredential}))
 }

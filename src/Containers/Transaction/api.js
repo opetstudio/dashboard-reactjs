@@ -1,28 +1,18 @@
 // a library to wrap and simplify api calls
 import AppConfig from '../../Config/AppConfig'
+import {generateHmac} from '../../Utils/Utils'
+
 export const create = api => ({
-  transactionReadRequest: (data, {encryptedAccessToken, userMerchantCode}) => {
-    // let filtered = encodeURIComponent(JSON.stringify(data.filtered))
-    // let sorted = encodeURIComponent(JSON.stringify(data.sorted))
-    // api.setHeader('authorization', opt.session.token)
-    // const resp = api.get('/plink/report/list', {page: data.page + 1, pageSize: data.pageSize, filtered: data.filtered.map(r => ), sorted: data.sorted})
-    let params = {}
-    params.page = (data.page || 0) + 1
-    params.pageSize = data.pageSize
-    data.filtered.forEach((v, k) => {
-      params[v['id']] = v['value']
-    })
-    data.sorted.forEach((v, k) => {
-      params['orderby'] = v['id']
-      params['desc'] = v['desc']
-    })
+  transactionUpdateMinMaxLimit: (data, opt) => {
+    let body = {transactionLimitMin: data.minlimit, transactionLimitMax: data.maxlimit}
+    console.log('body==>', JSON.stringify(body))
+    api.setHeader('mac', generateHmac(JSON.stringify(body)))
     api.setHeader(
       AppConfig.authHeader,
-      AppConfig.authTokenType + ' ' + encryptedAccessToken
+      AppConfig.authTokenType + ' ' + opt.session.access_token
     )
-    console.log('userMerchantCode====>', userMerchantCode)
-    params['mercId'] = userMerchantCode
-    const resp = api.get('/plink/report/list', params)
+    // /plink/transaction/detail/{cd}
+    const resp = api.post(`/plink/transaction/update-limit/${opt.transactionCode}`)
     return resp
   }
 })
